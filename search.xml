@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/05/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <title>LeetCode刷题集——66.加一</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9466.%E5%8A%A0%E4%B8%80/</url>
+    <content><![CDATA[<h1 id="66-加一"><a href="#66-加一" class="headerlink" title="66.加一"></a>66.加一</h1><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><blockquote>
+<p>输入: [1,2,3]<br>输出: [1,2,4]<br>解释: 输入数组表示数字 123。</p>
+</blockquote>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><blockquote>
+<p>输入: [4,3,2,1]<br>输出: [4,3,2,2]<br>解释: 输入数组表示数字 4321。</p>
+</blockquote>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/plus-one" target="_blank" rel="noopener">https://leetcode-cn.com/problems/plus-one</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目中非负整数加一，比如0，9。根据分析得知共分为两种情况</p>
+<ol>
+<li>除9以外的数字加一；</li>
+<li>数字9。<br>只要<strong>加1取余数不等于0</strong>，说明不存在进位，直接返回即可。如果<strong>余数等于0</strong>，说明存在进位，遍历前一个数字，<strong>加1继续取余</strong>，如果<strong>还为0说明还存在进位</strong>，依次循环，如果最高位还存在进位，则需要<strong>重新建立一个数组</strong>，将第一位设置为1即可。<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.length - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">            digits[i]++;</span><br><span class="line">            digits[i] = digits[i] % <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(digits[i] != <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> digits;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        digits = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length + <span class="number">1</span>];</span><br><span class="line">        digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> digits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ol>
 ]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
   </entry>
   <entry>
     <title>Mysql基础——Day2</title>
-    <url>/2020/05/19/day2/</url>
+    <url>/2020/05/19/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day2/</url>
     <content><![CDATA[<h1 id="列类型"><a href="#列类型" class="headerlink" title="列类型"></a>列类型</h1><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><ol>
 <li><strong>Tinyint</strong>:迷你整型，系统采用一个字节来保存数据；</li>
 <li><strong>Smallint</strong>:小整型，系统采用两个字节来保存数据；</li>
@@ -121,6 +126,169 @@
 ]]></content>
       <categories>
         <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mysql基础——Day4</title>
+    <url>/2020/05/20/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day4/</url>
+    <content><![CDATA[<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="子查询-1"><a href="#子查询-1" class="headerlink" title="子查询"></a>子查询</h3><p>指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。</p>
+<h3 id="主查询"><a href="#主查询" class="headerlink" title="主查询"></a>主查询</h3><p>第一条select语句，确定了用户所有获取的数据目标。</p>
+<h3 id="子查询与主查询的关系"><a href="#子查询与主查询的关系" class="headerlink" title="子查询与主查询的关系"></a>子查询与主查询的关系</h3><ol>
+<li>子查询嵌入主查询中；</li>
+<li>子查询辅助主查询，用作<strong>条件</strong>或<strong>数据源</strong>；</li>
+<li>子查询是一条完整的select语句，<strong>可以独立存在</strong>。</li>
+</ol>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="按功能分"><a href="#按功能分" class="headerlink" title="按功能分"></a>按功能分</h3><ol>
+<li>标量子查询：子查询返回的结果为一个数据；</li>
+<li>列子查询：返回的结果是一列；</li>
+<li>行子查询：返回的结果是一行；</li>
+<li>表子查询：返回的结果是多行多列；</li>
+<li>exists子查询：返回的结果是1或0；</li>
+</ol>
+<h3 id="按位置分"><a href="#按位置分" class="headerlink" title="按位置分"></a>按位置分</h3><ol>
+<li>where子查询：子查询出现的位置在where条件中；</li>
+<li>from子查询：子查询出现的位置在from数据源中；</li>
+</ol>
+<h2 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h2><ol>
+<li><p><strong>select * from 数据源 where 条件判断 =/&lt;&gt; (select 字段名 from 数据源 where 条件判断);</strong></p>
+</li>
+<li><p>需求决定主查询，条件决定子查询。</p>
+</li>
+</ol>
+<h2 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h2><ol>
+<li><strong>主查询 where 条件 in(列子查询);</strong></li>
+</ol>
+<h2 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h2><ol>
+<li><p><strong>主查询 where 条件[(构造一个行元素)] = (行子查询);</strong></p>
+</li>
+<li><p>行元素：多个字段合起来作为一个元素参与运算。</p>
+</li>
+</ol>
+<h2 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h2><ol>
+<li><strong>select 字段表 from (表子查询) as 别名;</strong></li>
+</ol>
+<h2 id="exists子查询"><a href="#exists子查询" class="headerlink" title="exists子查询"></a>exists子查询</h2><ol>
+<li><p><strong>where exists(查询语句);</strong></p>
+</li>
+<li><p>根据查询到的结果判断</p>
+</li>
+</ol>
+<h1 id="数据库的备份和还原"><a href="#数据库的备份和还原" class="headerlink" title="数据库的备份和还原"></a>数据库的备份和还原</h1><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p><strong>Mysqldump -uroot -p 数据库名称[表1 [表2]] &gt;备份文件位置</strong></p>
+<ol>
+<li>整库备份</li>
+<li>单表备份</li>
+<li>多表备份</li>
+</ol>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><ol>
+<li><p>source SQL文件位置    <strong>必须先进入相应数据库</strong></p>
+</li>
+<li><p><strong>mysql -uroot -p 数据库 &lt;文件位置</strong></p>
+</li>
+</ol>
+<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><p>在不同的项目中给不同的角色不同的操作权限，确保数据库中数据的安全。</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p><strong>create user 用户名 identified by ‘明文密码’;</strong></p>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p><strong>drop user 用户名;</strong></p>
+<h3 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h3><p>使用对应的<strong>password()</strong>，对密码进行加密处理。</p>
+<ol>
+<li><strong>Set password for 用户  = password(‘新明文密码’);</strong></li>
+<li><strong>Update mysql.user set password = password(‘新明文密码’) where user = ‘’ and host = ‘’;</strong></li>
+</ol>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>在mysql中将权限分为<strong>数据权限</strong>（增删改查）、<strong>结构权限</strong>（结构操作）、<strong>管理权限</strong>，权限列表可以使用逗号分配，也可以使用<strong>all privileges</strong>代表全部权限。</p>
+<ol>
+<li>授予权限：grant，将权限分配给指定的用户，<strong>grant 权限列表 on 数据库.表名 to 用户;</strong></li>
+<li>取消权限：revoke，将权限从用户收回，<strong>revoke 权限列表 on 数据库.表名 from 用户;</strong></li>
+<li>刷新权限：flush，将当前对用户的权限操作，进行一个刷新，将操作的具体内容同步到对应表中，<strong>flush privileges;</strong></li>
+</ol>
+<h2 id="密码丢失"><a href="#密码丢失" class="headerlink" title="密码丢失"></a>密码丢失</h2><p>重置root密码</p>
+<ol>
+<li>停止服务</li>
+<li>重新启动服务 <strong>mysqld -skip -grant -tables</strong>  //启动服务器但跳过权限</li>
+<li>当前启动的服务器没有权限概念，非常危险，全为<strong>root权限</strong></li>
+<li>修改用户密码</li>
+<li>关闭服务器并重启</li>
+</ol>
+<h1 id="外键-forgein-key"><a href="#外键-forgein-key" class="headerlink" title="外键(forgein key)"></a>外键(forgein key)</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>一张表(主表)有一个字段，保存的值指向另外一张表(从表)的主键。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="增加外键"><a href="#增加外键" class="headerlink" title="增加外键"></a>增加外键</h3><ol>
+<li><p>在字段后增加一条语句[constraint’外键名’] foreign key (外键字段) references 主表(主键);</p>
+</li>
+<li><p><strong>alter table 从表 add[constraint’外键名’] foreign key(外键字段) references 主表(主键);</strong></p>
+</li>
+</ol>
+<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><ol>
+<li><p>外键不允许修改，只可以先删除后增加</p>
+</li>
+<li><p><strong>alter table 从表 drop foreign key 外键名字;</strong></p>
+</li>
+</ol>
+<h3 id="外键基本要求"><a href="#外键基本要求" class="headerlink" title="外键基本要求"></a>外键基本要求</h3><ol>
+<li>外键字段需要保证与关联的主表的主键字段类型完全一致；</li>
+<li>基本属性也相同；</li>
+<li>外键只能使用<strong>innodb存储引擎</strong>。</li>
+</ol>
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>通过建立外键关系之后，对主表和从表都会有一定的数据约束效率。</p>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><ol>
+<li>外键产生时，从表会对受限于主表数据的存在从而导致数据不能进行某些不符合规范的操作；</li>
+<li>如果一张表被其他表外键引入，那么该表的数据操作就不能随便进行，必须要保证从表数据的有效性。</li>
+</ol>
+<h3 id="外键约束-1"><a href="#外键约束-1" class="headerlink" title="外键约束"></a>外键约束</h3><p>可以在创建外键时，对外键约束进行选择性操作，主要约束对象为<strong>主表</strong></p>
+<p><strong>add foreign key (外键字段) references 主表(主键) on 约束模式;</strong></p>
+<h4 id="约束模式"><a href="#约束模式" class="headerlink" title="约束模式"></a>约束模式</h4><ol>
+<li>District:严格模式，不允许操作；</li>
+<li>Cascade:级联模式，从表数据会随着主表数据变化；</li>
+<li>Set null:置空模式，主表变化，从表对应记录设置为空，前提是从表中对应的外键字段允许为空。</li>
+</ol>
+<p>常用的约束模式：<strong>on update cascade(更新级联)</strong>, <strong>on delete set null(删除置空)</strong>。</p>
+<h3 id="约束作用"><a href="#约束作用" class="headerlink" title="约束作用"></a>约束作用</h3><p>保证数据的<strong>完整性</strong>，主表和从表数据要一致，但会导致数据在后台变化的不可控。</p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图的本质是SQL指令</p>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><p><strong>create view 视图名称 as select指令;</strong></p>
+<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p><strong>select 字段列表 from 视图名称[子句];</strong> 主要用于查询操作 </p>
+<h2 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h2><p><strong>alter view 视图名称 as 新select指令;</strong> 本质是修改视图对应的查询语句</p>
+<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><p><strong>drop view 视图名称;</strong></p>
+<h1 id="事务安全"><a href="#事务安全" class="headerlink" title="事务安全"></a>事务安全</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>事务是访问并可能更新数据库中各种数据项的一个<strong>程序执行单元</strong>，由<strong>事务开始</strong>和<strong>事务结束</strong>之间执行的主题操作组成。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>mysql允许将事务统一进行管理，将用户所做的结果暂时保存，不直接应用到数据表，等到用户确认之后再进行操作。</p>
+<h2 id="自动事务-autocommit"><a href="#自动事务-autocommit" class="headerlink" title="自动事务(autocommit)"></a>自动事务(autocommit)</h2><ol>
+<li>当客户端发送一条sql指令给服务器，服务器执行后，不用等待用户反馈结果会自动将结果同步到数据表。</li>
+<li>关闭自动事务<strong>set auto commit = off</strong>，一旦自动事务关闭，就需要用户提供是否同步的命令<blockquote>
+<p>commit:提交，同步到数据表<br>rollback:回滚</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="手动事务"><a href="#手动事务" class="headerlink" title="手动事务"></a>手动事务</h2><h3 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h3><p><strong>Start transaction;</strong></p>
+<h3 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h3><p>将多条SQL指令逐一执行。</p>
+<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><ol>
+<li><strong>Commit</strong>:确认提交，写入数据表；</li>
+<li><strong>Rollback</strong>:回滚，所有数据无效。</li>
+</ol>
+<h3 id="回滚点savepoint"><a href="#回滚点savepoint" class="headerlink" title="回滚点savepoint"></a>回滚点savepoint</h3><p>当有一系列事务开始操作时，可以在某一个成功点设置一个回滚点，当后面有失败，可以返回这个位置。</p>
+<ol>
+<li>增加回滚点：<strong>savepoint 回滚点名称;</strong></li>
+<li>回到回滚点：<strong>rollback to 回滚点名称;</strong></li>
+</ol>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>事务具有四个特性：<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>、<strong>持久性</strong>，通常称为<strong>ACID特性</strong>。</p>
+<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>一个事务是不可分割的工作单位，事务中的所有操作要么都做，要么都不做。</p>
+<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>事务必须是使数据库从一个一致性状态变到另一个一致性状态，一致性与原子性是密切相关的。</p>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能相互干扰。</p>
+<h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>一个事务一旦提交，它对数据库中数据的改变是永久性的，接下来的其他操作和故障不应对其具有任何影响。</p>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——27.移除元素</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9427.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27.移除元素"></a>27.移除元素</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><p>给定 nums = [3,2,2,3], val = 3,<br>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><p>给定 nums = [0,1,2,2,3,0,4,2], val = 2,<br>函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。<br>注意这五个元素可为任意顺序。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br>// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝<br>int len = removeElement(nums, val);<br>// 在函数里修改输入数组对于调用者是可见的。<br>// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。<br>for (int i = 0; i &lt; len; i++) {<br>    print(nums[i]);<br>}<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-element" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-element</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目要求就地删除给定值的所有元素，可以采用<strong>双指针t和i</strong>，当<strong>nums[i]==val</strong>相等时，<strong>递增i并跳过该元素</strong>，当<strong>nums[i]!=val</strong>时，将<strong>nums[i]复制到nums[t]，并递增t和i</strong>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != val)&#123;</span><br><span class="line">                nums[t] = nums[i];</span><br><span class="line">                t++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
       </categories>
   </entry>
 </search>
