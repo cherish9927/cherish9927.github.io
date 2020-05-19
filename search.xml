@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Mysql基础——Day2</title>
+    <url>/2020/05/19/day2/</url>
+    <content><![CDATA[<h1 id="列类型"><a href="#列类型" class="headerlink" title="列类型"></a>列类型</h1><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><ol>
+<li><strong>Tinyint</strong>:迷你整型，系统采用一个字节来保存数据；</li>
+<li><strong>Smallint</strong>:小整型，系统采用两个字节来保存数据；</li>
+<li><strong>Mediumint</strong>:中整型，系统采用三个字节来保存数据；</li>
+<li><strong>Int</strong>:标准整型，系统采用四个字节来保存数据；</li>
+<li><strong>Bigint</strong>:大整型，系统采用八个字节来保存数据；</li>
+<li><strong>无符号标识设定</strong>:在列类型之后加上 <strong>unsigned</strong>；</li>
+</ol>
+<h2 id="小数类型"><a href="#小数类型" class="headerlink" title="小数类型"></a>小数类型</h2><ol>
+<li><p><strong>浮点型</strong>:又称精度类型，有可能丢失精度。</p>
+<ul>
+<li><strong>Float</strong>:单精度类型，系统提供4个字节存储数据，但只能保证7个字节左右的精度，表示不指定小数位的浮点数。float(M,D):表示一共存储<strong>M</strong>个有效数字，其中小数占<strong>D</strong>位。</li>
+<li><strong>Double</strong>:双精度类型，系统提供8个字节存储数据，但只能保证15个字节左右的精度。</li>
+</ul>
+</li>
+<li><p><strong>定点型</strong>：能够保证数据精确的小数（小树部分可能不精确，但整数部分一定精确）。</p>
+<ul>
+<li><strong>Decimal</strong>:系统自动根据存储的数据来分配存储空间。decimal(M,D):<strong>M</strong>表示总长度，不能超过65；<strong>D</strong>表示小树部分长度，不能超过30。</li>
+</ul>
+</li>
+</ol>
+<h2 id="时间日期类型"><a href="#时间日期类型" class="headerlink" title="时间日期类型"></a>时间日期类型</h2><ol>
+<li><strong>Data</strong>:系统使用三个字节来存储数据，对应的格式为:<strong>YYYY-mm-dd</strong>;</li>
+<li><strong>Time</strong>:能够表示某个指定的时间，采用三个字节存储，对应的格式为:<strong>HH:ii:ss</strong>;</li>
+<li><strong>Datatime</strong>:将data和time合并，使用8个字节存储，格式为：<strong>YYYY-mm-dd HH:ii:ss</strong>;</li>
+<li><strong>Timestamp</strong>:时间戳，格式为<strong>YYYY-mm-dd:HH:ii:ss</strong>;</li>
+<li><strong>Year</strong>:占用一个字节来保存。</li>
+</ol>
+<h2 id="字符串型"><a href="#字符串型" class="headerlink" title="字符串型"></a>字符串型</h2><ol>
+<li><strong>Char</strong>:定长字符，指定长度之后，系统一定会分配指定空间用于存储数据；</li>
+<li><strong>Varchar</strong>:指定长度之后，系统会根据实际存储的数据来计算长度分配合适的长度；</li>
+<li><strong>Text</strong>:存储普通的字符文本；</li>
+<li><strong>Enum</strong>:枚举，在数据插入之前，先设定几个可能最终出现数据结果的项；</li>
+<li><strong>Set</strong>:将多个数据选项可以同时保存的数据类型，本质是将指定的项按照对应的二进制位进行控制：<strong>1</strong>表示该项<strong>被选中</strong>，<strong>0</strong>表示该项<strong>未被选中</strong>。</li>
+</ol>
+<h1 id="列属性"><a href="#列属性" class="headerlink" title="列属性"></a>列属性</h1><h2 id="null属性"><a href="#null属性" class="headerlink" title="null属性"></a>null属性</h2><h2 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h2><h2 id="列描述"><a href="#列描述" class="headerlink" title="列描述"></a>列描述</h2><p>专门给开发人员进行维护的一个注释说明；</p>
+<p>comment ‘字段描述’;        —查看表创建语句查看comment</p>
+<h2 id="主键-Primary-Key"><a href="#主键-Primary-Key" class="headerlink" title="主键(Primary Key)"></a>主键(Primary Key)</h2><p>在一张表中有且仅有一个字段，里面的值具有唯一性；</p>
+<ol>
+<li><p>随表创建：在字段后增加<strong>primary key</strong>;</p>
+</li>
+<li><p>表后增加：<strong>alter table 表名 add primary key(字段);</strong></p>
+</li>
+<li><p>查看主键：表的创建语句；</p>
+</li>
+<li><p>删除主键：<strong>alter table 表名 drop primary key;</strong></p>
+</li>
+<li><p>复合主键：<strong>primary key(字段名1,字段名2)</strong>;</p>
+</li>
+<li><p>主键约束：</p>
+<ul>
+<li>当前字段对应数据不能为空；</li>
+<li>当前字段对应的数据不能有任何重复。</li>
+</ul>
+</li>
+<li><p>主键分类：</p>
+<ul>
+<li>业务主键：主键所在的字段具有业务意义；</li>
+<li>逻辑主键：自然增长的类型。</li>
+</ul>
+</li>
+</ol>
+<h2 id="自动增长-auto-increment"><a href="#自动增长-auto-increment" class="headerlink" title="自动增长(auto_increment)"></a>自动增长(auto_increment)</h2><p>通常用于逻辑主键；</p>
+<ol>
+<li><p>原理：在系统中有维护一组数据，用来保存当前使用了自动增长的字段，记住当前对应的数据值，再给定一个指定的步长；当用户进行数据插入时，如果没有给定值，系统会在原始值上再加步长变成新的数据；</p>
+</li>
+<li><p>使用自动增长：在字段后增加一个属性<strong>auto_increment</strong>；</p>
+</li>
+<li><p>修改自动增长：<strong>alter table 表名 auto_increment = 值;</strong>；</p>
+</li>
+<li><p>删除自动增长：当用户修改自增字段时，如果没有看到auto_increment属性，系统会自动清除该自动增长；</p>
+</li>
+<li><p>初始设置：在系统中，有一组变量用来维护自动增长的初始值和步长，<strong>show variables like ‘auto increment%’;</strong></p>
+</li>
+<li><p>细节问题</p>
+</li>
+</ol>
+<ul>
+<li>一张表只能有一个自动增长；</li>
+<li>如果数据插入没有触发自动增长，那么自动增长不会表现；</li>
+<li>自动增长修改时，值可以较大，但不能比当前已有自动增长字段的值小。</li>
+</ul>
+<h2 id="唯一键-unique-key"><a href="#唯一键-unique-key" class="headerlink" title="唯一键(unique key)"></a>唯一键(unique key)</h2><p>用来保证对应字段中的数据唯一，可以有多个，允许数据为null；</p>
+<ol>
+<li>创建唯一键：<ul>
+<li>直接在表字段之后添加<strong>unique [key]</strong>；</li>
+<li>在所有字段之后使用<strong>unique key(字段列表)</strong>；</li>
+<li>在创建完表后增加唯一键<strong>alter table 表名 add unique key(字段列表);</strong></li>
+</ul>
+</li>
+<li>查看唯一键：通过查看表结构来实现；</li>
+<li>删除唯一键：<strong>alter table 表名 drop index 唯一键名称;</strong></li>
+<li>复合唯一键：可以使用多个字段来保证唯一性，与主键一致。</li>
+</ol>
+<h1 id="表关系"><a href="#表关系" class="headerlink" title="表关系"></a>表关系</h1><h2 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h2><p>一张表中的一条记录与另外一张表中最多有一条有明确关系，通常保证两张表使用<strong>相同的主键</strong>。</p>
+<h2 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h2><p>在多关系的表中去维护一个字段，这个字段是“<strong>一</strong>”的<strong>主键</strong>。</p>
+<h2 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h2><p>一张表中的多条记录在另一张表中可以匹配到多条记录；增加一个中间表，让中间表于对应的其他表形成两个<strong>一对多</strong>关系。</p>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/05/10/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
