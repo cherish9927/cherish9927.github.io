@@ -77,14 +77,14 @@
 
 
 
-<meta name="description" content="Day01——Java语言概述Java语言的特点面向对象性 两个要素：类、对象； 三个特征：封装、继承、多态。  健壮性 去除了C语言中的指针； 自动回收垃圾机制。  跨平台性注释(comment)1.定义用于注解说明解释程序的文字；注释内容不参与程序的编译。 2.分类 单行注释    &#x2F;&#x2F; 多行注释    &#x2F;* *&#x2F;  不可以嵌套使用 文档注释（Java特有）  3.作用 提高了代码的阅读性；">
+<meta name="description" content="子查询概念子查询指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。 主查询第一条select语句，确定了用户所有获取的数据目标。 子查询与主查询的关系 子查询嵌入主查询中； 子查询辅助主查询，用作条件或数据源； 子查询是一条完整的select语句，可以独立存在。  分类按功能分 标量子查询：子查询返回的结果为一个数据； 列子查询：返回的结果是一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java SE——Day01_Java语言描述">
-<meta property="og:url" content="http://yoursite.com/2020/05/25/Day01%E2%80%94%E2%80%94Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:title" content="Mysql基础——Day4">
+<meta property="og:url" content="http://yoursite.com/2020/05/20/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day4/index.html">
 <meta property="og:site_name" content="Zhanglei&#39;s blog">
-<meta property="og:description" content="Day01——Java语言概述Java语言的特点面向对象性 两个要素：类、对象； 三个特征：封装、继承、多态。  健壮性 去除了C语言中的指针； 自动回收垃圾机制。  跨平台性注释(comment)1.定义用于注解说明解释程序的文字；注释内容不参与程序的编译。 2.分类 单行注释    &#x2F;&#x2F; 多行注释    &#x2F;* *&#x2F;  不可以嵌套使用 文档注释（Java特有）  3.作用 提高了代码的阅读性；">
-<meta property="article:published_time" content="2020-05-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-25T14:16:10.219Z">
+<meta property="og:description" content="子查询概念子查询指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。 主查询第一条select语句，确定了用户所有获取的数据目标。 子查询与主查询的关系 子查询嵌入主查询中； 子查询辅助主查询，用作条件或数据源； 子查询是一条完整的select语句，可以独立存在。  分类按功能分 标量子查询：子查询返回的结果为一个数据； 列子查询：返回的结果是一">
+<meta property="article:published_time" content="2020-05-19T22:45:00.000Z">
+<meta property="article:modified_time" content="2020-05-20T02:43:44.428Z">
 <meta property="article:author" content="Zhanglei">
 <meta name="twitter:card" content="summary">
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/25/Day01——Java语言概述/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/20/Mysql基础——Day4/"/>
 
 
 
 
 
-  <title>Java SE——Day01_Java语言描述 | Zhanglei's blog</title>
+  <title>Mysql基础——Day4 | Zhanglei's blog</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/Day01%E2%80%94%E2%80%94Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhanglei">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java SE——Day01_Java语言描述</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql基础——Day4</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-25T00:00:00+08:00">
-                2020-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-20T06:45:00+08:00">
+                2020-05-20
               </time>
             
 
@@ -335,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
-                    <span itemprop="name">Java SE</span>
+                  <a href="/categories/Mysql%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql基础</span>
                   </a>
                 </span>
 
@@ -372,35 +372,144 @@
       
 
       
-        <h1 id="Day01——Java语言概述"><a href="#Day01——Java语言概述" class="headerlink" title="Day01——Java语言概述"></a>Day01——Java语言概述</h1><h2 id="Java语言的特点"><a href="#Java语言的特点" class="headerlink" title="Java语言的特点"></a>Java语言的特点</h2><h3 id="面向对象性"><a href="#面向对象性" class="headerlink" title="面向对象性"></a>面向对象性</h3><ol>
-<li>两个要素：<strong>类</strong>、<strong>对象</strong>；</li>
-<li>三个特征：<strong>封装</strong>、<strong>继承</strong>、<strong>多态</strong>。</li>
+        <h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="子查询-1"><a href="#子查询-1" class="headerlink" title="子查询"></a>子查询</h3><p>指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。</p>
+<h3 id="主查询"><a href="#主查询" class="headerlink" title="主查询"></a>主查询</h3><p>第一条select语句，确定了用户所有获取的数据目标。</p>
+<h3 id="子查询与主查询的关系"><a href="#子查询与主查询的关系" class="headerlink" title="子查询与主查询的关系"></a>子查询与主查询的关系</h3><ol>
+<li>子查询嵌入主查询中；</li>
+<li>子查询辅助主查询，用作<strong>条件</strong>或<strong>数据源</strong>；</li>
+<li>子查询是一条完整的select语句，<strong>可以独立存在</strong>。</li>
 </ol>
-<h3 id="健壮性"><a href="#健壮性" class="headerlink" title="健壮性"></a>健壮性</h3><ol>
-<li>去除了C语言中的指针；</li>
-<li><strong>自动回收垃圾机制</strong>。</li>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="按功能分"><a href="#按功能分" class="headerlink" title="按功能分"></a>按功能分</h3><ol>
+<li>标量子查询：子查询返回的结果为一个数据；</li>
+<li>列子查询：返回的结果是一列；</li>
+<li>行子查询：返回的结果是一行；</li>
+<li>表子查询：返回的结果是多行多列；</li>
+<li>exists子查询：返回的结果是1或0；</li>
 </ol>
-<h3 id="跨平台性"><a href="#跨平台性" class="headerlink" title="跨平台性"></a>跨平台性</h3><h2 id="注释-comment"><a href="#注释-comment" class="headerlink" title="注释(comment)"></a>注释(comment)</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p>用于注解说明解释程序的文字；注释内容<strong>不参与</strong>程序的编译。</p>
-<h3 id="2-分类"><a href="#2-分类" class="headerlink" title="2.分类"></a>2.分类</h3><ol>
-<li><strong>单行注释    //</strong></li>
-<li><strong>多行注释    /* */</strong>  不可以嵌套使用</li>
-<li><strong>文档注释（Java特有）</strong></li>
+<h3 id="按位置分"><a href="#按位置分" class="headerlink" title="按位置分"></a>按位置分</h3><ol>
+<li>where子查询：子查询出现的位置在where条件中；</li>
+<li>from子查询：子查询出现的位置在from数据源中；</li>
 </ol>
-<h3 id="3-作用"><a href="#3-作用" class="headerlink" title="3.作用"></a>3.作用</h3><ol>
-<li>提高了代码的阅读性；</li>
-<li>调试程序的重要方法。</li>
+<h2 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h2><ol>
+<li><p><strong>select * from 数据源 where 条件判断 =/&lt;&gt; (select 字段名 from 数据源 where 条件判断);</strong></p>
+</li>
+<li><p>需求决定主查询，条件决定子查询。</p>
+</li>
 </ol>
-<h3 id="4-文档注释"><a href="#4-文档注释" class="headerlink" title="4.文档注释"></a>4.文档注释</h3><p>格式：</p>
-<p>/**</p>
-<p>​    @author 指定Java程序的作者</p>
-<p>​    @version 指定源文件的版本</p>
-<p>*/</p>
-<p>注释内容可以被JDK提供的工具<strong>javadoc</strong>所解析，生成一套以网页文件形式体现的该程序的说明文档。</p>
-<h2 id="Java-API文档"><a href="#Java-API文档" class="headerlink" title="Java API文档"></a>Java API文档</h2><h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>定义：API（Application Programming Interface，应用程序编程接口）是Java提供的基本编程接口。Java语言提供了大量的基础类，API文档中告诉开发者如何使用这些类以及这些类中包含的方法。</p>
-<h2 id="JDK、JRE、JVM的关系"><a href="#JDK、JRE、JVM的关系" class="headerlink" title="JDK、JRE、JVM的关系"></a>JDK、JRE、JVM的关系</h2><ol>
-<li><strong>JDK = JRE + Java开发工具</strong>；</li>
-<li><strong>JRE = JVM + Java核心类库</strong>。</li>
+<h2 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h2><ol>
+<li><strong>主查询 where 条件 in(列子查询);</strong></li>
 </ol>
+<h2 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h2><ol>
+<li><p><strong>主查询 where 条件[(构造一个行元素)] = (行子查询);</strong></p>
+</li>
+<li><p>行元素：多个字段合起来作为一个元素参与运算。</p>
+</li>
+</ol>
+<h2 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h2><ol>
+<li><strong>select 字段表 from (表子查询) as 别名;</strong></li>
+</ol>
+<h2 id="exists子查询"><a href="#exists子查询" class="headerlink" title="exists子查询"></a>exists子查询</h2><ol>
+<li><p><strong>where exists(查询语句);</strong></p>
+</li>
+<li><p>根据查询到的结果判断</p>
+</li>
+</ol>
+<h1 id="数据库的备份和还原"><a href="#数据库的备份和还原" class="headerlink" title="数据库的备份和还原"></a>数据库的备份和还原</h1><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p><strong>Mysqldump -uroot -p 数据库名称[表1 [表2]] &gt;备份文件位置</strong></p>
+<ol>
+<li>整库备份</li>
+<li>单表备份</li>
+<li>多表备份</li>
+</ol>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><ol>
+<li><p>source SQL文件位置    <strong>必须先进入相应数据库</strong></p>
+</li>
+<li><p><strong>mysql -uroot -p 数据库 &lt;文件位置</strong></p>
+</li>
+</ol>
+<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><p>在不同的项目中给不同的角色不同的操作权限，确保数据库中数据的安全。</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p><strong>create user 用户名 identified by ‘明文密码’;</strong></p>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p><strong>drop user 用户名;</strong></p>
+<h3 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h3><p>使用对应的<strong>password()</strong>，对密码进行加密处理。</p>
+<ol>
+<li><strong>Set password for 用户  = password(‘新明文密码’);</strong></li>
+<li><strong>Update mysql.user set password = password(‘新明文密码’) where user = ‘’ and host = ‘’;</strong></li>
+</ol>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>在mysql中将权限分为<strong>数据权限</strong>（增删改查）、<strong>结构权限</strong>（结构操作）、<strong>管理权限</strong>，权限列表可以使用逗号分配，也可以使用<strong>all privileges</strong>代表全部权限。</p>
+<ol>
+<li>授予权限：grant，将权限分配给指定的用户，<strong>grant 权限列表 on 数据库.表名 to 用户;</strong></li>
+<li>取消权限：revoke，将权限从用户收回，<strong>revoke 权限列表 on 数据库.表名 from 用户;</strong></li>
+<li>刷新权限：flush，将当前对用户的权限操作，进行一个刷新，将操作的具体内容同步到对应表中，<strong>flush privileges;</strong></li>
+</ol>
+<h2 id="密码丢失"><a href="#密码丢失" class="headerlink" title="密码丢失"></a>密码丢失</h2><p>重置root密码</p>
+<ol>
+<li>停止服务</li>
+<li>重新启动服务 <strong>mysqld -skip -grant -tables</strong>  //启动服务器但跳过权限</li>
+<li>当前启动的服务器没有权限概念，非常危险，全为<strong>root权限</strong></li>
+<li>修改用户密码</li>
+<li>关闭服务器并重启</li>
+</ol>
+<h1 id="外键-forgein-key"><a href="#外键-forgein-key" class="headerlink" title="外键(forgein key)"></a>外键(forgein key)</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>一张表(主表)有一个字段，保存的值指向另外一张表(从表)的主键。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="增加外键"><a href="#增加外键" class="headerlink" title="增加外键"></a>增加外键</h3><ol>
+<li><p>在字段后增加一条语句[constraint’外键名’] foreign key (外键字段) references 主表(主键);</p>
+</li>
+<li><p><strong>alter table 从表 add[constraint’外键名’] foreign key(外键字段) references 主表(主键);</strong></p>
+</li>
+</ol>
+<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><ol>
+<li><p>外键不允许修改，只可以先删除后增加</p>
+</li>
+<li><p><strong>alter table 从表 drop foreign key 外键名字;</strong></p>
+</li>
+</ol>
+<h3 id="外键基本要求"><a href="#外键基本要求" class="headerlink" title="外键基本要求"></a>外键基本要求</h3><ol>
+<li>外键字段需要保证与关联的主表的主键字段类型完全一致；</li>
+<li>基本属性也相同；</li>
+<li>外键只能使用<strong>innodb存储引擎</strong>。</li>
+</ol>
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>通过建立外键关系之后，对主表和从表都会有一定的数据约束效率。</p>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><ol>
+<li>外键产生时，从表会对受限于主表数据的存在从而导致数据不能进行某些不符合规范的操作；</li>
+<li>如果一张表被其他表外键引入，那么该表的数据操作就不能随便进行，必须要保证从表数据的有效性。</li>
+</ol>
+<h3 id="外键约束-1"><a href="#外键约束-1" class="headerlink" title="外键约束"></a>外键约束</h3><p>可以在创建外键时，对外键约束进行选择性操作，主要约束对象为<strong>主表</strong></p>
+<p><strong>add foreign key (外键字段) references 主表(主键) on 约束模式;</strong></p>
+<h4 id="约束模式"><a href="#约束模式" class="headerlink" title="约束模式"></a>约束模式</h4><ol>
+<li>District:严格模式，不允许操作；</li>
+<li>Cascade:级联模式，从表数据会随着主表数据变化；</li>
+<li>Set null:置空模式，主表变化，从表对应记录设置为空，前提是从表中对应的外键字段允许为空。</li>
+</ol>
+<p>常用的约束模式：<strong>on update cascade(更新级联)</strong>, <strong>on delete set null(删除置空)</strong>。</p>
+<h3 id="约束作用"><a href="#约束作用" class="headerlink" title="约束作用"></a>约束作用</h3><p>保证数据的<strong>完整性</strong>，主表和从表数据要一致，但会导致数据在后台变化的不可控。</p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图的本质是SQL指令</p>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><p><strong>create view 视图名称 as select指令;</strong></p>
+<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p><strong>select 字段列表 from 视图名称[子句];</strong> 主要用于查询操作 </p>
+<h2 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h2><p><strong>alter view 视图名称 as 新select指令;</strong> 本质是修改视图对应的查询语句</p>
+<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><p><strong>drop view 视图名称;</strong></p>
+<h1 id="事务安全"><a href="#事务安全" class="headerlink" title="事务安全"></a>事务安全</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>事务是访问并可能更新数据库中各种数据项的一个<strong>程序执行单元</strong>，由<strong>事务开始</strong>和<strong>事务结束</strong>之间执行的主题操作组成。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>mysql允许将事务统一进行管理，将用户所做的结果暂时保存，不直接应用到数据表，等到用户确认之后再进行操作。</p>
+<h2 id="自动事务-autocommit"><a href="#自动事务-autocommit" class="headerlink" title="自动事务(autocommit)"></a>自动事务(autocommit)</h2><ol>
+<li>当客户端发送一条sql指令给服务器，服务器执行后，不用等待用户反馈结果会自动将结果同步到数据表。</li>
+<li>关闭自动事务<strong>set auto commit = off</strong>，一旦自动事务关闭，就需要用户提供是否同步的命令<blockquote>
+<p>commit:提交，同步到数据表<br>rollback:回滚</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="手动事务"><a href="#手动事务" class="headerlink" title="手动事务"></a>手动事务</h2><h3 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h3><p><strong>Start transaction;</strong></p>
+<h3 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h3><p>将多条SQL指令逐一执行。</p>
+<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><ol>
+<li><strong>Commit</strong>:确认提交，写入数据表；</li>
+<li><strong>Rollback</strong>:回滚，所有数据无效。</li>
+</ol>
+<h3 id="回滚点savepoint"><a href="#回滚点savepoint" class="headerlink" title="回滚点savepoint"></a>回滚点savepoint</h3><p>当有一系列事务开始操作时，可以在某一个成功点设置一个回滚点，当后面有失败，可以返回这个位置。</p>
+<ol>
+<li>增加回滚点：<strong>savepoint 回滚点名称;</strong></li>
+<li>回到回滚点：<strong>rollback to 回滚点名称;</strong></li>
+</ol>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>事务具有四个特性：<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>、<strong>持久性</strong>，通常称为<strong>ACID特性</strong>。</p>
+<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>一个事务是不可分割的工作单位，事务中的所有操作要么都做，要么都不做。</p>
+<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>事务必须是使数据库从一个一致性状态变到另一个一致性状态，一致性与原子性是密切相关的。</p>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能相互干扰。</p>
+<h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>一个事务一旦提交，它对数据库中数据的改变是永久性的，接下来的其他操作和故障不应对其具有任何影响。</p>
 
       
     </div>
@@ -425,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/25/Java%20Web%E2%80%94%E2%80%9401-HTML%E5%92%8CCSS/" rel="next" title="Java Web——01-HTML和CSS">
-                <i class="fa fa-chevron-left"></i> Java Web——01-HTML和CSS
+              <a href="/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9466.%E5%8A%A0%E4%B8%80/" rel="next" title="LeetCode刷题集——66.加一">
+                <i class="fa fa-chevron-left"></i> LeetCode刷题集——66.加一
               </a>
             
           </div>
@@ -434,6 +543,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/25/Java%20Web%E2%80%94%E2%80%9401-HTML%E5%92%8CCSS/" rel="prev" title="Java Web——01-HTML和CSS">
+                Java Web——01-HTML和CSS <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -574,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day01——Java语言概述"><span class="nav-number">1.</span> <span class="nav-text">Day01——Java语言概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java语言的特点"><span class="nav-number">1.1.</span> <span class="nav-text">Java语言的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象性"><span class="nav-number">1.1.1.</span> <span class="nav-text">面向对象性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健壮性"><span class="nav-number">1.1.2.</span> <span class="nav-text">健壮性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨平台性"><span class="nav-number">1.1.3.</span> <span class="nav-text">跨平台性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释-comment"><span class="nav-number">1.2.</span> <span class="nav-text">注释(comment)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分类"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-作用"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-文档注释"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.文档注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-API文档"><span class="nav-number">1.3.</span> <span class="nav-text">Java API文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">1.3.1.</span> <span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK、JRE、JVM的关系"><span class="nav-number">1.4.</span> <span class="nav-text">JDK、JRE、JVM的关系</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子查询"><span class="nav-number">1.</span> <span class="nav-text">子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子查询-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主查询"><span class="nav-number">1.1.2.</span> <span class="nav-text">主查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子查询与主查询的关系"><span class="nav-number">1.1.3.</span> <span class="nav-text">子查询与主查询的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">1.2.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按功能分"><span class="nav-number">1.2.1.</span> <span class="nav-text">按功能分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位置分"><span class="nav-number">1.2.2.</span> <span class="nav-text">按位置分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标量子查询"><span class="nav-number">1.3.</span> <span class="nav-text">标量子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列子查询"><span class="nav-number">1.4.</span> <span class="nav-text">列子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行子查询"><span class="nav-number">1.5.</span> <span class="nav-text">行子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表子查询"><span class="nav-number">1.6.</span> <span class="nav-text">表子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exists子查询"><span class="nav-number">1.7.</span> <span class="nav-text">exists子查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的备份和还原"><span class="nav-number">2.</span> <span class="nav-text">数据库的备份和还原</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#备份"><span class="nav-number">2.1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#还原"><span class="nav-number">2.2.</span> <span class="nav-text">还原</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户权限管理"><span class="nav-number">3.</span> <span class="nav-text">用户权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-number">3.1.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户"><span class="nav-number">3.1.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除用户"><span class="nav-number">3.1.2.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改用户密码"><span class="nav-number">3.1.3.</span> <span class="nav-text">修改用户密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限管理"><span class="nav-number">3.2.</span> <span class="nav-text">权限管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码丢失"><span class="nav-number">3.3.</span> <span class="nav-text">密码丢失</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外键-forgein-key"><span class="nav-number">4.</span> <span class="nav-text">外键(forgein key)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">4.2.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加外键"><span class="nav-number">4.2.1.</span> <span class="nav-text">增加外键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除外键"><span class="nav-number">4.2.2.</span> <span class="nav-text">删除外键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外键基本要求"><span class="nav-number">4.2.3.</span> <span class="nav-text">外键基本要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外键约束"><span class="nav-number">4.3.</span> <span class="nav-text">外键约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">4.3.1.</span> <span class="nav-text">约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外键约束-1"><span class="nav-number">4.3.2.</span> <span class="nav-text">外键约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约束模式"><span class="nav-number">4.3.2.1.</span> <span class="nav-text">约束模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束作用"><span class="nav-number">4.3.3.</span> <span class="nav-text">约束作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图"><span class="nav-number">5.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建视图"><span class="nav-number">5.1.</span> <span class="nav-text">创建视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用视图"><span class="nav-number">5.2.</span> <span class="nav-text">使用视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改视图"><span class="nav-number">5.3.</span> <span class="nav-text">修改视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除视图"><span class="nav-number">5.4.</span> <span class="nav-text">删除视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务安全"><span class="nav-number">6.</span> <span class="nav-text">事务安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">6.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">6.2.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动事务-autocommit"><span class="nav-number">6.3.</span> <span class="nav-text">自动事务(autocommit)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动事务"><span class="nav-number">6.4.</span> <span class="nav-text">手动事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启事务"><span class="nav-number">6.4.1.</span> <span class="nav-text">开启事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行事务"><span class="nav-number">6.4.2.</span> <span class="nav-text">执行事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交事务"><span class="nav-number">6.4.3.</span> <span class="nav-text">提交事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回滚点savepoint"><span class="nav-number">6.4.4.</span> <span class="nav-text">回滚点savepoint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">6.5.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性"><span class="nav-number">6.5.1.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性"><span class="nav-number">6.5.2.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离性"><span class="nav-number">6.5.3.</span> <span class="nav-text">隔离性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久性"><span class="nav-number">6.5.4.</span> <span class="nav-text">持久性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
