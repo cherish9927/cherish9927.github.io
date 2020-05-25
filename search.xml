@@ -1,687 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LeetCode刷题集——27.移除元素</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9427.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</url>
-    <content><![CDATA[<h1 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27.移除元素"></a>27.移除元素</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><p>给定 nums = [3,2,2,3], val = 3,<br>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
-<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><p>给定 nums = [0,1,2,2,3,0,4,2], val = 2,<br>函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。<br>注意这五个元素可为任意顺序。<br>你不需要考虑数组中超出新长度后面的元素。</p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br>// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝<br>int len = removeElement(nums, val);<br>// 在函数里修改输入数组对于调用者是可见的。<br>// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。<br>for (int i = 0; i &lt; len; i++) {<br>    print(nums[i]);<br>}<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-element" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-element</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目要求就地删除给定值的所有元素，可以采用<strong>双指针t和i</strong>，当<strong>nums[i]==val</strong>相等时，<strong>递增i并跳过该元素</strong>，当<strong>nums[i]!=val</strong>时，将<strong>nums[i]复制到nums[t]，并递增t和i</strong>。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != val)&#123;</span><br><span class="line">                nums[t] = nums[i];</span><br><span class="line">                t++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——53.最大子序和问题</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9453.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="53-最大子序和问题"><a href="#53-最大子序和问题" class="headerlink" title="53.最大子序和问题"></a>53.最大子序和问题</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个整数数组nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
-<p>输入：[-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6</p>
-</blockquote>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><strong>动态规划思想</strong></p>
-<ol>
-<li><p>问题拆解</p>
-<p>核心为连续子数组，可以看成一个区间，可以从起始点和终止点确定一个子数组，先确定终止点i，然后问题转换成“<strong>以i结尾的所有子数组中，和最大的是多少？</strong>”，然后进行拆解。</p>
-<p> 拆解分为两种情况：</p>
-<pre><code>i这个位置的元素自己构成一个子数组；
-i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值。</code></pre></li>
-<li><p>状态定义</p>
-<p>通过问题拆解得知，dp[i]就是<strong>以i结尾的所有子数组的最大值</strong>。</p>
-</li>
-<li><p>递推方程</p>
-<p><strong>dp[i] = Math.max(dp[i - 1],0) + array[i]</strong></p>
-</li>
-<li><p>实现</p>
-<p>题目要求子数组最少包含一个元素，则刚开始需要初始化，即<strong>dp[0] = array[0]</strong></p>
-</li>
-</ol>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">​    <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)&#123;</span><br><span class="line">​      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">​    &#125;</span><br><span class="line">​    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">​    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">​    <span class="keyword">int</span> result = dp[<span class="number">0</span>];	<span class="comment">//记录最后的答案</span></span><br><span class="line">​    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; nums.length;++i)&#123;</span><br><span class="line">​      dp[i] = Math.max(dp[i - <span class="number">1</span>],<span class="number">0</span>) + nums[i];</span><br><span class="line">​      result = Math.max(result,dp[i]);</span><br><span class="line">​    &#125;</span><br><span class="line">​    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——35.搜索插入位置</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9435.%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="35-搜索插入位置"><a href="#35-搜索插入位置" class="headerlink" title="35.搜索插入位置"></a>35.搜索插入位置</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。</p>
-<p>你可以假设数组中无重复元素。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>利用二分查找思想</p>
-<ol>
-<li>首先定义low,high；</li>
-<li>取中间的mid，如果nums[mid]=target,返回mid下标;</li>
-<li>如果nums[mid]大于target，则high = mid - 1;</li>
-<li>如果nums[mid]小于target，则low = mid + 1;</li>
-<li>如果没找到则返回其位置左边的下标low,即为target按顺序插入的位置;</li>
-</ol>
-<h2 id="Java源代码"><a href="#Java源代码" class="headerlink" title="Java源代码"></a>Java源代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) /<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——66.加一</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9466.%E5%8A%A0%E4%B8%80/</url>
-    <content><![CDATA[<h1 id="66-加一"><a href="#66-加一" class="headerlink" title="66.加一"></a>66.加一</h1><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><blockquote>
-<p>输入: [1,2,3]<br>输出: [1,2,4]<br>解释: 输入数组表示数字 123。</p>
-</blockquote>
-<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><blockquote>
-<p>输入: [4,3,2,1]<br>输出: [4,3,2,2]<br>解释: 输入数组表示数字 4321。</p>
-</blockquote>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/plus-one" target="_blank" rel="noopener">https://leetcode-cn.com/problems/plus-one</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目中非负整数加一，比如0，9。根据分析得知共分为两种情况</p>
-<ol>
-<li>除9以外的数字加一；</li>
-<li>数字9。<br>只要<strong>加1取余数不等于0</strong>，说明不存在进位，直接返回即可。如果<strong>余数等于0</strong>，说明存在进位，遍历前一个数字，<strong>加1继续取余</strong>，如果<strong>还为0说明还存在进位</strong>，依次循环，如果最高位还存在进位，则需要<strong>重新建立一个数组</strong>，将第一位设置为1即可。<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.length - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">            digits[i]++;</span><br><span class="line">            digits[i] = digits[i] % <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(digits[i] != <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> digits;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        digits = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length + <span class="number">1</span>];</span><br><span class="line">        digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> digits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——70.爬楼梯</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9470.%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
-    <content><![CDATA[<h1 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70.爬楼梯"></a>70.爬楼梯</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。<br>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？<br>注意：给定 n 是一个正整数。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶</li>
-<li>2 阶</li>
-</ol>
-<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶 + 1 阶</li>
-<li>1 阶 + 2 阶</li>
-<li>2 阶 + 1 阶<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2></li>
-</ol>
-<p>此问题的最优解可以从其子问题的最优解来构建，利用动态规划思想得知，第i阶可以从在<strong>第（i - 1）阶后向上爬1阶</strong>；在<strong>第（i - 2）阶后向上爬2阶</strong>，所以达到第i阶的方法就是到<strong>第（i - 1）阶和第（i - 2）阶的方法数之和</strong>，<strong>即dp[i] = dp[i - 1] + dp[i - 2]</strong>。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——704.二分查找</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
-    <content><![CDATA[<h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704.二分查找"></a>704.二分查找</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol>
-<li>首先定义low,high；</li>
-<li>取中间的mid，如果nums[mid]=target,返回mid下标;</li>
-<li>如果nums[mid]大于target，则high = mid - 1;</li>
-<li>如果nums[mid]小于target，则low = mid + 1;</li>
-<li>若不存在则返回-1；</li>
-</ol>
-<h2 id="C语言源代码"><a href="#C语言源代码" class="headerlink" title="C语言源代码"></a>C语言源代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = numsSize - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Java源代码"><a href="#Java源代码" class="headerlink" title="Java源代码"></a>Java源代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mysql基础——Day1</title>
-    <url>/2020/05/10/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day1/</url>
-    <content><![CDATA[<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据库是按照数据结构来<strong>存储、组织和管理数据</strong>的建立在计算机存储设备上的仓库。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
-<li>网络数据库</li>
-<li>层级数据库</li>
-<li>关系数据库<h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2>是建立在<strong>关系模型</strong>基础上的数据库。<br>关系模型是由<strong>数据结构</strong>、<strong>操作集合</strong>、<strong>关系完整性约束</strong>三部分组成。<h3 id="典型关系型数据库"><a href="#典型关系型数据库" class="headerlink" title="典型关系型数据库"></a>典型关系型数据库</h3></li>
-<li>小型:Microsoft Access、SQLite</li>
-<li>中型:SQL Server、Mysql</li>
-<li>大型:Oracle、DB2<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>结构化查询语言<h2 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h2></li>
-<li>DQL：数据<strong>查询</strong>语言</li>
-<li>DML：数据<strong>操作</strong>语言</li>
-<li>DCL：数据<strong>控制</strong>语言</li>
-<li>TPL：事务<strong>处理</strong>语言</li>
-<li>DDL：数据<strong>定义</strong>语言<h1 id="Mysql服务端架构"><a href="#Mysql服务端架构" class="headerlink" title="Mysql服务端架构"></a>Mysql服务端架构</h1></li>
-<li>DBMS：<strong>数据库管理系统</strong>，专门管理服务器端的所有内容</li>
-<li>DB：<strong>数据库</strong>，专门存储数据的仓库</li>
-<li>Table：<strong>二维数据表</strong>，专门存储具体实体的数据</li>
-<li>Filed：<strong>字段</strong>，具体存储某种类型的数据<h1 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h1><h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2></li>
-</ol>
-<p><strong>普通创建表</strong></p>
-<ol>
-<li>create table 表名(字段名 字段类型[字段属性],字段名 字段类型[字段属性],…)[表选项];</li>
-<li>将表挂入指定数据库：数据库名称.数据表</li>
-</ol>
-<p><strong>复制已有表结构</strong><br>create table 新表名 like 旧表名;</p>
-<h2 id="显示数据表"><a href="#显示数据表" class="headerlink" title="显示数据表"></a>显示数据表</h2><ol>
-<li><strong>显示所有表</strong><br>show tables;</li>
-<li><strong>匹配显示表</strong><br>show tables like ‘匹配模式’;<h2 id="显示表结构"><a href="#显示表结构" class="headerlink" title="显示表结构"></a>显示表结构</h2></li>
-</ol>
-<p><strong>显示表中所含的字段信息</strong></p>
-<ol>
-<li>describe 表名;</li>
-<li>desc 表名;</li>
-<li>show columns from 表名;<h2 id="显示表创建语句"><a href="#显示表创建语句" class="headerlink" title="显示表创建语句"></a>显示表创建语句</h2>show create table 表名;<h2 id="设置表属性"><a href="#设置表属性" class="headerlink" title="设置表属性"></a>设置表属性</h2>alter table 表名 表选项 值;<h2 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h2></li>
-<li><strong>修改表名</strong><br>rename table 旧表名 to 新表名;</li>
-<li><strong>修改表选项</strong><br>alter table 表名 表选项 新值;</li>
-<li><strong>新增字段</strong><br>alter table 表名 add[column] 新字段名 列类型[列属性][位置first/after 字段名];</li>
-</ol>
-<p><strong>first</strong>：在最前面，新增到第一个字段之前<br><strong>after</strong>：放在最后一个字段之后（默认新增方式）<br>4. <strong>修改字段名</strong><br>alter table 表名 change 旧字段名 新字段名 字段类型[列属性][新位置];<br>5. <strong>修改字段类型</strong><br>alter table 表名 modify 字段名 新类型[新属性][新位置];<br>6. <strong>删除字段</strong><br>drop table 表名 drop 字段名;<br>7. <strong>删除表结构</strong><br>drop table 表名1,表名2,…;</p>
-<h1 id="数据基本操作"><a href="#数据基本操作" class="headerlink" title="数据基本操作"></a>数据基本操作</h1><h2 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h2><ol>
-<li><strong>向表中指定字段插入数据</strong><br>insert into 表名 (字段列表) values(对应字段列表);</li>
-<li><strong>向表中所有字段插入数据</strong><br>insert into 表名 values (对应表结构);<h2 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h2></li>
-<li><strong>查询全部数据</strong><br>select * from 表名;</li>
-<li><strong>查询表中部分字段</strong><br>select 字段列表 from 表名;</li>
-<li><strong>简单条件查询数据</strong><br>select 字段列表/* from 表名 where 字段名 = 值;<h2 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h2>delete from 表名 [where 条件];<h2 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h2>update 表名 set 字段名 = 新值[where 条件];<h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><h2 id="设置客户端所有字符集"><a href="#设置客户端所有字符集" class="headerlink" title="设置客户端所有字符集"></a>设置客户端所有字符集</h2></li>
-<li><strong>快捷方式</strong><br>set names 字符集;</li>
-<li><strong>深层原理</strong><br>一次性打通客户端、服务器端、连接层之间的关系</li>
-<li><strong>查看系统保存的三种字符集</strong><br>show variables like ‘character_set%’;</li>
-<li><strong>修改客户端变量</strong><br>set character_set_client = gbk;</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mysql基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——面试题08.03.魔法索引</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94%E9%9D%A2%E8%AF%95%E9%A2%9808.03.%E9%AD%94%E6%B3%95%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<h1 id="面试题08-03-魔法索引"><a href="#面试题08-03-魔法索引" class="headerlink" title="面试题08.03.魔法索引"></a>面试题08.03.魔法索引</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>魔术索引。 在数组A[0…n-1]中，有所谓的魔术索引，满足条件A[i] = i。给定一个有序整数数组，编写一种方法找出魔术索引，若有的话，在数组A中找出一个魔术索引，如果没有，则返回-1。若有多个魔术索引，返回索引值最小的一个。</p>
-<p><strong>示例1:</strong><br> 输入：nums = [0, 2, 3, 4, 5]<br> 输出：0<br> 说明: 0下标的元素为0</p>
-<p><strong>示例2:</strong><br> 输入：nums = [1, 1, 1]<br> 输出：1</p>
-<p><strong>提示:</strong><br>nums长度在[1, 1000000]之间</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/magic-index-lcci" target="_blank" rel="noopener">https://leetcode-cn.com/problems/magic-index-lcci</a></p>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>通过题意得知数组有序，但采用二分查找法比较复杂，所以使用线性查找即可。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMagicIndex</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = -<span class="number">1</span>;		<span class="comment">//若没查到返回-1</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == i)&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mysql基础——Day2</title>
-    <url>/2020/05/19/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day2/</url>
-    <content><![CDATA[<h1 id="列类型"><a href="#列类型" class="headerlink" title="列类型"></a>列类型</h1><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><ol>
-<li><strong>Tinyint</strong>:迷你整型，系统采用一个字节来保存数据；</li>
-<li><strong>Smallint</strong>:小整型，系统采用两个字节来保存数据；</li>
-<li><strong>Mediumint</strong>:中整型，系统采用三个字节来保存数据；</li>
-<li><strong>Int</strong>:标准整型，系统采用四个字节来保存数据；</li>
-<li><strong>Bigint</strong>:大整型，系统采用八个字节来保存数据；</li>
-<li><strong>无符号标识设定</strong>:在列类型之后加上 <strong>unsigned</strong>；</li>
-</ol>
-<h2 id="小数类型"><a href="#小数类型" class="headerlink" title="小数类型"></a>小数类型</h2><ol>
-<li><p><strong>浮点型</strong>:又称精度类型，有可能丢失精度。</p>
-<ul>
-<li><strong>Float</strong>:单精度类型，系统提供4个字节存储数据，但只能保证7个字节左右的精度，表示不指定小数位的浮点数。float(M,D):表示一共存储<strong>M</strong>个有效数字，其中小数占<strong>D</strong>位。</li>
-<li><strong>Double</strong>:双精度类型，系统提供8个字节存储数据，但只能保证15个字节左右的精度。</li>
-</ul>
-</li>
-<li><p><strong>定点型</strong>：能够保证数据精确的小数（小树部分可能不精确，但整数部分一定精确）。</p>
-<ul>
-<li><strong>Decimal</strong>:系统自动根据存储的数据来分配存储空间。decimal(M,D):<strong>M</strong>表示总长度，不能超过65；<strong>D</strong>表示小树部分长度，不能超过30。</li>
-</ul>
-</li>
-</ol>
-<h2 id="时间日期类型"><a href="#时间日期类型" class="headerlink" title="时间日期类型"></a>时间日期类型</h2><ol>
-<li><strong>Data</strong>:系统使用三个字节来存储数据，对应的格式为:<strong>YYYY-mm-dd</strong>;</li>
-<li><strong>Time</strong>:能够表示某个指定的时间，采用三个字节存储，对应的格式为:<strong>HH:ii:ss</strong>;</li>
-<li><strong>Datatime</strong>:将data和time合并，使用8个字节存储，格式为：<strong>YYYY-mm-dd HH:ii:ss</strong>;</li>
-<li><strong>Timestamp</strong>:时间戳，格式为<strong>YYYY-mm-dd:HH:ii:ss</strong>;</li>
-<li><strong>Year</strong>:占用一个字节来保存。</li>
-</ol>
-<h2 id="字符串型"><a href="#字符串型" class="headerlink" title="字符串型"></a>字符串型</h2><ol>
-<li><strong>Char</strong>:定长字符，指定长度之后，系统一定会分配指定空间用于存储数据；</li>
-<li><strong>Varchar</strong>:指定长度之后，系统会根据实际存储的数据来计算长度分配合适的长度；</li>
-<li><strong>Text</strong>:存储普通的字符文本；</li>
-<li><strong>Enum</strong>:枚举，在数据插入之前，先设定几个可能最终出现数据结果的项；</li>
-<li><strong>Set</strong>:将多个数据选项可以同时保存的数据类型，本质是将指定的项按照对应的二进制位进行控制：<strong>1</strong>表示该项<strong>被选中</strong>，<strong>0</strong>表示该项<strong>未被选中</strong>。</li>
-</ol>
-<h1 id="列属性"><a href="#列属性" class="headerlink" title="列属性"></a>列属性</h1><h2 id="null属性"><a href="#null属性" class="headerlink" title="null属性"></a>null属性</h2><h2 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h2><h2 id="列描述"><a href="#列描述" class="headerlink" title="列描述"></a>列描述</h2><p>专门给开发人员进行维护的一个注释说明；</p>
-<p>comment ‘字段描述’;        —查看表创建语句查看comment</p>
-<h2 id="主键-Primary-Key"><a href="#主键-Primary-Key" class="headerlink" title="主键(Primary Key)"></a>主键(Primary Key)</h2><p>在一张表中有且仅有一个字段，里面的值具有唯一性；</p>
-<ol>
-<li><p>随表创建：在字段后增加<strong>primary key</strong>;</p>
-</li>
-<li><p>表后增加：<strong>alter table 表名 add primary key(字段);</strong></p>
-</li>
-<li><p>查看主键：表的创建语句；</p>
-</li>
-<li><p>删除主键：<strong>alter table 表名 drop primary key;</strong></p>
-</li>
-<li><p>复合主键：<strong>primary key(字段名1,字段名2)</strong>;</p>
-</li>
-<li><p>主键约束：</p>
-<ul>
-<li>当前字段对应数据不能为空；</li>
-<li>当前字段对应的数据不能有任何重复。</li>
-</ul>
-</li>
-<li><p>主键分类：</p>
-<ul>
-<li>业务主键：主键所在的字段具有业务意义；</li>
-<li>逻辑主键：自然增长的类型。</li>
-</ul>
-</li>
-</ol>
-<h2 id="自动增长-auto-increment"><a href="#自动增长-auto-increment" class="headerlink" title="自动增长(auto_increment)"></a>自动增长(auto_increment)</h2><p>通常用于逻辑主键；</p>
-<ol>
-<li><p>原理：在系统中有维护一组数据，用来保存当前使用了自动增长的字段，记住当前对应的数据值，再给定一个指定的步长；当用户进行数据插入时，如果没有给定值，系统会在原始值上再加步长变成新的数据；</p>
-</li>
-<li><p>使用自动增长：在字段后增加一个属性<strong>auto_increment</strong>；</p>
-</li>
-<li><p>修改自动增长：<strong>alter table 表名 auto_increment = 值;</strong>；</p>
-</li>
-<li><p>删除自动增长：当用户修改自增字段时，如果没有看到auto_increment属性，系统会自动清除该自动增长；</p>
-</li>
-<li><p>初始设置：在系统中，有一组变量用来维护自动增长的初始值和步长，<strong>show variables like ‘auto increment%’;</strong></p>
-</li>
-<li><p>细节问题</p>
-</li>
-</ol>
-<ul>
-<li>一张表只能有一个自动增长；</li>
-<li>如果数据插入没有触发自动增长，那么自动增长不会表现；</li>
-<li>自动增长修改时，值可以较大，但不能比当前已有自动增长字段的值小。</li>
-</ul>
-<h2 id="唯一键-unique-key"><a href="#唯一键-unique-key" class="headerlink" title="唯一键(unique key)"></a>唯一键(unique key)</h2><p>用来保证对应字段中的数据唯一，可以有多个，允许数据为null；</p>
-<ol>
-<li>创建唯一键：<ul>
-<li>直接在表字段之后添加<strong>unique [key]</strong>；</li>
-<li>在所有字段之后使用<strong>unique key(字段列表)</strong>；</li>
-<li>在创建完表后增加唯一键<strong>alter table 表名 add unique key(字段列表);</strong></li>
-</ul>
-</li>
-<li>查看唯一键：通过查看表结构来实现；</li>
-<li>删除唯一键：<strong>alter table 表名 drop index 唯一键名称;</strong></li>
-<li>复合唯一键：可以使用多个字段来保证唯一性，与主键一致。</li>
-</ol>
-<h1 id="表关系"><a href="#表关系" class="headerlink" title="表关系"></a>表关系</h1><h2 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h2><p>一张表中的一条记录与另外一张表中最多有一条有明确关系，通常保证两张表使用<strong>相同的主键</strong>。</p>
-<h2 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h2><p>在多关系的表中去维护一个字段，这个字段是“<strong>一</strong>”的<strong>主键</strong>。</p>
-<h2 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h2><p>一张表中的多条记录在另一张表中可以匹配到多条记录；增加一个中间表，让中间表于对应的其他表形成两个<strong>一对多</strong>关系。</p>
-]]></content>
-      <categories>
-        <category>Mysql基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题集——26.删除排序数组中的重复项</title>
-    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9426.%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="26-删除排序数组中的重复项"><a href="#26-删除排序数组中的重复项" class="headerlink" title="26.删除排序数组中的重复项"></a>26.删除排序数组中的重复项</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><p>给定数组 nums = [1,1,2],<br>函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
-<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h2><p>给定 nums = [0,0,1,1,1,2,2,3,3,4],<br>函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。<br>你不需要考虑数组中超出新长度后面的元素。</p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br>// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝<br>int len = removeDuplicates(nums);<br>// 在函数里修改输入数组对于调用者是可见的。<br>// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。<br>for (int i = 0; i &lt; len; i++) {<br>    print(nums[i]);<br>}<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目要求在原地修改数组并在使用O(1)额外空间条件下完成，则可以假定存在两个指针<strong>left</strong>和<strong>right</strong>，如果<strong>left和right指针的值重复</strong>，则将<strong>right指针向右移动</strong>，如果不重复，则将<strong>left+1位置覆盖为right指针对应的值</strong>。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length &lt; <span class="number">0</span> || nums == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right = <span class="number">1</span>;right &lt; nums.length;right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[left] != nums[right])&#123;</span><br><span class="line">                left++;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>LeetCode刷题集</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mysql基础——Day3</title>
-    <url>/2020/05/10/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day3/</url>
-    <content><![CDATA[<h1 id="高级操作"><a href="#高级操作" class="headerlink" title="高级操作"></a>高级操作</h1><h2 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h2><ol>
-<li>多数据插入：<strong>insert into 表名[(字段列表)] values (值列表),(值列表),…;</strong></li>
-<li>主键冲突</li>
-</ol>
-<ul>
-<li>主键冲突更新：<strong>insert into 表名[(字段列表)] values (值列表) on duplicate key update 字段 = 新值;</strong><ul>
-<li>主键冲突替换：<strong>replace into 表名[(字段列表)] values (值列表);</strong></li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>蠕虫复制：一分为二，成倍增加。从已有数据中获取数据，并且将获得的数据插入到数据表中(可以短期内快速增加表的数据量，从而可以测试表的压力) <strong>insert into 表名[(字段列表)] select 字段列表 from 表;</strong></li>
-</ol>
-<h2 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h2><ol>
-<li>跟随条件更新：<strong>update 表名 set 字段名 = 新值 where 判断条件;</strong></li>
-<li>全表更新：<strong>update 表名 set 字段名 = 新值 [where 判断条件] limit 数量;</strong></li>
-</ol>
-<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><ol>
-<li>尽量使用<strong>where</strong>进行判定；</li>
-<li>删除时用<strong>limit</strong>限制删除的数量；</li>
-<li>delete删除数据时，无法重置auto_increment，重置表选项中的自动增长可以使用<strong>truncate 表名</strong>;</li>
-</ol>
-<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>完整的sql指令：<strong>select select选项 字段列表 from 数据源 where 条件 group by 分组 having 条件 order by 排序 limit 限制;</strong></p>
-<ol>
-<li>Select选项：系统该如何对待查询到的结果</li>
-</ol>
-<ul>
-<li><strong>all</strong>：默认保存所有的记录；</li>
-<li><strong>distinct</strong>：去除重复的记录，只保留一条；</li>
-</ul>
-<ol start="2">
-<li><p>字段列表：从多张表中获得数据时，可能存在不同表中有同名的字段，需要将同名的字段命名成不同名—<strong>字段名[as] 别名</strong>；</p>
-</li>
-<li><p>From数据源：为查询提供数据；</p>
-</li>
-</ol>
-<ul>
-<li><strong>单表数据</strong>：from 表名;</li>
-<li><strong>多表数据</strong>：from 表名1,表名2,…；</li>
-<li><strong>动态数据</strong>：from (select 字段列表 from 表) as 别名;</li>
-</ul>
-<ol start="4">
-<li><p>Where子句：用来从数据表中获取数据时，进行条件筛选；</p>
-</li>
-<li><p>Group by子句：根据指定的字段，将数据进行分组，分组的目标是为了统计；</p>
-<ul>
-<li><p>分组统计：group by 字段名 利用统计函数</p>
-<table>
-<thead>
-<tr>
-<th align="center">count()</th>
-<th align="center">统计每组中的数量，如果统计目标为字段，则不统计空字段，如果为*，代表统计记录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">avg()</td>
-<td align="center">求平均值</td>
-</tr>
-<tr>
-<td align="center">sum()</td>
-<td align="center">求和</td>
-</tr>
-<tr>
-<td align="center">max()</td>
-<td align="center">求最大值</td>
-</tr>
-<tr>
-<td align="center">min()</td>
-<td align="center">求最小值</td>
-</tr>
-<tr>
-<td align="center">group_concat()</td>
-<td align="center">为了将分组中指定的字段进行合并(字符串拼接)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>多分组：将数据按某个字段分组之后，对已经分组的数据进行再分组</p>
-<p><strong>group by 字段名1,字段名2;</strong></p>
-</li>
-<li><p>分组排序：mysql中，分组默认有排序功能，默认为升序</p>
-<p><strong>group by 字段[asc | desc];</strong></p>
-<p><strong>asc</strong>：升序        <strong>desc</strong>：降序</p>
-</li>
-<li><p>回溯统计：当分组进行多分组后，往上统计的过程中，需要层层上报，此过程称为回溯统计</p>
-<p><strong>group by 字段[asc | desc] with rollup;</strong></p>
-</li>
-</ul>
-</li>
-<li><p>having子句：本质上和where子句一样，用来进行数据条件筛选；</p>
-</li>
-</ol>
-<ul>
-<li><strong>having在group by子句之后</strong>，可以针对分组后的数据进行统计筛选，可用聚合函数，where不可以使用聚合函数；</li>
-<li><strong>having在group by之后</strong>，group by在where之后，where表示将数据从磁盘拿到内存，where之后的操作都是内存操作；</li>
-</ul>
-<ol start="7">
-<li>order by子句：根据校对规则对数据进行排序，也可以进行多字段排序；</li>
-</ol>
-<ul>
-<li><strong>order by 字段；</strong></li>
-<li><strong>order by 字段1 规则,字段2 规则;</strong></li>
-</ul>
-<ol start="8">
-<li>limit子句：限制记录数量获取</li>
-</ol>
-<ul>
-<li><p>记录数限制：纯粹的限制获取的数量，从第一条到指定数量——<strong>limit 数量</strong></p>
-</li>
-<li><p>分页：利用limit来限制获取指定区间的数据，用来缓解数据库和网络的压力——<strong>limit offset,length</strong></p>
-</li>
-<li><p>offset：偏移量，表示从哪里开始；</p>
-<ul>
-<li>length：具体的获取多少条记录，最多获取数量；</li>
-</ul>
-</li>
-</ul>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
-<li>算术运算符+、-、<em>、%：基本算术运算，通常用于结果运算，mysql中，除法运算使用*</em>浮点数**表示，除数为0，系统会给null；</li>
-<li>比较运算符&gt;、&gt;=、&lt;、&lt;=、=、&lt;&gt;、between 条件a and 条件b（计算区间，闭区间）：通常用来在条件中进行限定结果，也可在字段中进行结果运算，在mysql中，数据会自动转换成相同类型再进行比较；</li>
-<li>逻辑运算符and、or、no；</li>
-<li>in运算符：用来替代=，当结果不是一个值时，而是一个结果时使用；</li>
-<li>is运算符：用来判断字段是否为空；</li>
-<li>like运算符：用来进行模糊匹配，<strong>like ‘匹配模式’</strong>，__:匹配对应的单个字符，%：匹配多个字符；</li>
-</ol>
-<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>可合并多个相似的选择查询的结果集。等同于将一个表追加到另一个表，从而实现将两个表的查询组合在一起，使用<strong>union</strong>和<strong>unionall</strong>;</p>
-<ol>
-<li><p>应用场景</p>
-<p> 将同一张表中不同的结果（需要对应多条查询语句来实现），合并在一起展示数据；<br> 在数据量大的情况下，会对表进行分表操作，需要对每张表进行部分数据统计，使用联合查询来将数据表放在一起显示；</p>
-</li>
-<li><p>基本语法</p>
-<p> select 语句</p>
-<p>  union[union 选项]</p>
-<p>  select 语句;</p>
-</li>
-</ol>
-<ul>
-<li><strong>union选项</strong>：<strong>distinct</strong>：去重，默认    <strong>all</strong>：保存所有</li>
-</ul>
-<ol start="3">
-<li>order by的使用</li>
-</ol>
-<ul>
-<li>对应的select语句必须使用括号括起来；</li>
-<li>若要生效，必须配合limit使用，limit后必须跟对应的限制数量；</li>
-</ul>
-<h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>将多个表连接到一起进行查询（会导致记录数行和字段数列发生改变）。</p>
-<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>在关系型数据库设计过程中，实体表于实体之间存在许多联系。在设计过程中，要遵循着关系来设计，需要利用这层关系来保证数据的完整性。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
-<li>交叉连接：将两张表的数据与另一张表彼此交叉。<ul>
-<li>原理：从第一张表中取出每一次记录之后，与另外一张表的全部记录挨个匹配，没有匹配条件，则结果全部保留；</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>语法：<strong>表1 cross join 表2</strong>;</li>
-<li>应用：产生的结果为笛卡尔积，无实际意义；</li>
-</ul>
-<ol start="2">
-<li>内连接inner join：从一张表中取出所有的记录去另外一张表中进行匹配，利用匹配条件进行匹配，成功了则保留，失败了则放弃。</li>
-</ol>
-<ul>
-<li>原理：从一张表中取出一条记录然后去另外一张表中进行匹配，利用匹配条件进行匹配，匹配到保留，继续向下匹配；匹配失败，向下继续，如果全表匹配失败则结束；</li>
-<li>语法：<strong>表1 [inner] join 表2 on 匹配条件</strong>;    为了避免重名出现错误，通常使用<strong>表名.字段名</strong>，确保唯一性；</li>
-<li>应用：用于对数据有精确要求，必须保证两张表都可以匹配；</li>
-</ul>
-<ol start="3">
-<li>外连接outer join：按照某一张表作为主表（表中所有数据在最后均会保留），根据条件去连接另外一张表，从而得到目标数据；分为<strong>左外连接（left join）左表为主表</strong>和<strong>右外连接（right join）右表为主表</strong>。</li>
-</ol>
-<ul>
-<li><p>原理：确定连接主表后，用主表每一条记录去匹配另一张表（从表）中的每一条记录，如果满足匹配条件，则保留，不满足即不保留；如果主表记录在从表中一条都没有匹配成功，也要保留该记录，从表中对应的字段值为null；</p>
-</li>
-<li><p>语法：</p>
-</li>
-</ul>
-<pre><code>| 左连接 | 主表 left join 从表 on 连接条件；  |
-| :----: | ---------------------------------- |
-| 右连接 | 从表 right join 主表 on 连接条件； |</code></pre><ul>
-<li><p>特点：外连接中主表数据记录一定会保存；左右连接可以相互转换，但表顺序会改变。</p>
-</li>
-<li><p>应用 ：常用于获取数据，作为数据获取对应的主表以及其他数据。</p>
-</li>
-</ul>
-<h2 id="using关键字"><a href="#using关键字" class="headerlink" title="using关键字"></a>using关键字</h2><p>在连接查询中用来代替对应的on关键字，进行条件匹配。</p>
-<ol>
-<li>原理：</li>
-</ol>
-<ul>
-<li>在连接查询时，使用on的地方用using代替；</li>
-<li>使用using的前提是对应的两张表连接的字段同名；</li>
-<li>如果使用using关键字，那么对应的同名字段，在结果中仅会保留一个。</li>
-</ul>
-<ol start="2">
-<li>语法：<strong>表1[inner,left,right] join 表2 using(同名字段列表);</strong></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mysql基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mysql基础——Day4</title>
-    <url>/2020/05/20/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day4/</url>
-    <content><![CDATA[<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="子查询-1"><a href="#子查询-1" class="headerlink" title="子查询"></a>子查询</h3><p>指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。</p>
-<h3 id="主查询"><a href="#主查询" class="headerlink" title="主查询"></a>主查询</h3><p>第一条select语句，确定了用户所有获取的数据目标。</p>
-<h3 id="子查询与主查询的关系"><a href="#子查询与主查询的关系" class="headerlink" title="子查询与主查询的关系"></a>子查询与主查询的关系</h3><ol>
-<li>子查询嵌入主查询中；</li>
-<li>子查询辅助主查询，用作<strong>条件</strong>或<strong>数据源</strong>；</li>
-<li>子查询是一条完整的select语句，<strong>可以独立存在</strong>。</li>
-</ol>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="按功能分"><a href="#按功能分" class="headerlink" title="按功能分"></a>按功能分</h3><ol>
-<li>标量子查询：子查询返回的结果为一个数据；</li>
-<li>列子查询：返回的结果是一列；</li>
-<li>行子查询：返回的结果是一行；</li>
-<li>表子查询：返回的结果是多行多列；</li>
-<li>exists子查询：返回的结果是1或0；</li>
-</ol>
-<h3 id="按位置分"><a href="#按位置分" class="headerlink" title="按位置分"></a>按位置分</h3><ol>
-<li>where子查询：子查询出现的位置在where条件中；</li>
-<li>from子查询：子查询出现的位置在from数据源中；</li>
-</ol>
-<h2 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h2><ol>
-<li><p><strong>select * from 数据源 where 条件判断 =/&lt;&gt; (select 字段名 from 数据源 where 条件判断);</strong></p>
-</li>
-<li><p>需求决定主查询，条件决定子查询。</p>
-</li>
-</ol>
-<h2 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h2><ol>
-<li><strong>主查询 where 条件 in(列子查询);</strong></li>
-</ol>
-<h2 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h2><ol>
-<li><p><strong>主查询 where 条件[(构造一个行元素)] = (行子查询);</strong></p>
-</li>
-<li><p>行元素：多个字段合起来作为一个元素参与运算。</p>
-</li>
-</ol>
-<h2 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h2><ol>
-<li><strong>select 字段表 from (表子查询) as 别名;</strong></li>
-</ol>
-<h2 id="exists子查询"><a href="#exists子查询" class="headerlink" title="exists子查询"></a>exists子查询</h2><ol>
-<li><p><strong>where exists(查询语句);</strong></p>
-</li>
-<li><p>根据查询到的结果判断</p>
-</li>
-</ol>
-<h1 id="数据库的备份和还原"><a href="#数据库的备份和还原" class="headerlink" title="数据库的备份和还原"></a>数据库的备份和还原</h1><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p><strong>Mysqldump -uroot -p 数据库名称[表1 [表2]] &gt;备份文件位置</strong></p>
-<ol>
-<li>整库备份</li>
-<li>单表备份</li>
-<li>多表备份</li>
-</ol>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><ol>
-<li><p>source SQL文件位置    <strong>必须先进入相应数据库</strong></p>
-</li>
-<li><p><strong>mysql -uroot -p 数据库 &lt;文件位置</strong></p>
-</li>
-</ol>
-<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><p>在不同的项目中给不同的角色不同的操作权限，确保数据库中数据的安全。</p>
-<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p><strong>create user 用户名 identified by ‘明文密码’;</strong></p>
-<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p><strong>drop user 用户名;</strong></p>
-<h3 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h3><p>使用对应的<strong>password()</strong>，对密码进行加密处理。</p>
-<ol>
-<li><strong>Set password for 用户  = password(‘新明文密码’);</strong></li>
-<li><strong>Update mysql.user set password = password(‘新明文密码’) where user = ‘’ and host = ‘’;</strong></li>
-</ol>
-<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>在mysql中将权限分为<strong>数据权限</strong>（增删改查）、<strong>结构权限</strong>（结构操作）、<strong>管理权限</strong>，权限列表可以使用逗号分配，也可以使用<strong>all privileges</strong>代表全部权限。</p>
-<ol>
-<li>授予权限：grant，将权限分配给指定的用户，<strong>grant 权限列表 on 数据库.表名 to 用户;</strong></li>
-<li>取消权限：revoke，将权限从用户收回，<strong>revoke 权限列表 on 数据库.表名 from 用户;</strong></li>
-<li>刷新权限：flush，将当前对用户的权限操作，进行一个刷新，将操作的具体内容同步到对应表中，<strong>flush privileges;</strong></li>
-</ol>
-<h2 id="密码丢失"><a href="#密码丢失" class="headerlink" title="密码丢失"></a>密码丢失</h2><p>重置root密码</p>
-<ol>
-<li>停止服务</li>
-<li>重新启动服务 <strong>mysqld -skip -grant -tables</strong>  //启动服务器但跳过权限</li>
-<li>当前启动的服务器没有权限概念，非常危险，全为<strong>root权限</strong></li>
-<li>修改用户密码</li>
-<li>关闭服务器并重启</li>
-</ol>
-<h1 id="外键-forgein-key"><a href="#外键-forgein-key" class="headerlink" title="外键(forgein key)"></a>外键(forgein key)</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>一张表(主表)有一个字段，保存的值指向另外一张表(从表)的主键。</p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="增加外键"><a href="#增加外键" class="headerlink" title="增加外键"></a>增加外键</h3><ol>
-<li><p>在字段后增加一条语句[constraint’外键名’] foreign key (外键字段) references 主表(主键);</p>
-</li>
-<li><p><strong>alter table 从表 add[constraint’外键名’] foreign key(外键字段) references 主表(主键);</strong></p>
-</li>
-</ol>
-<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><ol>
-<li><p>外键不允许修改，只可以先删除后增加</p>
-</li>
-<li><p><strong>alter table 从表 drop foreign key 外键名字;</strong></p>
-</li>
-</ol>
-<h3 id="外键基本要求"><a href="#外键基本要求" class="headerlink" title="外键基本要求"></a>外键基本要求</h3><ol>
-<li>外键字段需要保证与关联的主表的主键字段类型完全一致；</li>
-<li>基本属性也相同；</li>
-<li>外键只能使用<strong>innodb存储引擎</strong>。</li>
-</ol>
-<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>通过建立外键关系之后，对主表和从表都会有一定的数据约束效率。</p>
-<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><ol>
-<li>外键产生时，从表会对受限于主表数据的存在从而导致数据不能进行某些不符合规范的操作；</li>
-<li>如果一张表被其他表外键引入，那么该表的数据操作就不能随便进行，必须要保证从表数据的有效性。</li>
-</ol>
-<h3 id="外键约束-1"><a href="#外键约束-1" class="headerlink" title="外键约束"></a>外键约束</h3><p>可以在创建外键时，对外键约束进行选择性操作，主要约束对象为<strong>主表</strong></p>
-<p><strong>add foreign key (外键字段) references 主表(主键) on 约束模式;</strong></p>
-<h4 id="约束模式"><a href="#约束模式" class="headerlink" title="约束模式"></a>约束模式</h4><ol>
-<li>District:严格模式，不允许操作；</li>
-<li>Cascade:级联模式，从表数据会随着主表数据变化；</li>
-<li>Set null:置空模式，主表变化，从表对应记录设置为空，前提是从表中对应的外键字段允许为空。</li>
-</ol>
-<p>常用的约束模式：<strong>on update cascade(更新级联)</strong>, <strong>on delete set null(删除置空)</strong>。</p>
-<h3 id="约束作用"><a href="#约束作用" class="headerlink" title="约束作用"></a>约束作用</h3><p>保证数据的<strong>完整性</strong>，主表和从表数据要一致，但会导致数据在后台变化的不可控。</p>
-<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图的本质是SQL指令</p>
-<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><p><strong>create view 视图名称 as select指令;</strong></p>
-<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p><strong>select 字段列表 from 视图名称[子句];</strong> 主要用于查询操作 </p>
-<h2 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h2><p><strong>alter view 视图名称 as 新select指令;</strong> 本质是修改视图对应的查询语句</p>
-<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><p><strong>drop view 视图名称;</strong></p>
-<h1 id="事务安全"><a href="#事务安全" class="headerlink" title="事务安全"></a>事务安全</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>事务是访问并可能更新数据库中各种数据项的一个<strong>程序执行单元</strong>，由<strong>事务开始</strong>和<strong>事务结束</strong>之间执行的主题操作组成。</p>
-<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>mysql允许将事务统一进行管理，将用户所做的结果暂时保存，不直接应用到数据表，等到用户确认之后再进行操作。</p>
-<h2 id="自动事务-autocommit"><a href="#自动事务-autocommit" class="headerlink" title="自动事务(autocommit)"></a>自动事务(autocommit)</h2><ol>
-<li>当客户端发送一条sql指令给服务器，服务器执行后，不用等待用户反馈结果会自动将结果同步到数据表。</li>
-<li>关闭自动事务<strong>set auto commit = off</strong>，一旦自动事务关闭，就需要用户提供是否同步的命令<blockquote>
-<p>commit:提交，同步到数据表<br>rollback:回滚</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="手动事务"><a href="#手动事务" class="headerlink" title="手动事务"></a>手动事务</h2><h3 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h3><p><strong>Start transaction;</strong></p>
-<h3 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h3><p>将多条SQL指令逐一执行。</p>
-<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><ol>
-<li><strong>Commit</strong>:确认提交，写入数据表；</li>
-<li><strong>Rollback</strong>:回滚，所有数据无效。</li>
-</ol>
-<h3 id="回滚点savepoint"><a href="#回滚点savepoint" class="headerlink" title="回滚点savepoint"></a>回滚点savepoint</h3><p>当有一系列事务开始操作时，可以在某一个成功点设置一个回滚点，当后面有失败，可以返回这个位置。</p>
-<ol>
-<li>增加回滚点：<strong>savepoint 回滚点名称;</strong></li>
-<li>回到回滚点：<strong>rollback to 回滚点名称;</strong></li>
-</ol>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>事务具有四个特性：<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>、<strong>持久性</strong>，通常称为<strong>ACID特性</strong>。</p>
-<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>一个事务是不可分割的工作单位，事务中的所有操作要么都做，要么都不做。</p>
-<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>事务必须是使数据库从一个一致性状态变到另一个一致性状态，一致性与原子性是密切相关的。</p>
-<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能相互干扰。</p>
-<h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>一个事务一旦提交，它对数据库中数据的改变是永久性的，接下来的其他操作和故障不应对其具有任何影响。</p>
-]]></content>
-      <categories>
-        <category>Mysql基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>01-HTML和CSS</title>
-    <url>/2020/05/19/01-HTML%E5%92%8CCSS/</url>
-    <content><![CDATA[<p>title: 01-HTML和CSS<br>date: 2020-05-25 17:44:00<br> categories: </p>
-<ul>
-<li>Java Web</li>
-</ul>
-<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><h2 id="1-网页的组成部分"><a href="#1-网页的组成部分" class="headerlink" title="1.网页的组成部分"></a>1.网页的组成部分</h2><p>页面由三部分内容组成：</p>
+    <title>Java Web——01-HTML和CSS</title>
+    <url>/2020/05/25/Java%20Web%E2%80%94%E2%80%9401-HTML%E5%92%8CCSS/</url>
+    <content><![CDATA[<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><h2 id="1-网页的组成部分"><a href="#1-网页的组成部分" class="headerlink" title="1.网页的组成部分"></a>1.网页的组成部分</h2><p>页面由三部分内容组成：</p>
 <ol>
 <li>内容（结构）：是我们在页面中可以看到的数据，我们称之为内容。一般内容我们使用 <strong>html 技术</strong>来展示。</li>
 <li>表现：指的是这些内容在页面上的展示形式。比如说，布局、颜色、大小等。一般使用 <strong>CSS 技术</strong>实现。</li>
@@ -1128,5 +450,682 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line">        div&#123;</span><br><span class="line">            color: red;</span><br><span class="line">            border: 1px solid yellow;</span><br><span class="line">            width: 300px;</span><br><span class="line">            height: 300px;</span><br><span class="line">            background-color: green;</span><br><span class="line">            font-size: 30px;</span><br><span class="line">            margin-left: auto;</span><br><span class="line">            margin-right: auto;</span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line">        a&#123;</span><br><span class="line">            text-decoration: navajowhite;</span><br><span class="line">        &#125;</span><br><span class="line">        table&#123;</span><br><span class="line">            border: 1px solid red;</span><br><span class="line">            border-collapse: collapse;</span><br><span class="line">        &#125;</span><br><span class="line">        td&#123;</span><br><span class="line">            border: 1px solid red;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——26.删除排序数组中的重复项</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9426.%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="26-删除排序数组中的重复项"><a href="#26-删除排序数组中的重复项" class="headerlink" title="26.删除排序数组中的重复项"></a>26.删除排序数组中的重复项</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><p>给定数组 nums = [1,1,2],<br>函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h2><p>给定 nums = [0,0,1,1,1,2,2,3,3,4],<br>函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br>// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝<br>int len = removeDuplicates(nums);<br>// 在函数里修改输入数组对于调用者是可见的。<br>// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。<br>for (int i = 0; i &lt; len; i++) {<br>    print(nums[i]);<br>}<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目要求在原地修改数组并在使用O(1)额外空间条件下完成，则可以假定存在两个指针<strong>left</strong>和<strong>right</strong>，如果<strong>left和right指针的值重复</strong>，则将<strong>right指针向右移动</strong>，如果不重复，则将<strong>left+1位置覆盖为right指针对应的值</strong>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length &lt; <span class="number">0</span> || nums == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right = <span class="number">1</span>;right &lt; nums.length;right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[left] != nums[right])&#123;</span><br><span class="line">                left++;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——35.搜索插入位置</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9435.%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="35-搜索插入位置"><a href="#35-搜索插入位置" class="headerlink" title="35.搜索插入位置"></a>35.搜索插入位置</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。</p>
+<p>你可以假设数组中无重复元素。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>利用二分查找思想</p>
+<ol>
+<li>首先定义low,high；</li>
+<li>取中间的mid，如果nums[mid]=target,返回mid下标;</li>
+<li>如果nums[mid]大于target，则high = mid - 1;</li>
+<li>如果nums[mid]小于target，则low = mid + 1;</li>
+<li>如果没找到则返回其位置左边的下标low,即为target按顺序插入的位置;</li>
+</ol>
+<h2 id="Java源代码"><a href="#Java源代码" class="headerlink" title="Java源代码"></a>Java源代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) /<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——27.移除元素</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9427.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27.移除元素"></a>27.移除元素</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><p>给定 nums = [3,2,2,3], val = 3,<br>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><p>给定 nums = [0,1,2,2,3,0,4,2], val = 2,<br>函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。<br>注意这五个元素可为任意顺序。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br>// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝<br>int len = removeElement(nums, val);<br>// 在函数里修改输入数组对于调用者是可见的。<br>// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。<br>for (int i = 0; i &lt; len; i++) {<br>    print(nums[i]);<br>}<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-element" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-element</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目要求就地删除给定值的所有元素，可以采用<strong>双指针t和i</strong>，当<strong>nums[i]==val</strong>相等时，<strong>递增i并跳过该元素</strong>，当<strong>nums[i]!=val</strong>时，将<strong>nums[i]复制到nums[t]，并递增t和i</strong>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != val)&#123;</span><br><span class="line">                nums[t] = nums[i];</span><br><span class="line">                t++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——53.最大子序和问题</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9453.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="53-最大子序和问题"><a href="#53-最大子序和问题" class="headerlink" title="53.最大子序和问题"></a>53.最大子序和问题</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个整数数组nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
+<p>输入：[-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6</p>
+</blockquote>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><strong>动态规划思想</strong></p>
+<ol>
+<li><p>问题拆解</p>
+<p>核心为连续子数组，可以看成一个区间，可以从起始点和终止点确定一个子数组，先确定终止点i，然后问题转换成“<strong>以i结尾的所有子数组中，和最大的是多少？</strong>”，然后进行拆解。</p>
+<p> 拆解分为两种情况：</p>
+<pre><code>i这个位置的元素自己构成一个子数组；
+i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值。</code></pre></li>
+<li><p>状态定义</p>
+<p>通过问题拆解得知，dp[i]就是<strong>以i结尾的所有子数组的最大值</strong>。</p>
+</li>
+<li><p>递推方程</p>
+<p><strong>dp[i] = Math.max(dp[i - 1],0) + array[i]</strong></p>
+</li>
+<li><p>实现</p>
+<p>题目要求子数组最少包含一个元素，则刚开始需要初始化，即<strong>dp[0] = array[0]</strong></p>
+</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">​    <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)&#123;</span><br><span class="line">​      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">​    &#125;</span><br><span class="line">​    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">​    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">​    <span class="keyword">int</span> result = dp[<span class="number">0</span>];	<span class="comment">//记录最后的答案</span></span><br><span class="line">​    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; nums.length;++i)&#123;</span><br><span class="line">​      dp[i] = Math.max(dp[i - <span class="number">1</span>],<span class="number">0</span>) + nums[i];</span><br><span class="line">​      result = Math.max(result,dp[i]);</span><br><span class="line">​    &#125;</span><br><span class="line">​    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——66.加一</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9466.%E5%8A%A0%E4%B8%80/</url>
+    <content><![CDATA[<h1 id="66-加一"><a href="#66-加一" class="headerlink" title="66.加一"></a>66.加一</h1><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><blockquote>
+<p>输入: [1,2,3]<br>输出: [1,2,4]<br>解释: 输入数组表示数字 123。</p>
+</blockquote>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><blockquote>
+<p>输入: [4,3,2,1]<br>输出: [4,3,2,2]<br>解释: 输入数组表示数字 4321。</p>
+</blockquote>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/plus-one" target="_blank" rel="noopener">https://leetcode-cn.com/problems/plus-one</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>题目中非负整数加一，比如0，9。根据分析得知共分为两种情况</p>
+<ol>
+<li>除9以外的数字加一；</li>
+<li>数字9。<br>只要<strong>加1取余数不等于0</strong>，说明不存在进位，直接返回即可。如果<strong>余数等于0</strong>，说明存在进位，遍历前一个数字，<strong>加1继续取余</strong>，如果<strong>还为0说明还存在进位</strong>，依次循环，如果最高位还存在进位，则需要<strong>重新建立一个数组</strong>，将第一位设置为1即可。<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.length - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">            digits[i]++;</span><br><span class="line">            digits[i] = digits[i] % <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(digits[i] != <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> digits;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        digits = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length + <span class="number">1</span>];</span><br><span class="line">        digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> digits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——70.爬楼梯</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%9470.%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
+    <content><![CDATA[<h1 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70.爬楼梯"></a>70.爬楼梯</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。<br>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？<br>注意：给定 n 是一个正整数。</p>
+<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶</li>
+<li>2 阶</li>
+</ol>
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶 + 1 阶</li>
+<li>1 阶 + 2 阶</li>
+<li>2 阶 + 1 阶<br>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2></li>
+</ol>
+<p>此问题的最优解可以从其子问题的最优解来构建，利用动态规划思想得知，第i阶可以从在<strong>第（i - 1）阶后向上爬1阶</strong>；在<strong>第（i - 2）阶后向上爬2阶</strong>，所以达到第i阶的方法就是到<strong>第（i - 1）阶和第（i - 2）阶的方法数之和</strong>，<strong>即dp[i] = dp[i - 1] + dp[i - 2]</strong>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——704.二分查找</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
+    <content><![CDATA[<h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704.二分查找"></a>704.二分查找</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol>
+<li>首先定义low,high；</li>
+<li>取中间的mid，如果nums[mid]=target,返回mid下标;</li>
+<li>如果nums[mid]大于target，则high = mid - 1;</li>
+<li>如果nums[mid]小于target，则low = mid + 1;</li>
+<li>若不存在则返回-1；</li>
+</ol>
+<h2 id="C语言源代码"><a href="#C语言源代码" class="headerlink" title="C语言源代码"></a>C语言源代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = numsSize - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java源代码"><a href="#Java源代码" class="headerlink" title="Java源代码"></a>Java源代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode刷题集——面试题08.03.魔法索引</title>
+    <url>/2020/05/20/LeetCode%E5%88%B7%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94%E9%9D%A2%E8%AF%95%E9%A2%9808.03.%E9%AD%94%E6%B3%95%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<h1 id="面试题08-03-魔法索引"><a href="#面试题08-03-魔法索引" class="headerlink" title="面试题08.03.魔法索引"></a>面试题08.03.魔法索引</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>魔术索引。 在数组A[0…n-1]中，有所谓的魔术索引，满足条件A[i] = i。给定一个有序整数数组，编写一种方法找出魔术索引，若有的话，在数组A中找出一个魔术索引，如果没有，则返回-1。若有多个魔术索引，返回索引值最小的一个。</p>
+<p><strong>示例1:</strong><br> 输入：nums = [0, 2, 3, 4, 5]<br> 输出：0<br> 说明: 0下标的元素为0</p>
+<p><strong>示例2:</strong><br> 输入：nums = [1, 1, 1]<br> 输出：1</p>
+<p><strong>提示:</strong><br>nums长度在[1, 1000000]之间</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/magic-index-lcci" target="_blank" rel="noopener">https://leetcode-cn.com/problems/magic-index-lcci</a></p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>通过题意得知数组有序，但采用二分查找法比较复杂，所以使用线性查找即可。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMagicIndex</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = -<span class="number">1</span>;		<span class="comment">//若没查到返回-1</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == i)&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode刷题集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mysql基础——Day1</title>
+    <url>/2020/05/10/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day1/</url>
+    <content><![CDATA[<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据库是按照数据结构来<strong>存储、组织和管理数据</strong>的建立在计算机存储设备上的仓库。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
+<li>网络数据库</li>
+<li>层级数据库</li>
+<li>关系数据库<h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2>是建立在<strong>关系模型</strong>基础上的数据库。<br>关系模型是由<strong>数据结构</strong>、<strong>操作集合</strong>、<strong>关系完整性约束</strong>三部分组成。<h3 id="典型关系型数据库"><a href="#典型关系型数据库" class="headerlink" title="典型关系型数据库"></a>典型关系型数据库</h3></li>
+<li>小型:Microsoft Access、SQLite</li>
+<li>中型:SQL Server、Mysql</li>
+<li>大型:Oracle、DB2<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>结构化查询语言<h2 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h2></li>
+<li>DQL：数据<strong>查询</strong>语言</li>
+<li>DML：数据<strong>操作</strong>语言</li>
+<li>DCL：数据<strong>控制</strong>语言</li>
+<li>TPL：事务<strong>处理</strong>语言</li>
+<li>DDL：数据<strong>定义</strong>语言<h1 id="Mysql服务端架构"><a href="#Mysql服务端架构" class="headerlink" title="Mysql服务端架构"></a>Mysql服务端架构</h1></li>
+<li>DBMS：<strong>数据库管理系统</strong>，专门管理服务器端的所有内容</li>
+<li>DB：<strong>数据库</strong>，专门存储数据的仓库</li>
+<li>Table：<strong>二维数据表</strong>，专门存储具体实体的数据</li>
+<li>Filed：<strong>字段</strong>，具体存储某种类型的数据<h1 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h1><h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2></li>
+</ol>
+<p><strong>普通创建表</strong></p>
+<ol>
+<li>create table 表名(字段名 字段类型[字段属性],字段名 字段类型[字段属性],…)[表选项];</li>
+<li>将表挂入指定数据库：数据库名称.数据表</li>
+</ol>
+<p><strong>复制已有表结构</strong><br>create table 新表名 like 旧表名;</p>
+<h2 id="显示数据表"><a href="#显示数据表" class="headerlink" title="显示数据表"></a>显示数据表</h2><ol>
+<li><strong>显示所有表</strong><br>show tables;</li>
+<li><strong>匹配显示表</strong><br>show tables like ‘匹配模式’;<h2 id="显示表结构"><a href="#显示表结构" class="headerlink" title="显示表结构"></a>显示表结构</h2></li>
+</ol>
+<p><strong>显示表中所含的字段信息</strong></p>
+<ol>
+<li>describe 表名;</li>
+<li>desc 表名;</li>
+<li>show columns from 表名;<h2 id="显示表创建语句"><a href="#显示表创建语句" class="headerlink" title="显示表创建语句"></a>显示表创建语句</h2>show create table 表名;<h2 id="设置表属性"><a href="#设置表属性" class="headerlink" title="设置表属性"></a>设置表属性</h2>alter table 表名 表选项 值;<h2 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h2></li>
+<li><strong>修改表名</strong><br>rename table 旧表名 to 新表名;</li>
+<li><strong>修改表选项</strong><br>alter table 表名 表选项 新值;</li>
+<li><strong>新增字段</strong><br>alter table 表名 add[column] 新字段名 列类型[列属性][位置first/after 字段名];</li>
+</ol>
+<p><strong>first</strong>：在最前面，新增到第一个字段之前<br><strong>after</strong>：放在最后一个字段之后（默认新增方式）<br>4. <strong>修改字段名</strong><br>alter table 表名 change 旧字段名 新字段名 字段类型[列属性][新位置];<br>5. <strong>修改字段类型</strong><br>alter table 表名 modify 字段名 新类型[新属性][新位置];<br>6. <strong>删除字段</strong><br>drop table 表名 drop 字段名;<br>7. <strong>删除表结构</strong><br>drop table 表名1,表名2,…;</p>
+<h1 id="数据基本操作"><a href="#数据基本操作" class="headerlink" title="数据基本操作"></a>数据基本操作</h1><h2 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h2><ol>
+<li><strong>向表中指定字段插入数据</strong><br>insert into 表名 (字段列表) values(对应字段列表);</li>
+<li><strong>向表中所有字段插入数据</strong><br>insert into 表名 values (对应表结构);<h2 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h2></li>
+<li><strong>查询全部数据</strong><br>select * from 表名;</li>
+<li><strong>查询表中部分字段</strong><br>select 字段列表 from 表名;</li>
+<li><strong>简单条件查询数据</strong><br>select 字段列表/* from 表名 where 字段名 = 值;<h2 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h2>delete from 表名 [where 条件];<h2 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h2>update 表名 set 字段名 = 新值[where 条件];<h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><h2 id="设置客户端所有字符集"><a href="#设置客户端所有字符集" class="headerlink" title="设置客户端所有字符集"></a>设置客户端所有字符集</h2></li>
+<li><strong>快捷方式</strong><br>set names 字符集;</li>
+<li><strong>深层原理</strong><br>一次性打通客户端、服务器端、连接层之间的关系</li>
+<li><strong>查看系统保存的三种字符集</strong><br>show variables like ‘character_set%’;</li>
+<li><strong>修改客户端变量</strong><br>set character_set_client = gbk;</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mysql基础——Day2</title>
+    <url>/2020/05/19/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day2/</url>
+    <content><![CDATA[<h1 id="列类型"><a href="#列类型" class="headerlink" title="列类型"></a>列类型</h1><h2 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h2><ol>
+<li><strong>Tinyint</strong>:迷你整型，系统采用一个字节来保存数据；</li>
+<li><strong>Smallint</strong>:小整型，系统采用两个字节来保存数据；</li>
+<li><strong>Mediumint</strong>:中整型，系统采用三个字节来保存数据；</li>
+<li><strong>Int</strong>:标准整型，系统采用四个字节来保存数据；</li>
+<li><strong>Bigint</strong>:大整型，系统采用八个字节来保存数据；</li>
+<li><strong>无符号标识设定</strong>:在列类型之后加上 <strong>unsigned</strong>；</li>
+</ol>
+<h2 id="小数类型"><a href="#小数类型" class="headerlink" title="小数类型"></a>小数类型</h2><ol>
+<li><p><strong>浮点型</strong>:又称精度类型，有可能丢失精度。</p>
+<ul>
+<li><strong>Float</strong>:单精度类型，系统提供4个字节存储数据，但只能保证7个字节左右的精度，表示不指定小数位的浮点数。float(M,D):表示一共存储<strong>M</strong>个有效数字，其中小数占<strong>D</strong>位。</li>
+<li><strong>Double</strong>:双精度类型，系统提供8个字节存储数据，但只能保证15个字节左右的精度。</li>
+</ul>
+</li>
+<li><p><strong>定点型</strong>：能够保证数据精确的小数（小树部分可能不精确，但整数部分一定精确）。</p>
+<ul>
+<li><strong>Decimal</strong>:系统自动根据存储的数据来分配存储空间。decimal(M,D):<strong>M</strong>表示总长度，不能超过65；<strong>D</strong>表示小树部分长度，不能超过30。</li>
+</ul>
+</li>
+</ol>
+<h2 id="时间日期类型"><a href="#时间日期类型" class="headerlink" title="时间日期类型"></a>时间日期类型</h2><ol>
+<li><strong>Data</strong>:系统使用三个字节来存储数据，对应的格式为:<strong>YYYY-mm-dd</strong>;</li>
+<li><strong>Time</strong>:能够表示某个指定的时间，采用三个字节存储，对应的格式为:<strong>HH:ii:ss</strong>;</li>
+<li><strong>Datatime</strong>:将data和time合并，使用8个字节存储，格式为：<strong>YYYY-mm-dd HH:ii:ss</strong>;</li>
+<li><strong>Timestamp</strong>:时间戳，格式为<strong>YYYY-mm-dd:HH:ii:ss</strong>;</li>
+<li><strong>Year</strong>:占用一个字节来保存。</li>
+</ol>
+<h2 id="字符串型"><a href="#字符串型" class="headerlink" title="字符串型"></a>字符串型</h2><ol>
+<li><strong>Char</strong>:定长字符，指定长度之后，系统一定会分配指定空间用于存储数据；</li>
+<li><strong>Varchar</strong>:指定长度之后，系统会根据实际存储的数据来计算长度分配合适的长度；</li>
+<li><strong>Text</strong>:存储普通的字符文本；</li>
+<li><strong>Enum</strong>:枚举，在数据插入之前，先设定几个可能最终出现数据结果的项；</li>
+<li><strong>Set</strong>:将多个数据选项可以同时保存的数据类型，本质是将指定的项按照对应的二进制位进行控制：<strong>1</strong>表示该项<strong>被选中</strong>，<strong>0</strong>表示该项<strong>未被选中</strong>。</li>
+</ol>
+<h1 id="列属性"><a href="#列属性" class="headerlink" title="列属性"></a>列属性</h1><h2 id="null属性"><a href="#null属性" class="headerlink" title="null属性"></a>null属性</h2><h2 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h2><h2 id="列描述"><a href="#列描述" class="headerlink" title="列描述"></a>列描述</h2><p>专门给开发人员进行维护的一个注释说明；</p>
+<p>comment ‘字段描述’;        —查看表创建语句查看comment</p>
+<h2 id="主键-Primary-Key"><a href="#主键-Primary-Key" class="headerlink" title="主键(Primary Key)"></a>主键(Primary Key)</h2><p>在一张表中有且仅有一个字段，里面的值具有唯一性；</p>
+<ol>
+<li><p>随表创建：在字段后增加<strong>primary key</strong>;</p>
+</li>
+<li><p>表后增加：<strong>alter table 表名 add primary key(字段);</strong></p>
+</li>
+<li><p>查看主键：表的创建语句；</p>
+</li>
+<li><p>删除主键：<strong>alter table 表名 drop primary key;</strong></p>
+</li>
+<li><p>复合主键：<strong>primary key(字段名1,字段名2)</strong>;</p>
+</li>
+<li><p>主键约束：</p>
+<ul>
+<li>当前字段对应数据不能为空；</li>
+<li>当前字段对应的数据不能有任何重复。</li>
+</ul>
+</li>
+<li><p>主键分类：</p>
+<ul>
+<li>业务主键：主键所在的字段具有业务意义；</li>
+<li>逻辑主键：自然增长的类型。</li>
+</ul>
+</li>
+</ol>
+<h2 id="自动增长-auto-increment"><a href="#自动增长-auto-increment" class="headerlink" title="自动增长(auto_increment)"></a>自动增长(auto_increment)</h2><p>通常用于逻辑主键；</p>
+<ol>
+<li><p>原理：在系统中有维护一组数据，用来保存当前使用了自动增长的字段，记住当前对应的数据值，再给定一个指定的步长；当用户进行数据插入时，如果没有给定值，系统会在原始值上再加步长变成新的数据；</p>
+</li>
+<li><p>使用自动增长：在字段后增加一个属性<strong>auto_increment</strong>；</p>
+</li>
+<li><p>修改自动增长：<strong>alter table 表名 auto_increment = 值;</strong>；</p>
+</li>
+<li><p>删除自动增长：当用户修改自增字段时，如果没有看到auto_increment属性，系统会自动清除该自动增长；</p>
+</li>
+<li><p>初始设置：在系统中，有一组变量用来维护自动增长的初始值和步长，<strong>show variables like ‘auto increment%’;</strong></p>
+</li>
+<li><p>细节问题</p>
+</li>
+</ol>
+<ul>
+<li>一张表只能有一个自动增长；</li>
+<li>如果数据插入没有触发自动增长，那么自动增长不会表现；</li>
+<li>自动增长修改时，值可以较大，但不能比当前已有自动增长字段的值小。</li>
+</ul>
+<h2 id="唯一键-unique-key"><a href="#唯一键-unique-key" class="headerlink" title="唯一键(unique key)"></a>唯一键(unique key)</h2><p>用来保证对应字段中的数据唯一，可以有多个，允许数据为null；</p>
+<ol>
+<li>创建唯一键：<ul>
+<li>直接在表字段之后添加<strong>unique [key]</strong>；</li>
+<li>在所有字段之后使用<strong>unique key(字段列表)</strong>；</li>
+<li>在创建完表后增加唯一键<strong>alter table 表名 add unique key(字段列表);</strong></li>
+</ul>
+</li>
+<li>查看唯一键：通过查看表结构来实现；</li>
+<li>删除唯一键：<strong>alter table 表名 drop index 唯一键名称;</strong></li>
+<li>复合唯一键：可以使用多个字段来保证唯一性，与主键一致。</li>
+</ol>
+<h1 id="表关系"><a href="#表关系" class="headerlink" title="表关系"></a>表关系</h1><h2 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h2><p>一张表中的一条记录与另外一张表中最多有一条有明确关系，通常保证两张表使用<strong>相同的主键</strong>。</p>
+<h2 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h2><p>在多关系的表中去维护一个字段，这个字段是“<strong>一</strong>”的<strong>主键</strong>。</p>
+<h2 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h2><p>一张表中的多条记录在另一张表中可以匹配到多条记录；增加一个中间表，让中间表于对应的其他表形成两个<strong>一对多</strong>关系。</p>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mysql基础——Day3</title>
+    <url>/2020/05/10/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day3/</url>
+    <content><![CDATA[<h1 id="高级操作"><a href="#高级操作" class="headerlink" title="高级操作"></a>高级操作</h1><h2 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h2><ol>
+<li>多数据插入：<strong>insert into 表名[(字段列表)] values (值列表),(值列表),…;</strong></li>
+<li>主键冲突</li>
+</ol>
+<ul>
+<li>主键冲突更新：<strong>insert into 表名[(字段列表)] values (值列表) on duplicate key update 字段 = 新值;</strong><ul>
+<li>主键冲突替换：<strong>replace into 表名[(字段列表)] values (值列表);</strong></li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>蠕虫复制：一分为二，成倍增加。从已有数据中获取数据，并且将获得的数据插入到数据表中(可以短期内快速增加表的数据量，从而可以测试表的压力) <strong>insert into 表名[(字段列表)] select 字段列表 from 表;</strong></li>
+</ol>
+<h2 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h2><ol>
+<li>跟随条件更新：<strong>update 表名 set 字段名 = 新值 where 判断条件;</strong></li>
+<li>全表更新：<strong>update 表名 set 字段名 = 新值 [where 判断条件] limit 数量;</strong></li>
+</ol>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><ol>
+<li>尽量使用<strong>where</strong>进行判定；</li>
+<li>删除时用<strong>limit</strong>限制删除的数量；</li>
+<li>delete删除数据时，无法重置auto_increment，重置表选项中的自动增长可以使用<strong>truncate 表名</strong>;</li>
+</ol>
+<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>完整的sql指令：<strong>select select选项 字段列表 from 数据源 where 条件 group by 分组 having 条件 order by 排序 limit 限制;</strong></p>
+<ol>
+<li>Select选项：系统该如何对待查询到的结果</li>
+</ol>
+<ul>
+<li><strong>all</strong>：默认保存所有的记录；</li>
+<li><strong>distinct</strong>：去除重复的记录，只保留一条；</li>
+</ul>
+<ol start="2">
+<li><p>字段列表：从多张表中获得数据时，可能存在不同表中有同名的字段，需要将同名的字段命名成不同名—<strong>字段名[as] 别名</strong>；</p>
+</li>
+<li><p>From数据源：为查询提供数据；</p>
+</li>
+</ol>
+<ul>
+<li><strong>单表数据</strong>：from 表名;</li>
+<li><strong>多表数据</strong>：from 表名1,表名2,…；</li>
+<li><strong>动态数据</strong>：from (select 字段列表 from 表) as 别名;</li>
+</ul>
+<ol start="4">
+<li><p>Where子句：用来从数据表中获取数据时，进行条件筛选；</p>
+</li>
+<li><p>Group by子句：根据指定的字段，将数据进行分组，分组的目标是为了统计；</p>
+<ul>
+<li><p>分组统计：group by 字段名 利用统计函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">count()</th>
+<th align="center">统计每组中的数量，如果统计目标为字段，则不统计空字段，如果为*，代表统计记录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">avg()</td>
+<td align="center">求平均值</td>
+</tr>
+<tr>
+<td align="center">sum()</td>
+<td align="center">求和</td>
+</tr>
+<tr>
+<td align="center">max()</td>
+<td align="center">求最大值</td>
+</tr>
+<tr>
+<td align="center">min()</td>
+<td align="center">求最小值</td>
+</tr>
+<tr>
+<td align="center">group_concat()</td>
+<td align="center">为了将分组中指定的字段进行合并(字符串拼接)</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>多分组：将数据按某个字段分组之后，对已经分组的数据进行再分组</p>
+<p><strong>group by 字段名1,字段名2;</strong></p>
+</li>
+<li><p>分组排序：mysql中，分组默认有排序功能，默认为升序</p>
+<p><strong>group by 字段[asc | desc];</strong></p>
+<p><strong>asc</strong>：升序        <strong>desc</strong>：降序</p>
+</li>
+<li><p>回溯统计：当分组进行多分组后，往上统计的过程中，需要层层上报，此过程称为回溯统计</p>
+<p><strong>group by 字段[asc | desc] with rollup;</strong></p>
+</li>
+</ul>
+</li>
+<li><p>having子句：本质上和where子句一样，用来进行数据条件筛选；</p>
+</li>
+</ol>
+<ul>
+<li><strong>having在group by子句之后</strong>，可以针对分组后的数据进行统计筛选，可用聚合函数，where不可以使用聚合函数；</li>
+<li><strong>having在group by之后</strong>，group by在where之后，where表示将数据从磁盘拿到内存，where之后的操作都是内存操作；</li>
+</ul>
+<ol start="7">
+<li>order by子句：根据校对规则对数据进行排序，也可以进行多字段排序；</li>
+</ol>
+<ul>
+<li><strong>order by 字段；</strong></li>
+<li><strong>order by 字段1 规则,字段2 规则;</strong></li>
+</ul>
+<ol start="8">
+<li>limit子句：限制记录数量获取</li>
+</ol>
+<ul>
+<li><p>记录数限制：纯粹的限制获取的数量，从第一条到指定数量——<strong>limit 数量</strong></p>
+</li>
+<li><p>分页：利用limit来限制获取指定区间的数据，用来缓解数据库和网络的压力——<strong>limit offset,length</strong></p>
+</li>
+<li><p>offset：偏移量，表示从哪里开始；</p>
+<ul>
+<li>length：具体的获取多少条记录，最多获取数量；</li>
+</ul>
+</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
+<li>算术运算符+、-、<em>、%：基本算术运算，通常用于结果运算，mysql中，除法运算使用*</em>浮点数**表示，除数为0，系统会给null；</li>
+<li>比较运算符&gt;、&gt;=、&lt;、&lt;=、=、&lt;&gt;、between 条件a and 条件b（计算区间，闭区间）：通常用来在条件中进行限定结果，也可在字段中进行结果运算，在mysql中，数据会自动转换成相同类型再进行比较；</li>
+<li>逻辑运算符and、or、no；</li>
+<li>in运算符：用来替代=，当结果不是一个值时，而是一个结果时使用；</li>
+<li>is运算符：用来判断字段是否为空；</li>
+<li>like运算符：用来进行模糊匹配，<strong>like ‘匹配模式’</strong>，__:匹配对应的单个字符，%：匹配多个字符；</li>
+</ol>
+<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>可合并多个相似的选择查询的结果集。等同于将一个表追加到另一个表，从而实现将两个表的查询组合在一起，使用<strong>union</strong>和<strong>unionall</strong>;</p>
+<ol>
+<li><p>应用场景</p>
+<p> 将同一张表中不同的结果（需要对应多条查询语句来实现），合并在一起展示数据；<br> 在数据量大的情况下，会对表进行分表操作，需要对每张表进行部分数据统计，使用联合查询来将数据表放在一起显示；</p>
+</li>
+<li><p>基本语法</p>
+<p> select 语句</p>
+<p>  union[union 选项]</p>
+<p>  select 语句;</p>
+</li>
+</ol>
+<ul>
+<li><strong>union选项</strong>：<strong>distinct</strong>：去重，默认    <strong>all</strong>：保存所有</li>
+</ul>
+<ol start="3">
+<li>order by的使用</li>
+</ol>
+<ul>
+<li>对应的select语句必须使用括号括起来；</li>
+<li>若要生效，必须配合limit使用，limit后必须跟对应的限制数量；</li>
+</ul>
+<h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>将多个表连接到一起进行查询（会导致记录数行和字段数列发生改变）。</p>
+<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>在关系型数据库设计过程中，实体表于实体之间存在许多联系。在设计过程中，要遵循着关系来设计，需要利用这层关系来保证数据的完整性。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
+<li>交叉连接：将两张表的数据与另一张表彼此交叉。<ul>
+<li>原理：从第一张表中取出每一次记录之后，与另外一张表的全部记录挨个匹配，没有匹配条件，则结果全部保留；</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>语法：<strong>表1 cross join 表2</strong>;</li>
+<li>应用：产生的结果为笛卡尔积，无实际意义；</li>
+</ul>
+<ol start="2">
+<li>内连接inner join：从一张表中取出所有的记录去另外一张表中进行匹配，利用匹配条件进行匹配，成功了则保留，失败了则放弃。</li>
+</ol>
+<ul>
+<li>原理：从一张表中取出一条记录然后去另外一张表中进行匹配，利用匹配条件进行匹配，匹配到保留，继续向下匹配；匹配失败，向下继续，如果全表匹配失败则结束；</li>
+<li>语法：<strong>表1 [inner] join 表2 on 匹配条件</strong>;    为了避免重名出现错误，通常使用<strong>表名.字段名</strong>，确保唯一性；</li>
+<li>应用：用于对数据有精确要求，必须保证两张表都可以匹配；</li>
+</ul>
+<ol start="3">
+<li>外连接outer join：按照某一张表作为主表（表中所有数据在最后均会保留），根据条件去连接另外一张表，从而得到目标数据；分为<strong>左外连接（left join）左表为主表</strong>和<strong>右外连接（right join）右表为主表</strong>。</li>
+</ol>
+<ul>
+<li><p>原理：确定连接主表后，用主表每一条记录去匹配另一张表（从表）中的每一条记录，如果满足匹配条件，则保留，不满足即不保留；如果主表记录在从表中一条都没有匹配成功，也要保留该记录，从表中对应的字段值为null；</p>
+</li>
+<li><p>语法：</p>
+</li>
+</ul>
+<pre><code>| 左连接 | 主表 left join 从表 on 连接条件；  |
+| :----: | ---------------------------------- |
+| 右连接 | 从表 right join 主表 on 连接条件； |</code></pre><ul>
+<li><p>特点：外连接中主表数据记录一定会保存；左右连接可以相互转换，但表顺序会改变。</p>
+</li>
+<li><p>应用 ：常用于获取数据，作为数据获取对应的主表以及其他数据。</p>
+</li>
+</ul>
+<h2 id="using关键字"><a href="#using关键字" class="headerlink" title="using关键字"></a>using关键字</h2><p>在连接查询中用来代替对应的on关键字，进行条件匹配。</p>
+<ol>
+<li>原理：</li>
+</ol>
+<ul>
+<li>在连接查询时，使用on的地方用using代替；</li>
+<li>使用using的前提是对应的两张表连接的字段同名；</li>
+<li>如果使用using关键字，那么对应的同名字段，在结果中仅会保留一个。</li>
+</ul>
+<ol start="2">
+<li>语法：<strong>表1[inner,left,right] join 表2 using(同名字段列表);</strong></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mysql基础——Day4</title>
+    <url>/2020/05/20/Mysql%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94Day4/</url>
+    <content><![CDATA[<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="子查询-1"><a href="#子查询-1" class="headerlink" title="子查询"></a>子查询</h3><p>指在一条select语句中，嵌入了另一条select语句，那么被嵌入的select语句称之为子查询语句。</p>
+<h3 id="主查询"><a href="#主查询" class="headerlink" title="主查询"></a>主查询</h3><p>第一条select语句，确定了用户所有获取的数据目标。</p>
+<h3 id="子查询与主查询的关系"><a href="#子查询与主查询的关系" class="headerlink" title="子查询与主查询的关系"></a>子查询与主查询的关系</h3><ol>
+<li>子查询嵌入主查询中；</li>
+<li>子查询辅助主查询，用作<strong>条件</strong>或<strong>数据源</strong>；</li>
+<li>子查询是一条完整的select语句，<strong>可以独立存在</strong>。</li>
+</ol>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="按功能分"><a href="#按功能分" class="headerlink" title="按功能分"></a>按功能分</h3><ol>
+<li>标量子查询：子查询返回的结果为一个数据；</li>
+<li>列子查询：返回的结果是一列；</li>
+<li>行子查询：返回的结果是一行；</li>
+<li>表子查询：返回的结果是多行多列；</li>
+<li>exists子查询：返回的结果是1或0；</li>
+</ol>
+<h3 id="按位置分"><a href="#按位置分" class="headerlink" title="按位置分"></a>按位置分</h3><ol>
+<li>where子查询：子查询出现的位置在where条件中；</li>
+<li>from子查询：子查询出现的位置在from数据源中；</li>
+</ol>
+<h2 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h2><ol>
+<li><p><strong>select * from 数据源 where 条件判断 =/&lt;&gt; (select 字段名 from 数据源 where 条件判断);</strong></p>
+</li>
+<li><p>需求决定主查询，条件决定子查询。</p>
+</li>
+</ol>
+<h2 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h2><ol>
+<li><strong>主查询 where 条件 in(列子查询);</strong></li>
+</ol>
+<h2 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h2><ol>
+<li><p><strong>主查询 where 条件[(构造一个行元素)] = (行子查询);</strong></p>
+</li>
+<li><p>行元素：多个字段合起来作为一个元素参与运算。</p>
+</li>
+</ol>
+<h2 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h2><ol>
+<li><strong>select 字段表 from (表子查询) as 别名;</strong></li>
+</ol>
+<h2 id="exists子查询"><a href="#exists子查询" class="headerlink" title="exists子查询"></a>exists子查询</h2><ol>
+<li><p><strong>where exists(查询语句);</strong></p>
+</li>
+<li><p>根据查询到的结果判断</p>
+</li>
+</ol>
+<h1 id="数据库的备份和还原"><a href="#数据库的备份和还原" class="headerlink" title="数据库的备份和还原"></a>数据库的备份和还原</h1><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p><strong>Mysqldump -uroot -p 数据库名称[表1 [表2]] &gt;备份文件位置</strong></p>
+<ol>
+<li>整库备份</li>
+<li>单表备份</li>
+<li>多表备份</li>
+</ol>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><ol>
+<li><p>source SQL文件位置    <strong>必须先进入相应数据库</strong></p>
+</li>
+<li><p><strong>mysql -uroot -p 数据库 &lt;文件位置</strong></p>
+</li>
+</ol>
+<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><p>在不同的项目中给不同的角色不同的操作权限，确保数据库中数据的安全。</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p><strong>create user 用户名 identified by ‘明文密码’;</strong></p>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p><strong>drop user 用户名;</strong></p>
+<h3 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h3><p>使用对应的<strong>password()</strong>，对密码进行加密处理。</p>
+<ol>
+<li><strong>Set password for 用户  = password(‘新明文密码’);</strong></li>
+<li><strong>Update mysql.user set password = password(‘新明文密码’) where user = ‘’ and host = ‘’;</strong></li>
+</ol>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>在mysql中将权限分为<strong>数据权限</strong>（增删改查）、<strong>结构权限</strong>（结构操作）、<strong>管理权限</strong>，权限列表可以使用逗号分配，也可以使用<strong>all privileges</strong>代表全部权限。</p>
+<ol>
+<li>授予权限：grant，将权限分配给指定的用户，<strong>grant 权限列表 on 数据库.表名 to 用户;</strong></li>
+<li>取消权限：revoke，将权限从用户收回，<strong>revoke 权限列表 on 数据库.表名 from 用户;</strong></li>
+<li>刷新权限：flush，将当前对用户的权限操作，进行一个刷新，将操作的具体内容同步到对应表中，<strong>flush privileges;</strong></li>
+</ol>
+<h2 id="密码丢失"><a href="#密码丢失" class="headerlink" title="密码丢失"></a>密码丢失</h2><p>重置root密码</p>
+<ol>
+<li>停止服务</li>
+<li>重新启动服务 <strong>mysqld -skip -grant -tables</strong>  //启动服务器但跳过权限</li>
+<li>当前启动的服务器没有权限概念，非常危险，全为<strong>root权限</strong></li>
+<li>修改用户密码</li>
+<li>关闭服务器并重启</li>
+</ol>
+<h1 id="外键-forgein-key"><a href="#外键-forgein-key" class="headerlink" title="外键(forgein key)"></a>外键(forgein key)</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>一张表(主表)有一个字段，保存的值指向另外一张表(从表)的主键。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="增加外键"><a href="#增加外键" class="headerlink" title="增加外键"></a>增加外键</h3><ol>
+<li><p>在字段后增加一条语句[constraint’外键名’] foreign key (外键字段) references 主表(主键);</p>
+</li>
+<li><p><strong>alter table 从表 add[constraint’外键名’] foreign key(外键字段) references 主表(主键);</strong></p>
+</li>
+</ol>
+<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><ol>
+<li><p>外键不允许修改，只可以先删除后增加</p>
+</li>
+<li><p><strong>alter table 从表 drop foreign key 外键名字;</strong></p>
+</li>
+</ol>
+<h3 id="外键基本要求"><a href="#外键基本要求" class="headerlink" title="外键基本要求"></a>外键基本要求</h3><ol>
+<li>外键字段需要保证与关联的主表的主键字段类型完全一致；</li>
+<li>基本属性也相同；</li>
+<li>外键只能使用<strong>innodb存储引擎</strong>。</li>
+</ol>
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>通过建立外键关系之后，对主表和从表都会有一定的数据约束效率。</p>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><ol>
+<li>外键产生时，从表会对受限于主表数据的存在从而导致数据不能进行某些不符合规范的操作；</li>
+<li>如果一张表被其他表外键引入，那么该表的数据操作就不能随便进行，必须要保证从表数据的有效性。</li>
+</ol>
+<h3 id="外键约束-1"><a href="#外键约束-1" class="headerlink" title="外键约束"></a>外键约束</h3><p>可以在创建外键时，对外键约束进行选择性操作，主要约束对象为<strong>主表</strong></p>
+<p><strong>add foreign key (外键字段) references 主表(主键) on 约束模式;</strong></p>
+<h4 id="约束模式"><a href="#约束模式" class="headerlink" title="约束模式"></a>约束模式</h4><ol>
+<li>District:严格模式，不允许操作；</li>
+<li>Cascade:级联模式，从表数据会随着主表数据变化；</li>
+<li>Set null:置空模式，主表变化，从表对应记录设置为空，前提是从表中对应的外键字段允许为空。</li>
+</ol>
+<p>常用的约束模式：<strong>on update cascade(更新级联)</strong>, <strong>on delete set null(删除置空)</strong>。</p>
+<h3 id="约束作用"><a href="#约束作用" class="headerlink" title="约束作用"></a>约束作用</h3><p>保证数据的<strong>完整性</strong>，主表和从表数据要一致，但会导致数据在后台变化的不可控。</p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图的本质是SQL指令</p>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><p><strong>create view 视图名称 as select指令;</strong></p>
+<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p><strong>select 字段列表 from 视图名称[子句];</strong> 主要用于查询操作 </p>
+<h2 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h2><p><strong>alter view 视图名称 as 新select指令;</strong> 本质是修改视图对应的查询语句</p>
+<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><p><strong>drop view 视图名称;</strong></p>
+<h1 id="事务安全"><a href="#事务安全" class="headerlink" title="事务安全"></a>事务安全</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>事务是访问并可能更新数据库中各种数据项的一个<strong>程序执行单元</strong>，由<strong>事务开始</strong>和<strong>事务结束</strong>之间执行的主题操作组成。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>mysql允许将事务统一进行管理，将用户所做的结果暂时保存，不直接应用到数据表，等到用户确认之后再进行操作。</p>
+<h2 id="自动事务-autocommit"><a href="#自动事务-autocommit" class="headerlink" title="自动事务(autocommit)"></a>自动事务(autocommit)</h2><ol>
+<li>当客户端发送一条sql指令给服务器，服务器执行后，不用等待用户反馈结果会自动将结果同步到数据表。</li>
+<li>关闭自动事务<strong>set auto commit = off</strong>，一旦自动事务关闭，就需要用户提供是否同步的命令<blockquote>
+<p>commit:提交，同步到数据表<br>rollback:回滚</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="手动事务"><a href="#手动事务" class="headerlink" title="手动事务"></a>手动事务</h2><h3 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h3><p><strong>Start transaction;</strong></p>
+<h3 id="执行事务"><a href="#执行事务" class="headerlink" title="执行事务"></a>执行事务</h3><p>将多条SQL指令逐一执行。</p>
+<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><ol>
+<li><strong>Commit</strong>:确认提交，写入数据表；</li>
+<li><strong>Rollback</strong>:回滚，所有数据无效。</li>
+</ol>
+<h3 id="回滚点savepoint"><a href="#回滚点savepoint" class="headerlink" title="回滚点savepoint"></a>回滚点savepoint</h3><p>当有一系列事务开始操作时，可以在某一个成功点设置一个回滚点，当后面有失败，可以返回这个位置。</p>
+<ol>
+<li>增加回滚点：<strong>savepoint 回滚点名称;</strong></li>
+<li>回到回滚点：<strong>rollback to 回滚点名称;</strong></li>
+</ol>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>事务具有四个特性：<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>、<strong>持久性</strong>，通常称为<strong>ACID特性</strong>。</p>
+<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>一个事务是不可分割的工作单位，事务中的所有操作要么都做，要么都不做。</p>
+<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>事务必须是使数据库从一个一致性状态变到另一个一致性状态，一致性与原子性是密切相关的。</p>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>一个事务的执行不能被其他事务干扰。即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能相互干扰。</p>
+<h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>一个事务一旦提交，它对数据库中数据的改变是永久性的，接下来的其他操作和故障不应对其具有任何影响。</p>
+]]></content>
+      <categories>
+        <category>Mysql基础</category>
+      </categories>
   </entry>
 </search>
