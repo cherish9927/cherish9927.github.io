@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Java SE——Day02_Java基本语法</title>
-    <url>/2020/06/04/Day02%E2%80%94%E2%80%94Java%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+    <url>/2020/06/07/Day02%E2%80%94%E2%80%94Java%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h1 id="Java基本语法"><a href="#Java基本语法" class="headerlink" title="Java基本语法"></a>Java基本语法</h1><h2 id="1-关键字和保留字"><a href="#1-关键字和保留字" class="headerlink" title="1.关键字和保留字"></a>1.关键字和保留字</h2><ol>
 <li>关键字</li>
 </ol>
@@ -240,11 +240,244 @@
 </ul>
 <p><strong>正数的原码、反码、补码都相同，负数的补码是其反码加1。</strong></p>
 <h4 id="3-二进制和十进制之间的转化"><a href="#3-二进制和十进制之间的转化" class="headerlink" title="3.二进制和十进制之间的转化"></a>3.二进制和十进制之间的转化</h4><ol>
-<li><p>二进制转成十进制，<strong>乘以2的幂数</strong>；</p>
+<li>二进制转成十进制，<strong>乘以2的幂数</strong>；</li>
+<li>十进制转成二进制，<strong>除以2取余数</strong>。</li>
+</ol>
+<h2 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.运算符"></a>4.运算符</h2><p>运算符是一种特殊的符号，用于表示数据的运算、赋值和比较等。运算符分为以下六种：</p>
+<ul>
+<li><strong>算术运算符</strong></li>
+<li><strong>赋值运算符</strong></li>
+<li><strong>比较运算符</strong></li>
+<li><strong>逻辑运算符</strong></li>
+<li><strong>位运算符</strong></li>
+<li><strong>三元运算符</strong></li>
+</ul>
+<h3 id="1-算术运算符"><a href="#1-算术运算符" class="headerlink" title="1.算术运算符"></a>1.算术运算符</h3><table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">运算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">正号</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">负号</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">加</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">减</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">乘</td>
+</tr>
+<tr>
+<td align="center">/</td>
+<td align="center">除</td>
+</tr>
+<tr>
+<td align="center">%</td>
+<td align="center">取余 <strong>结果的符号与被模数符号一致</strong></td>
+</tr>
+<tr>
+<td align="center">++</td>
+<td align="center">自增（前），先运算后取值</td>
+</tr>
+<tr>
+<td align="center">++</td>
+<td align="center">自增（后），先取值后运算</td>
+</tr>
+<tr>
+<td align="center">–</td>
+<td align="center">自减（前），先运算后取值</td>
+</tr>
+<tr>
+<td align="center">–</td>
+<td align="center">自减（后），先取值后运算</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">字符串连接</td>
+</tr>
+</tbody></table>
+<h3 id="2-赋值运算符"><a href="#2-赋值运算符" class="headerlink" title="2.赋值运算符"></a>2.赋值运算符</h3><ol>
+<li>符号： = </li>
+</ol>
+<ul>
+<li>当“=”<strong>两侧数据类型不一致</strong>时，可以使用<strong>自动类型转换</strong>或使用<strong>强制类型转换</strong>进行处理；</li>
+<li>支持<strong>连续赋值</strong>。</li>
+</ul>
+<ol start="2">
+<li>扩展赋值运算符： <strong>+=,-=,*=,/=,%=</strong>，<strong>不会改变变量本身的数据类型</strong>。</li>
+</ol>
+<h3 id="3-比较运算符"><a href="#3-比较运算符" class="headerlink" title="3.比较运算符"></a>3.比较运算符</h3><ul>
+<li>比较运算符的结果都是<strong>boolean</strong>型。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">运算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">==</td>
+<td align="center">相等于</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">小于等于</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">instanceof</td>
+<td align="center">检查是否是类的对象</td>
+</tr>
+</tbody></table>
+<h3 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.逻辑运算符</h3><ol>
+<li><p>逻辑运算符操作的都是<strong>boolean</strong>类型的变量。</p>
 </li>
-<li><p>十进制转成二进制，<strong>除以2取余数</strong>。</p>
+<li><p>&amp;与&amp;&amp;的区分</p>
 </li>
 </ol>
+<ul>
+<li>相同点：<strong>运算结果相同</strong>，<strong>当符号左边为true时，二者都会执行符号右边的运算</strong>。</li>
+<li>不同点：当符号<strong>左边为false</strong>时，<strong>&amp;会继续执行符号右边的运算，但&amp;&amp;会跳过符号右边的运算</strong>。</li>
+</ul>
+<ol start="3">
+<li>|与||的区分</li>
+</ol>
+<ul>
+<li>相同点：<strong>运算结果相同</strong>，<strong>当符号左边为false时，二者都会执行符号右边的运算</strong>。</li>
+<li>不同点：当符号<strong>左边为true</strong>时，<strong>|会继续执行符号右边的运算，但||会跳过符号右边的运算</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">运算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;</td>
+<td align="center">逻辑与</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">逻辑或</td>
+</tr>
+<tr>
+<td align="center">！</td>
+<td align="center">逻辑非</td>
+</tr>
+<tr>
+<td align="center">&amp;&amp;</td>
+<td align="center">短路与</td>
+</tr>
+<tr>
+<td align="center">||</td>
+<td align="center">短路或</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">逻辑异或</td>
+</tr>
+</tbody></table>
+<h3 id="5-位运算符"><a href="#5-位运算符" class="headerlink" title="5.位运算符"></a>5.位运算符</h3><ol>
+<li>位运算符操作的都是<strong>整型</strong>的数据；</li>
+<li>在一定范围内，每<strong>向左移一位</strong>，相当于<strong>*2</strong>；</li>
+<li>在一定范围内，每<strong>向右移一位</strong>，相当于<strong>/2</strong>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">运算</th>
+<th align="center">细节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&lt;&lt;</td>
+<td align="center">左移</td>
+<td align="center">空位补0，被移除的高位丢弃，空缺位补0</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt;</td>
+<td align="center">右移</td>
+<td align="center">被移位的二进制最高位为0，右移后，空缺位补0；最高位为1，右移后空缺位补1</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt;&gt;</td>
+<td align="center">无符号右移</td>
+<td align="center">被移位二进制最高位无论是1或0，空缺位都用0补</td>
+</tr>
+<tr>
+<td align="center">&amp;</td>
+<td align="center">与运算</td>
+<td align="center">二进制位进行 &amp; 运算，只有 1 &amp; 1 时结果为1，否则为0</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">或运算</td>
+<td align="center">二进制位进行 | 运算，只有 0 | 0 时结果为0，否则为1</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">异或运算</td>
+<td align="center">相同二进制位进行 ^ 运算结果为0；不同二进制位进行 ^ 运算结果为1</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">取反运算</td>
+<td align="center">正数取反，各二进制码按补码各位取反；负数取反，各二进制码按补码各位取反</td>
+</tr>
+</tbody></table>
+<h3 id="6-三元运算符"><a href="#6-三元运算符" class="headerlink" title="6.三元运算符"></a>6.三元运算符</h3><ol>
+<li>格式—— <strong>(条件表达式) ? 表达式1 : 表达式2;</strong></li>
+</ol>
+<ul>
+<li>若条件表达式为<strong>true</strong>，运算后的结果为<strong>表达式1</strong>；</li>
+<li>若条件表达式为<strong>false</strong>，运算后的结果为<strong>表达式2</strong>。</li>
+</ul>
+<ol start="2">
+<li>表达式1和表达式2为<strong>同种类型</strong>。</li>
+<li>三元运算符可以嵌套使用。</li>
+<li>凡是可以使用三元运算符的地方都可以改写成<strong>if-else</strong>。</li>
+</ol>
+<h2 id="5-流程控制"><a href="#5-流程控制" class="headerlink" title="5.流程控制"></a>5.流程控制</h2><ol>
+<li><p>流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑块。</p>
+</li>
+<li><p>三种基本流程结构：</p>
+</li>
+</ol>
+<ul>
+<li>顺序结构</li>
+<li>分支结构</li>
+<li>循环结构</li>
+</ul>
 ]]></content>
       <categories>
         <category>Java SE</category>
