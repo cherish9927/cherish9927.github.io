@@ -467,17 +467,6 @@
 <li>三元运算符可以嵌套使用。</li>
 <li>凡是可以使用三元运算符的地方都可以改写成<strong>if-else</strong>。</li>
 </ol>
-<h2 id="5-流程控制"><a href="#5-流程控制" class="headerlink" title="5.流程控制"></a>5.流程控制</h2><ol>
-<li><p>流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑块。</p>
-</li>
-<li><p>三种基本流程结构：</p>
-</li>
-</ol>
-<ul>
-<li>顺序结构</li>
-<li>分支结构</li>
-<li>循环结构</li>
-</ul>
 ]]></content>
       <categories>
         <category>Java SE</category>
