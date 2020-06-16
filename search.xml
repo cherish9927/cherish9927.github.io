@@ -2609,7 +2609,7 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
   </entry>
   <entry>
     <title>Java Web——04-Java Web定义和Servlet技术</title>
-    <url>/2020/06/16/Java-Web%E2%80%94%E2%80%9404-Java-Web%E5%AE%9A%E4%B9%89%E5%92%8CServlet%E6%8A%80%E6%9C%AF/</url>
+    <url>/2020/06/16/Java-Web%E2%80%94%E2%80%9404-Java-Web%E5%AE%9A%E4%B9%89%E5%92%8CServlet%E6%8A%80%E6%9C%AF1/</url>
     <content><![CDATA[<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>是指所有通过Java语言编写可以通过浏览器访问的程序的总称。是基于<strong>请求</strong>和<strong>响应</strong>来开发的。</p>
 <ol>
 <li><strong>请求Request</strong>：是指客户端给服务器发送数据。</li>
@@ -2645,7 +2645,7 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
 <li><servlet-name></servlet-name>是告诉服务器当前配置的地址给哪一个Servlet程序使用；</li>
 <li><url-pattern></url-pattern>是配置访问地址。</li>
 </ul>
-<h2 id="3-URL地址到Servlet程序的访问"><a href="#3-URL地址到Servlet程序的访问" class="headerlink" title="3.URL地址到Servlet程序的访问"></a>3.URL地址到Servlet程序的访问</h2><img src="/Users/zhanglei/blog/source/_posts/屏幕快照 2020-06-09 21.36.36.png" style="zoom:70%;" />
+<h2 id="3-URL地址到Servlet程序的访问"><a href="#3-URL地址到Servlet程序的访问" class="headerlink" title="3.URL地址到Servlet程序的访问"></a>3.URL地址到Servlet程序的访问</h2><img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/屏幕快照 2020-06-09 21.36.36.png" style="zoom:70%;" />
 
 <h2 id="4-Servlet的生命周期"><a href="#4-Servlet的生命周期" class="headerlink" title="4.Servlet的生命周期"></a>4.Servlet的生命周期</h2><ol>
 <li><strong>执行Servlet构造器方法</strong>————第一次访问的时候创建Servlet程序会调用</li>
