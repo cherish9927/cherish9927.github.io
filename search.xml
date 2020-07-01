@@ -3679,4 +3679,343 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Java SE</category>
       </categories>
   </entry>
+  <entry>
+    <title>Java Web——06-jsp</title>
+    <url>/2020/07/01/Java-Web%E2%80%94%E2%80%9406-jsp/</url>
+    <content><![CDATA[<h1 id="1-jsp定义及作用"><a href="#1-jsp定义及作用" class="headerlink" title="1.jsp定义及作用"></a>1.jsp定义及作用</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>jsp全称是java server pages，Java的服务器页面。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>主要作用是代替Servlet程序回传html页面的数据，因为使用Servlet程序回传html页面数据开发和维护成本都比较高。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>servlet程序回传html页面数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintHtml</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">       resp.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过响应的回传流回传html页面数据</span></span><br><span class="line">        PrintWriter writer = resp.getWriter();</span><br><span class="line">        writer.write(<span class="string">"&lt;!DOCTYPE html&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"  &lt;html lang=\"en\"&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"  &lt;head&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"      &lt;meta charset=\"UTF-8\"&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"      &lt;title&gt;Title&lt;/title&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"  &lt;/head&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"  &lt;body&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"      这是html页面数据\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"  &lt;/body&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"&lt;/html&gt;\r\n"</span>);</span><br><span class="line">        writer.write(<span class="string">"\r\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>jsp回传html页面数据：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    a.jsp页面</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-jsp的本质"><a href="#2-jsp的本质" class="headerlink" title="2.jsp的本质"></a>2.jsp的本质</h1><p>jsp页面本质上是一个<strong>Servlet程序</strong>，当我们第一次访问jsp页面时，Tomcat服务器会帮我们把jsp页面翻译成为一个Java源文件，并对它进行编译称为<strong>.class字节码程序</strong>。</p>
+<h1 id="3-jsp的三种语法"><a href="#3-jsp的三种语法" class="headerlink" title="3.jsp的三种语法"></a>3.jsp的三种语法</h1><h2 id="jsp头部的page指令"><a href="#jsp头部的page指令" class="headerlink" title="jsp头部的page指令"></a>jsp头部的page指令</h2><p>jsp的page指令可以修改jsp页面中的一些重要的属性或者行为。</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">language属性</td>
+<td align="center">表示jsp翻译后的语言文件</td>
+</tr>
+<tr>
+<td align="center">contextType属性</td>
+<td align="center">表示jsp返回的数据类型，即源码中的response.setContextType()参数值</td>
+</tr>
+<tr>
+<td align="center">pageEncoding属性</td>
+<td align="center">表示当前jsp页面文件本身的字符集</td>
+</tr>
+<tr>
+<td align="center">import属性</td>
+<td align="center">用于导包、导类</td>
+</tr>
+<tr>
+<td align="center">autoFlush属性</td>
+<td align="center">设置当out输出流缓冲区满了之后是否自动刷新缓冲区，默认值是true</td>
+</tr>
+<tr>
+<td align="center">buffer属性</td>
+<td align="center">设置out输出流缓冲区的大小，默认是8kb</td>
+</tr>
+<tr>
+<td align="center">errorPage属性</td>
+<td align="center">设置当jsp页面运行时出错，自动跳转去的错误页面路径（用于提示用户页面出错）</td>
+</tr>
+<tr>
+<td align="center">isErrorPage属性</td>
+<td align="center">设置当前jsp页面是否是错误信息页面，默认是false，如果是true可以获取异常信息</td>
+</tr>
+<tr>
+<td align="center">session属性</td>
+<td align="center">设置访问当前jsp页面，是否会创建HttpSession对象，默认是true</td>
+</tr>
+<tr>
+<td align="center">extends属性</td>
+<td align="center">设置jsp翻译出来的java类默认继承谁</td>
+</tr>
+</tbody></table>
+<h2 id="jsp中常用脚本"><a href="#jsp中常用脚本" class="headerlink" title="jsp中常用脚本"></a>jsp中常用脚本</h2><h3 id="1-声明脚本"><a href="#1-声明脚本" class="headerlink" title="1.声明脚本"></a>1.声明脚本</h3><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%! 声明脚本 %&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>作用：可以给jsp翻译出来的<strong>java类</strong>定义<strong>属性</strong>和<strong>方法</strong>甚至是<strong>静态代码块</strong>、<strong>内部类</strong>等。</li>
+</ol>
+<p>例：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%--<span class="number">1</span>、声明类属性--%&gt; </span><br><span class="line">&lt;%!</span><br><span class="line">  	<span class="keyword">private</span> Integer id;</span><br><span class="line">		<span class="keyword">private</span> String name;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String,Object&gt; map;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--<span class="number">2</span>、声明 <span class="keyword">static</span> 静态代码块--%&gt; </span><br><span class="line">&lt;%!</span><br><span class="line">  	<span class="keyword">static</span>&#123; </span><br><span class="line">  			map = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">        map.put(<span class="string">"key1"</span>,<span class="string">"value1"</span>);</span><br><span class="line">        map.put(<span class="string">"key2"</span>,<span class="string">"value2"</span>);</span><br><span class="line">        map.put(<span class="string">"key3"</span>,<span class="string">"value3"</span>);   </span><br><span class="line">    &#125;</span><br><span class="line">%&gt;   </span><br><span class="line"></span><br><span class="line">&lt;%--<span class="number">3</span>、声明类方法--%&gt; </span><br><span class="line">&lt;%!</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">abc</span><span class="params">()</span></span>&#123;</span><br><span class="line">  				<span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">		&#125;</span><br><span class="line">%&gt;  </span><br><span class="line"></span><br><span class="line">&lt;%--<span class="number">4</span>、声明内部类--%&gt; </span><br><span class="line">&lt;%!</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> integer id = <span class="number">12</span>;</span><br><span class="line">    <span class="keyword">private</span> String name = <span class="string">"abc"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-表达式脚本"><a href="#2-表达式脚本" class="headerlink" title="2.表达式脚本"></a>2.表达式脚本</h3><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%=表达式%&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>作用：在jsp页面上输出数据。</p>
+</li>
+<li><p>特点：</p>
+</li>
+</ol>
+<ul>
+<li>所有的表达式脚本都会被翻译到__jspService()方法中；</li>
+<li>表达式脚本都会被翻译成out.print()输出到页面上；</li>
+<li>由于表达式脚本翻译的内容都在__jspService()方法中，所以jspService()方法中的对象都可以直接调用；</li>
+<li>表达式脚本中的表达式不能以分号结束。</li>
+</ul>
+<ol start="4">
+<li>练习：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%--输出整型--%&gt;</span><br><span class="line">    &lt;%=<span class="number">12</span>%&gt;&lt;br&gt;</span><br><span class="line">&lt;%--输出浮点型--%&gt;</span><br><span class="line">    &lt;%=<span class="number">12.12</span>%&gt;&lt;br&gt;</span><br><span class="line">&lt;%--输出字符串--%&gt;</span><br><span class="line">    &lt;%=<span class="string">"字符串"</span>%&gt;&lt;br&gt;</span><br><span class="line">&lt;%--输出对象--%&gt;</span><br><span class="line">    &lt;%=map%&gt;&lt;br&gt;</span><br><span class="line">    &lt;%=request.getParameter(<span class="string">"username"</span>)%&gt;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-代码脚本"><a href="#3-代码脚本" class="headerlink" title="3.代码脚本"></a>3.代码脚本</h3><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">		java语句</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>作用：可以在jsp页面中编写需要的功能。</p>
+</li>
+<li><p>特点：</p>
+</li>
+</ol>
+<ul>
+<li>代码脚本翻译之后都在__jspService()方法中；</li>
+<li>代码脚本由于翻译到__jspService()方法中，所以在jspService()方法中现有的对象都可以直接使用；</li>
+<li>多个代码脚本块可以组合成一个完整的Java语句；</li>
+<li>代码脚本还可以和表达式脚本一起组合使用，在jsp页面上输出数据。</li>
+</ul>
+<h2 id="jsp中的三种注释"><a href="#jsp中的三种注释" class="headerlink" title="jsp中的三种注释"></a>jsp中的三种注释</h2><ol>
+<li>html注释——<!--html注释--></li>
+</ol>
+<ul>
+<li>html注释会被翻译到Java源代码中。在__jspService()方法中以out.writer输出到客户端。</li>
+</ul>
+<ol start="2">
+<li>Java注释——/**/和//</li>
+</ol>
+<ul>
+<li>Java注释会被翻译到Java源代码中。</li>
+</ul>
+<ol start="3">
+<li>jsp注释——&lt;%–jsp注释–%&gt;</li>
+</ol>
+<ul>
+<li>jsp注释可以注释掉jsp页面中所有代码。</li>
+</ul>
+<h1 id="4-jsp的九大内置对象"><a href="#4-jsp的九大内置对象" class="headerlink" title="4.jsp的九大内置对象"></a>4.jsp的九大内置对象</h1><p>jsp中的内置对象，是指Tomcat服务器在翻译jsp页面成为Servlet源代码后，内部提供的九大对象。</p>
+<table>
+<thead>
+<tr>
+<th align="center">对象名</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">request</td>
+<td align="center">请求对象</td>
+</tr>
+<tr>
+<td align="center">response</td>
+<td align="center">响应对象</td>
+</tr>
+<tr>
+<td align="center">pageContext</td>
+<td align="center">jsp的上下文对象</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">会话对象</td>
+</tr>
+<tr>
+<td align="center">application</td>
+<td align="center">ServletContext对象</td>
+</tr>
+<tr>
+<td align="center">config</td>
+<td align="center">ServletConfig对象</td>
+</tr>
+<tr>
+<td align="center">out</td>
+<td align="center">jsp输出流对象</td>
+</tr>
+<tr>
+<td align="center">page</td>
+<td align="center">指向当前jsp的对象</td>
+</tr>
+<tr>
+<td align="center">exception</td>
+<td align="center">异常对象</td>
+</tr>
+</tbody></table>
+<h1 id="5-jsp的四大域对象"><a href="#5-jsp的四大域对象" class="headerlink" title="5.jsp的四大域对象"></a>5.jsp的四大域对象</h1><table>
+<thead>
+<tr>
+<th align="center">对象名</th>
+<th align="center">所属类</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pageContext</td>
+<td align="center">PageContextImpl类</td>
+<td align="center">当前jsp页面范围内有效</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td align="center">HttpServletRequest类</td>
+<td align="center">一次请求内有效</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">HttpSession类</td>
+<td align="center">一次会话范围内有效（浏览器打开到浏览器关闭）</td>
+</tr>
+<tr>
+<td align="center">application</td>
+<td align="center">ServletContext类</td>
+<td align="center">整个web工程范围内都有效</td>
+</tr>
+</tbody></table>
+<ol>
+<li>域对象是可以像Map一样存取数据的对象，功能相同，不同的是它们对<strong>数据的存取范围</strong>。</li>
+<li>四个域在使用时，优先顺序(范围从小到大)是：</li>
+</ol>
+<ul>
+<li><strong>pageContext &lt; request &lt; session &lt; application</strong></li>
+</ul>
+<p>例：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;scope.jsp页面&lt;/h1&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;%</span><br><span class="line">        <span class="comment">//往四个域对象中存储数据</span></span><br><span class="line">        pageContext.setAttribute(<span class="string">"key"</span>, <span class="string">"pageContext"</span>);</span><br><span class="line">        request.setAttribute(<span class="string">"key"</span>, <span class="string">"request"</span>);</span><br><span class="line">        session.setAttribute(<span class="string">"key"</span>, <span class="string">"session"</span>);</span><br><span class="line">        application.setAttribute(<span class="string">"key"</span>, <span class="string">"application"</span>);</span><br><span class="line">    %&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;%--取四个域对象中的数据--%&gt;</span><br><span class="line">    pageContext是否有值：&lt;%=pageContext.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    request是否有值：&lt;%=request.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    session是否有值：&lt;%=session.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    application是否有值：&lt;%=application.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%</span><br><span class="line">        request.getRequestDispatcher(<span class="string">"/scope2.jsp"</span>).forward(request, response);</span><br><span class="line">    %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%--取四个域对象中的数据--%&gt;</span><br><span class="line">    pageContext是否有值：&lt;%=pageContext.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    request是否有值：&lt;%=request.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    session是否有值：&lt;%=session.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    application是否有值：&lt;%=application.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br&gt;</span><br><span class="line">    %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-out输出和writer输出的区别"><a href="#6-out输出和writer输出的区别" class="headerlink" title="6.out输出和writer输出的区别"></a>6.out输出和writer输出的区别</h1><ol>
+<li><p>writer中表示响应，经常用于设置返回给客户端的内容。</p>
+</li>
+<li><p>out也用来做输出操作。</p>
+</li>
+<li><p>由于jsp翻译之后，底层源代码都使用out来进行输出，所以一般情况下，在jsp页面中统一使用out进行输出，避免打乱页面输出内容的顺序。</p>
+</li>
+<li><p>out.write()——输出字符串。</p>
+</li>
+<li><p>out.print()——输出任意数据(转换成字符串后调用write输出)。</p>
+</li>
+</ol>
+<h1 id="7-jsp的常用标签"><a href="#7-jsp的常用标签" class="headerlink" title="7.jsp的常用标签"></a>7.jsp的常用标签</h1><h2 id="jsp静态包含"><a href="#jsp静态包含" class="headerlink" title="jsp静态包含"></a>jsp静态包含</h2><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">"/include/a.jsp"</span>%&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li>file属性是指定要包含的jsp页面路径。</li>
+</ul>
+<ol start="3">
+<li>特点：</li>
+</ol>
+<ul>
+<li>不会翻译被包含的jsp页面；</li>
+<li>本质是将被包含的jsp页面的代码拷贝到合适的位置执行输出。</li>
+</ul>
+<h2 id="jsp动态包含"><a href="#jsp动态包含" class="headerlink" title="jsp动态包含"></a>jsp动态包含</h2><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">"/include/a.jsp"</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">"username"</span> value=<span class="string">"a"</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">"password"</span> value=<span class="string">"123"</span>/&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li>page属性指定要包含的jsp页面的路径。</li>
+</ul>
+<ol start="3">
+<li>特点：</li>
+</ol>
+<ul>
+<li>将被包含的jsp页面翻译成Java代码；</li>
+<li>动态包含可以传递参数。</li>
+</ul>
+<ol start="4">
+<li>底层原理：</li>
+</ol>
+<img src="/Users/zhanglei/Desktop/Java/Java SE/Java SE笔记/屏幕快照 2020-07-01 21.33.36.png" style="zoom:50%;" />
+
+<h2 id="jsp转发标签"><a href="#jsp转发标签" class="headerlink" title="jsp转发标签"></a>jsp转发标签</h2><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;jsp:forward page="/a.jsp"&gt;&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li>page属性设置请求转发的路径。</li>
+</ul>
+<h1 id="8-jsp练习题"><a href="#8-jsp练习题" class="headerlink" title="8.jsp练习题"></a>8.jsp练习题</h1><h2 id="在jsp页面中输出九九乘法表"><a href="#在jsp页面中输出九九乘法表" class="headerlink" title="在jsp页面中输出九九乘法表"></a>在jsp页面中输出九九乘法表</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%--在 jsp 页面中输出九九乘法口诀表--%&gt;</span><br><span class="line">    &lt;h1 align=<span class="string">"center"</span>&gt;九九乘法口诀表&lt;h1/&gt;</span><br><span class="line">        &lt;table align=<span class="string">"center"</span>&gt;</span><br><span class="line">            &lt;%</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123; %&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">                &lt;%</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++) &#123; %&gt;</span><br><span class="line">                &lt;td&gt;&lt;%=j + "*" + i + "=" + (i*j)%&gt;&lt;/td&gt;</span><br><span class="line">               &lt;%&#125;%&gt;</span><br><span class="line">                    &lt;/tr&gt;</span><br><span class="line">                &lt;%&#125;%&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="jsp输出一个表格-存在10个学生信息"><a href="#jsp输出一个表格-存在10个学生信息" class="headerlink" title="jsp输出一个表格(存在10个学生信息)"></a>jsp输出一个表格(存在10个学生信息)</h2><img src="/Users/zhanglei/Desktop/Java/Java SE/Java SE笔记/屏幕快照 2020-07-01 21.39.20.png" style="zoom:50%;" />
+
+<ol>
+<li>Student类：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>SearchStudentServlet程序：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchStudentServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ArrayList&lt;Student&gt; studentList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> t = i + <span class="number">1</span>;</span><br><span class="line">            studentList.add(<span class="keyword">new</span> Student(t,<span class="string">"name"</span>+t, <span class="number">18</span>+t,<span class="string">"phone"</span>+t));</span><br><span class="line">        &#125;</span><br><span class="line">        req.setAttribute(<span class="string">"stuList"</span>, studentList);</span><br><span class="line">        req.getRequestDispatcher(<span class="string">"/test/test2.jsp"</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>showStudent.jsp页面：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        table&#123;</span><br><span class="line">            border: <span class="number">1</span>px black solid;</span><br><span class="line">            width: <span class="number">600</span>px;</span><br><span class="line">            border-collapse: collapse;</span><br><span class="line">        &#125;</span><br><span class="line">        td,th&#123;</span><br><span class="line">            border: <span class="number">1</span>px black solid;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        List&lt;Student&gt; studentList = (List&lt;Student&gt;) request.getAttribute(<span class="string">"stuList"</span>);</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;编号&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;年龄&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;电话&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;操作&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;% <span class="keyword">for</span> (Student student : studentList) &#123; %&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">           &lt;td&gt;&lt;%=student.getId()%&gt;&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;&lt;%=student.getName()%&gt;&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;&lt;%=student.getAge()%&gt;&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;&lt;%=student.getPhone()%&gt;&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;删除、修改&lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">        &lt;%&#125;%&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="9-Listener监听器"><a href="#9-Listener监听器" class="headerlink" title="9.Listener监听器"></a>9.Listener监听器</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><ol>
+<li>Java三大组件分别是：<strong>Servlet程序</strong>、<strong>Filter过滤器</strong>、<strong>Listener监听器</strong>。</li>
+<li>Listener监听器是JavaEE的规范(接口)。</li>
+</ol>
+<h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>监听某种事物的变化，然后通过回调函数反馈给程序去做一些响应的处理。</li>
+</ul>
+<h2 id="ServletContextListener监听器"><a href="#ServletContextListener监听器" class="headerlink" title="ServletContextListener监听器"></a>ServletContextListener监听器</h2><ol>
+<li>可以监听ServletContext对象的创建和销毁。</li>
+<li>ServletContext对象在web工程启动时被创建，在web工程停止的时候被销毁，监听到创建和销毁之后都会分别调用ServletContextListener监听器的方法反馈。</li>
+</ol>
+<ul>
+<li>方法一：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在ServletContext对象创建后马上调用，做初始化操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ServletContextListener</span> <span class="keyword">extends</span> <span class="title">EventListener</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被创建"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方法二：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在ServletContext对象销毁后调用</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ServletContextListener</span> <span class="keyword">extends</span> <span class="title">EventListener</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被销毁"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>ServletContextListener监听器使用步骤：</li>
+</ol>
+<ul>
+<li>编写一个类去实现ServletContextListener，实现其两个回调方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServletContextListenerImpl</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被创建"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被销毁"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置web.xml文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>listener.MyServletContextListenerImpl<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+  </entry>
 </search>
