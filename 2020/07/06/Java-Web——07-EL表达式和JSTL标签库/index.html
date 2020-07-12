@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/159.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/159.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/159.jpg?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.EL表达式定义全称是Expression Language，表达式语言。 作用主要是代替jsp页面中的表达式脚本在jsp页面中进行数据的输出，因为EL表达式在输出数据的时候要比jsp表达式脚本更加简洁。 格式1$&amp;#123;表达式&amp;#125;   EL表达式在输出null值的时候，输出的是空串； jsp表达式脚本在输出null值的时候，输出的是null字符串。  12345678&lt;bod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web——07-EL表达式和JSTL标签库">
+<meta property="og:url" content="http://yoursite.com/2020/07/06/Java-Web%E2%80%94%E2%80%9407-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL%E6%A0%87%E7%AD%BE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Zhanglei&#39;s blog">
+<meta property="og:description" content="1.EL表达式定义全称是Expression Language，表达式语言。 作用主要是代替jsp页面中的表达式脚本在jsp页面中进行数据的输出，因为EL表达式在输出数据的时候要比jsp表达式脚本更加简洁。 格式1$&amp;#123;表达式&amp;#125;   EL表达式在输出null值的时候，输出的是空串； jsp表达式脚本在输出null值的时候，输出的是null字符串。  12345678&lt;bod">
+<meta property="article:published_time" content="2020-07-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-12T14:55:24.436Z">
+<meta property="article:author" content="Zhanglei">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/06/Java-Web——07-EL表达式和JSTL标签库/"/>
+
+
+
+
+
+  <title>Java Web——07-EL表达式和JSTL标签库 | Zhanglei's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zhanglei's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/06/Java-Web%E2%80%94%E2%80%9407-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL%E6%A0%87%E7%AD%BE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhanglei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/159.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhanglei's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java Web——07-EL表达式和JSTL标签库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-06T00:00:00+08:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Java Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-EL表达式"><a href="#1-EL表达式" class="headerlink" title="1.EL表达式"></a>1.EL表达式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>全称是Expression Language，表达式语言。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>主要是代替jsp页面中的表达式脚本在jsp页面中进行数据的输出，因为EL表达式在输出数据的时候要比jsp表达式脚本更加简洁。</p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;表达式&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>EL表达式</strong>在<strong>输出null值</strong>的时候，输出的是<strong>空串</strong>；</li>
+<li><strong>jsp表达式脚本</strong>在<strong>输出null值</strong>的时候，输出的是<strong>null字符串</strong>。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        request.setAttribute(<span class="string">"key"</span>, <span class="string">"value"</span>);</span><br><span class="line">    %&gt;</span><br><span class="line">		jsp表达式脚本输出key的值是:</span><br><span class="line">    &lt;%=request.getAttribute(<span class="string">"key"</span>)%&gt;&lt;br/&gt;</span><br><span class="line">    EL表达式输出key的值是:$&#123;key&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EL表达式搜索域数据的顺序"><a href="#EL表达式搜索域数据的顺序" class="headerlink" title="EL表达式搜索域数据的顺序"></a>EL表达式搜索域数据的顺序</h2><p>当四个域中都有<strong>相同key</strong>的数据的时候，EL表达式会按照四个域<strong>从大到小</strong>的顺序去搜索，找到就输出。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;%</span><br><span class="line">    <span class="comment">//向四个域中都保存相同的key的数据</span></span><br><span class="line">    request.setAttribute(<span class="string">"key"</span>, <span class="string">"request"</span>);</span><br><span class="line">    session.setAttribute(<span class="string">"key"</span>, <span class="string">"session"</span>);</span><br><span class="line">    application.setAttribute(<span class="string">"key"</span>, <span class="string">"application"</span>);</span><br><span class="line">    pageContext.setAttribute(<span class="string">"key"</span>, <span class="string">"pageContext"</span>);</span><br><span class="line">   %&gt;</span><br><span class="line">    $&#123;key&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EL表达式输出Bean的普通、数组、List集合、map集合属性"><a href="#EL表达式输出Bean的普通、数组、List集合、map集合属性" class="headerlink" title="EL表达式输出Bean的普通、数组、List集合、map集合属性"></a>EL表达式输出Bean的普通、数组、List集合、map集合属性</h2><ol>
+<li>例：输出Person类中普通属性、数组属性、List集合属性、map集合属性</li>
+</ol>
+<ul>
+<li>Person类：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String[] phone;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; cities;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Object&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jsp页面代码：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line">        person.setName(<span class="string">"张三"</span>);</span><br><span class="line">        person.setPhone(<span class="keyword">new</span> String[]&#123;<span class="string">"123456"</span>&#125;);</span><br><span class="line">        ArrayList&lt;String&gt; cities = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        cities.add(<span class="string">"北京"</span>);</span><br><span class="line">        cities.add(<span class="string">"上海"</span>);</span><br><span class="line">        cities.add(<span class="string">"深圳"</span>);</span><br><span class="line">        person.setCities(cities);</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">        map.put(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">        map.put(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line">        person.setMap(map);</span><br><span class="line"></span><br><span class="line">        pageContext.setAttribute(<span class="string">"person"</span>, person);</span><br><span class="line">    %&gt;</span><br><span class="line"></span><br><span class="line">    输出Person:$&#123;person&#125;&lt;br/&gt;</span><br><span class="line">    输出Person的name属性:$&#123;person.name&#125;&lt;br/&gt;</span><br><span class="line">    输出Person的phone属性的第一个值:$&#123;person.phone[<span class="number">0</span>]&#125;&lt;br/&gt;</span><br><span class="line">    输出Person的cities属性的第一个值:$&#123;person.cities[<span class="number">0</span>]&#125;&lt;br/&gt;</span><br><span class="line">    输出Person的map属性的key1的值:$&#123;person.map.key1&#125;&lt;br/&gt;</span><br><span class="line">    输出Person的age属性:$&#123;person.age&#125;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EL表达式的运算"><a href="#EL表达式的运算" class="headerlink" title="EL表达式的运算"></a>EL表达式的运算</h2><p>EL表达式支持如下运算符：</p>
+<h3 id="1-关系运算"><a href="#1-关系运算" class="headerlink" title="1.关系运算"></a>1.关系运算</h3><table>
+<thead>
+<tr>
+<th align="center">关系运算符</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“== 或 eq”</td>
+<td align="center">等于</td>
+<td align="center">${1 == 1} 或 ${1 eq 1}</td>
+</tr>
+<tr>
+<td align="center">“!= 或 ne”</td>
+<td align="center">不等于</td>
+<td align="center">${1 != 1} 或 ${1 ne 1}</td>
+</tr>
+<tr>
+<td align="center">“&lt; 或 lt”</td>
+<td align="center">小于</td>
+<td align="center">${1 &lt; 2} 或 ${1 lt 2}</td>
+</tr>
+<tr>
+<td align="center">“&gt; 或 gt”</td>
+<td align="center">大于</td>
+<td align="center">${2 &gt; 1} 或 ${2 gt 1}</td>
+</tr>
+<tr>
+<td align="center">“&lt;= 或 le”</td>
+<td align="center">小于等于</td>
+<td align="center">${1 &lt;= 2} 或 ${1 le 2}</td>
+</tr>
+<tr>
+<td align="center">“&gt;= 或 ge”</td>
+<td align="center">大于等于</td>
+<td align="center">${2 &gt;= 1} 或 ${2 ge 1}</td>
+</tr>
+</tbody></table>
+<h3 id="2-逻辑运算"><a href="#2-逻辑运算" class="headerlink" title="2.逻辑运算"></a>2.逻辑运算</h3><table>
+<thead>
+<tr>
+<th align="center">逻辑运算符</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“&amp;&amp; 或 and”</td>
+<td align="center">与运算</td>
+<td align="center">${1 == 1 &amp;&amp; 1&lt; 2} 或 ${1 == 1 and 1&lt; 2}</td>
+</tr>
+<tr>
+<td align="center">“|| 或 or”</td>
+<td align="center">或运算</td>
+<td align="center">${1 == 1 || 1&lt; 2} 或 ${1 == 1 or 1&lt; 2}</td>
+</tr>
+<tr>
+<td align="center">“! 或 not”</td>
+<td align="center">取反运算</td>
+<td align="center">${!true} 或 ${not true}</td>
+</tr>
+</tbody></table>
+<h3 id="3-算术运算"><a href="#3-算术运算" class="headerlink" title="3.算术运算"></a>3.算术运算</h3><table>
+<thead>
+<tr>
+<th>算术运算符</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“+”</td>
+<td>加法</td>
+<td>${1 + 1}</td>
+</tr>
+<tr>
+<td>“-“</td>
+<td>减法</td>
+<td>${1 - 1}</td>
+</tr>
+<tr>
+<td>“*”</td>
+<td>乘法</td>
+<td>${1 * 1}</td>
+</tr>
+<tr>
+<td>“/ 或 div”</td>
+<td>除法</td>
+<td>${1 /1} 或 ${1 div 1}</td>
+</tr>
+<tr>
+<td>“% 或 mod”</td>
+<td>取模</td>
+<td>${14 % 10} 或 ${ 14 mod 10}</td>
+</tr>
+</tbody></table>
+<h3 id="4-empty运算"><a href="#4-empty运算" class="headerlink" title="4.empty运算"></a>4.empty运算</h3><ol>
+<li><p>empty运算可以判断一个数据是否为空，如果为空，则输出true，不为空则输出false。</p>
+</li>
+<li><p>以下几种情况为空：</p>
+</li>
+</ol>
+<ul>
+<li>值为null时，为空；</li>
+<li>值为空串时，为空；</li>
+<li>值是Object类型数组，长度为0时，为空；</li>
+<li>list集合，元素个数为0时，为空；</li>
+<li>map集合，元素集合为0时，为空。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%</span><br><span class="line"><span class="comment">//    1、值为 null 值的时候，为空</span></span><br><span class="line">        request.setAttribute(<span class="string">"emptyNull"</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//    2、值为空串的时候，为空</span></span><br><span class="line">        request.setAttribute(<span class="string">"emptyStr"</span>, <span class="string">""</span>);</span><br><span class="line"><span class="comment">//    3、值是 Object 类型数组，长度为零的时候</span></span><br><span class="line">        request.setAttribute(<span class="string">"emptyObj"</span>, <span class="keyword">new</span> Object[]&#123;&#125;);</span><br><span class="line"><span class="comment">//    4、list 集合，元素个数为零</span></span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        request.setAttribute(<span class="string">"emptyList"</span>,list);</span><br><span class="line"><span class="comment">//    5、map 集合，元素个数为零</span></span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">        request.setAttribute(<span class="string">"emptyMap"</span>, map);</span><br><span class="line">    %&gt;</span><br><span class="line"></span><br><span class="line">    $&#123;empty emptyNull&#125;&lt;br&gt;</span><br><span class="line">    $&#123;empty emptyStr&#125;&lt;br&gt;</span><br><span class="line">    $&#123;empty emptyObj&#125;&lt;br&gt;</span><br><span class="line">    $&#123;empty emptyList&#125;&lt;br&gt;</span><br><span class="line">    $&#123;empty emptyMap&#125;&lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-三元运算"><a href="#5-三元运算" class="headerlink" title="5.三元运算"></a>5.三元运算</h3><ol>
+<li>表达式1 ？ 表达式2 ： 表达式3</li>
+</ol>
+<ul>
+<li>如果表达式1的值为真，则返回表达式2的值；</li>
+<li>如果表达式1的值为假，则返回表达式3的值。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;<span class="number">1</span> != <span class="number">1</span> ? <span class="string">"1为真"</span>,<span class="string">"为假"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-“-”运算和-中括号运算符"><a href="#6-“-”运算和-中括号运算符" class="headerlink" title="6.“.”运算和[]中括号运算符"></a>6.“.”运算和[]中括号运算符</h3><ol>
+<li>点运算可以输出Bean对象中某个属性的值。</li>
+<li>[]中括号运算，可以输出有序集合中某个元素的值，并且[]中括号运算，还可以输出map集合中key里含有特殊字符的key的值。</li>
+</ol>
+<h2 id="EL表达式的11个隐含对象"><a href="#EL表达式的11个隐含对象" class="headerlink" title="EL表达式的11个隐含对象"></a>EL表达式的11个隐含对象</h2><p>EL表达式中的11个隐含对象，是EL表达式本身已定义，可以直接使用。</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">类型</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pageContext</td>
+<td align="center">pageContextImpl</td>
+<td align="center">可以获取jsp中的九大内置对象</td>
+</tr>
+<tr>
+<td align="center">pageScope</td>
+<td align="center">Map&lt;String,Object&gt;</td>
+<td align="center">可以获取PageContext域中的数据</td>
+</tr>
+<tr>
+<td align="center">requestScope</td>
+<td align="center">Map&lt;String,Object&gt;</td>
+<td align="center">可以获取Request域中的数据</td>
+</tr>
+<tr>
+<td align="center">sessionScope</td>
+<td align="center">Map&lt;String,Object&gt;</td>
+<td align="center">可以获取session域中的数据</td>
+</tr>
+<tr>
+<td align="center">applicationScope</td>
+<td align="center">Map&lt;String,Object&gt;</td>
+<td align="center">可以获取ServletContext域中的数据</td>
+</tr>
+<tr>
+<td align="center">param</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取请求参数的值</td>
+</tr>
+<tr>
+<td align="center">paramValues</td>
+<td align="center">Map&lt;String,String[]&gt;</td>
+<td align="center">可以获取多个请求参数的值</td>
+</tr>
+<tr>
+<td align="center">header</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取请求头的信息</td>
+</tr>
+<tr>
+<td align="center">headerValues</td>
+<td align="center">Map&lt;String,String[]&gt;</td>
+<td align="center">可以获取多个请求头的信息</td>
+</tr>
+<tr>
+<td align="center">cookie</td>
+<td align="center">Map&lt;String,Cookie&gt;</td>
+<td align="center">可以获取当前请求的Cookie信息</td>
+</tr>
+<tr>
+<td align="center">initParam</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取在web.xml中配置的context-param上下文参数</td>
+</tr>
+</tbody></table>
+<h3 id="1-EL获取四个特定域中的属性"><a href="#1-EL获取四个特定域中的属性" class="headerlink" title="1.EL获取四个特定域中的属性"></a>1.EL获取四个特定域中的属性</h3><ol>
+<li>pageScope————pageContext域</li>
+<li>requestScope————Request域</li>
+<li>sessionScope————Session域</li>
+<li>applicationScope————ServletContest域</li>
+</ol>
+<p>例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        pageContext.setAttribute(<span class="string">"key1"</span>, <span class="string">"pageContext1"</span>);</span><br><span class="line">        pageContext.setAttribute(<span class="string">"key2"</span>, <span class="string">"pageContext2"</span>);</span><br><span class="line">        request.setAttribute(<span class="string">"key1"</span>, <span class="string">"request1"</span>);</span><br><span class="line">        request.setAttribute(<span class="string">"key2"</span>, <span class="string">"request2"</span>);</span><br><span class="line">    %&gt;</span><br><span class="line">    $&#123;pageScope.key1&#125;&lt;br&gt;</span><br><span class="line">    $&#123;requestScope.key1&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-pageContext对象的使用"><a href="#2-pageContext对象的使用" class="headerlink" title="2.pageContext对象的使用"></a>2.pageContext对象的使用</h3><ol>
+<li>request.getScheme()————可以获取请求的协议</li>
+<li>request.getServerName()————可以获取请求的服务器ip或域名</li>
+<li>request.getServerPort()————可以获取请求的服务器端口号</li>
+<li>request.getContextPath()————可以获取当前工程路径</li>
+<li>request.getMethod()————可以获取请求的方式</li>
+<li>request.getRemoteHost()————可以获取客户端的ip地址</li>
+<li>session.getId()————可以获取会话的唯一标识</li>
+</ol>
+<p>例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        pageContext.setAttribute(<span class="string">"req"</span>, request);</span><br><span class="line">    %&gt;</span><br><span class="line">  </span><br><span class="line">    <span class="number">1</span>. 协议:$&#123;req.scheme&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">2</span>. 服务器ip:$&#123;req.serverName&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">3</span>. 服务器端口:$&#123;req.serverPort&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">4</span>. 获取工程路径:$&#123;req.contextPath&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">5</span>. 获取请求方法:$&#123;req.method&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">6</span>. 获取客户端 ip 地址:$&#123;req.remoteHost&#125;&lt;br&gt;</span><br><span class="line">    <span class="number">7</span>. 获取会话的 id 编号:$&#123;req.session.id&#125;&lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-EL表达式其他隐含对象的使用"><a href="#3-EL表达式其他隐含对象的使用" class="headerlink" title="3.EL表达式其他隐含对象的使用"></a>3.EL表达式其他隐含对象的使用</h3><table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">类型</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">param</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取请求参数的值</td>
+</tr>
+<tr>
+<td align="center">paramValues</td>
+<td align="center">Map&lt;String,String[]&gt;</td>
+<td align="center">可以获取多个请求参数的值</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输出请求参数username的值:$&#123;param.username&#125;</span><br><span class="line"></span><br><span class="line">输出请求参数hobby的值:$&#123;paramValues.hobby[<span class="number">0</span>]&#125;</span><br><span class="line">输出请求参数hobby的值:$&#123;paramValues.hobby[<span class="number">1</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">类型</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">header</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取请求头的信息</td>
+</tr>
+<tr>
+<td align="center">headerValues</td>
+<td align="center">Map&lt;String,String[]&gt;</td>
+<td align="center">可以获取多个请求头的信息</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输出请求头【User-Agent】的值:$&#123;header[<span class="string">'User-Agent'</span>]&#125;</span><br><span class="line"></span><br><span class="line">输出请求头【Connection】的值:$&#123;header.Connection&#125;</span><br><span class="line"></span><br><span class="line">输出请求头【User-Agent】的值:$&#123;headerValues[<span class="string">'User-Agent'</span>][<span class="number">0</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">类型</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cookie</td>
+<td align="center">Map&lt;String,Cookie&gt;</td>
+<td align="center">可以获取当前请求的Cookie的信息</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">获取Cookie的名称:$&#123;cookie.JESSIONID.name&#125;</span><br><span class="line"></span><br><span class="line">获取Cookie的值:$&#123;cookie.JESSIONID.value&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">类型</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">initParam</td>
+<td align="center">Map&lt;String,String&gt;</td>
+<td align="center">可以获取在web.xml中配置的context-param上下文参数</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<ul>
+<li>web.xml中的配置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>username<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql:///test<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码：</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Context-param中username的值:$&#123;initParam.username&#125;</span><br><span class="line"></span><br><span class="line">Context-param中url的值:$&#123;initParam.url&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-JSTL标签库"><a href="#2-JSTL标签库" class="headerlink" title="2.JSTL标签库"></a>2.JSTL标签库</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>JSTL标签库全称是指JSP Standard Tag Library，是一个不断完善的开放源代码的JSP标签库。</li>
+</ul>
+<h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>为了替代代码脚本，使jsp页面更加简洁。</li>
+</ul>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><ol>
+<li>JSTL标签库由五个不同功能的标签库组成。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">功能范围</th>
+<th align="center">前缀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">核心标签库</td>
+<td align="center">c</td>
+</tr>
+<tr>
+<td align="center">格式化</td>
+<td align="center">fmt</td>
+</tr>
+<tr>
+<td align="center">函数</td>
+<td align="center">fn</td>
+</tr>
+<tr>
+<td align="center">数据库</td>
+<td align="center">sql</td>
+</tr>
+<tr>
+<td align="center">XML</td>
+<td align="center">x</td>
+</tr>
+</tbody></table>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><ol>
+<li>先导入JSTL标签库的jar包</li>
+<li>使用taglib指令引入标签库</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">"c"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h2><h3 id="1-lt-c-set-gt"><a href="#1-lt-c-set-gt" class="headerlink" title="1.&lt; c:set/ &gt;"></a>1.&lt; c:set/ &gt;</h3><ol>
+<li>作用：set标签可以往域中保存数据。</li>
+<li>格式：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">保存之前:$&#123;requestScope.abc&#125;&lt;br&gt;</span><br><span class="line">&lt;c:set scope=<span class="string">"request"</span> <span class="keyword">var</span>=<span class="string">"abc"</span> value=<span class="string">"abcValue"</span>/&gt;</span><br><span class="line">保存之后:$&#123;requestScope.abc&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>scope属性</strong>设置保存到哪个域，<strong>默认是保存到pageContext域</strong>；</li>
+<li><strong>var属性</strong>设置key；</li>
+<li><strong>value属性</strong>设置值。</li>
+</ul>
+<h3 id="2-lt-c-if-gt"><a href="#2-lt-c-if-gt" class="headerlink" title="2.&lt; c:if / &gt;"></a>2.&lt; c:if / &gt;</h3><ol>
+<li>作用：用来做if判断。</li>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;12 == 12&#125;"</span>&gt;</span><br><span class="line">		&lt;h1&gt;12等于12&lt;/h1&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>test属性</strong>表示判断的条件，使用<strong>EL表达式</strong>输出。</li>
+</ul>
+<h3 id="3-lt-c-choose-gt-lt-c-when-gt-lt-c-otherwise-gt-标签"><a href="#3-lt-c-choose-gt-lt-c-when-gt-lt-c-otherwise-gt-标签" class="headerlink" title="3.&lt; c:choose &gt;&lt; c:when &gt;&lt; c:otherwise &gt;标签"></a>3.&lt; c:choose &gt;&lt; c:when &gt;&lt; c:otherwise &gt;标签</h3><ol>
+<li>作用：进行多路判断。</li>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">        request.setAttribute(<span class="string">"height"</span>, <span class="number">148</span>);</span><br><span class="line">    %&gt;</span><br><span class="line"></span><br><span class="line">    &lt;c:choose&gt;</span><br><span class="line">        &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 190&#125;"</span>&gt;</span><br><span class="line">            &lt;h2&gt;巨人&lt;/h2&gt;</span><br><span class="line">        &lt;/c:when&gt;</span><br><span class="line"></span><br><span class="line">        &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 180&#125;"</span>&gt;</span><br><span class="line">            &lt;h2&gt;小巨人&lt;/h2&gt;</span><br><span class="line">        &lt;/c:when&gt;</span><br><span class="line"></span><br><span class="line">        &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 170&#125;"</span>&gt;</span><br><span class="line">            &lt;h2&gt;正常&lt;/h2&gt;</span><br><span class="line">        &lt;/c:when&gt;</span><br><span class="line"></span><br><span class="line">        &lt;c:otherwise&gt;</span><br><span class="line">            &lt;c:choose&gt;</span><br><span class="line">                &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 160&#125;"</span>&gt;</span><br><span class="line">                    &lt;h3&gt;大于160&lt;/h3&gt;</span><br><span class="line">                &lt;/c:when&gt;</span><br><span class="line"></span><br><span class="line">                &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 150&#125;"</span>&gt;</span><br><span class="line">                    &lt;h3&gt;大于150&lt;/h3&gt;</span><br><span class="line">                &lt;/c:when&gt;</span><br><span class="line"></span><br><span class="line">                &lt;c:when test=<span class="string">"$&#123;requestScope.height &gt; 140&#125;"</span>&gt;</span><br><span class="line">                    &lt;h3&gt;大于140&lt;/h3&gt;</span><br><span class="line">                &lt;/c:when&gt;</span><br><span class="line">                &lt;c:otherwise&gt;</span><br><span class="line">                    &lt;h3&gt;小于140&lt;/h3&gt;</span><br><span class="line">                &lt;/c:otherwise&gt;</span><br><span class="line">            &lt;/c:choose&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/c:otherwise&gt;</span><br><span class="line">    &lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>choose标签</strong>开始选择判断；</li>
+<li><strong>when标签</strong>表示每一种判断情况；</li>
+<li><strong>test属性</strong>表示当前这种判断情况的值；</li>
+<li><strong>otherwise标签</strong>表示剩下的情况。</li>
+</ul>
+<ol start="4">
+<li>注意事项：</li>
+</ol>
+<ul>
+<li>标签里不能使用html注释，要<strong>使用jsp注释</strong>；</li>
+<li>when标签的<strong>父标签</strong>一定是<strong>choose标签</strong>。</li>
+</ul>
+<h3 id="4-lt-c-forEach-gt"><a href="#4-lt-c-forEach-gt" class="headerlink" title="4.&lt; c:forEach /&gt;"></a>4.&lt; c:forEach /&gt;</h3><ol>
+<li>作用：遍历输出使用。</li>
+</ol>
+<h4 id="遍历1到10并输出"><a href="#遍历1到10并输出" class="headerlink" title="遍历1到10并输出"></a>遍历1到10并输出</h4><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach begin=<span class="string">"1"</span> end=<span class="string">"10"</span> <span class="keyword">var</span>=<span class="string">"i"</span>&gt;</span><br><span class="line">		$&#123;i&#125;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>begin属性</strong>设置开始的索引；</li>
+<li><strong>end属性</strong>设置结束的索引；</li>
+<li><strong>var属性</strong>表示循环的变量。</li>
+</ul>
+<h4 id="遍历Object数组"><a href="#遍历Object数组" class="headerlink" title="遍历Object数组"></a>遍历Object数组</h4><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">		request.setAttribute(<span class="string">"arr"</span>, <span class="keyword">new</span> String[]&#123;<span class="string">"123"</span>,<span class="string">"456"</span>&#125;);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;c:forEach items=<span class="string">"$&#123;requestScope.arr&#125;"</span> <span class="keyword">var</span>=<span class="string">"item"</span>&gt;</span><br><span class="line">     $&#123;item&#125;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>items属性</strong>表示遍历的数据源(集合)；</li>
+<li><strong>var属性</strong>表示循环的变量。</li>
+</ul>
+<h4 id="遍历Map集合"><a href="#遍历Map集合" class="headerlink" title="遍历Map集合"></a>遍历Map集合</h4><ol>
+<li>格式：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">		Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">    map.put(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">    map.put(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">    map.put(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line">    request.setAttribute(<span class="string">"map"</span>, map);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;c:forEach items=<span class="string">"$&#123;requestScope.map&#125;"</span> <span class="keyword">var</span>=<span class="string">"entry"</span>&gt;</span><br><span class="line">      $&#123;entry.key&#125; = $&#123;entry.value&#125;&lt;br&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>items属性</strong>表示遍历的数据源；</li>
+<li><strong>var属性</strong>表示循环的变量。</li>
+</ul>
+<h4 id="遍历List集合"><a href="#遍历List集合" class="headerlink" title="遍历List集合"></a>遍历List集合</h4><ol>
+<li>格式：</li>
+</ol>
+<ul>
+<li>Student类：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jsp代码：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    List&lt;Student&gt; studentList = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">         studentList.add(<span class="keyword">new</span> Student(i,<span class="string">"username"</span> + i,<span class="string">"password"</span> + i,<span class="number">18</span> + i,<span class="string">"phone"</span> + i));</span><br><span class="line">    &#125;</span><br><span class="line">    request.setAttribute(<span class="string">"stus"</span>, studentList);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;c:forEach begin=<span class="string">"2"</span> end=<span class="string">"7"</span> step=<span class="string">"2"</span> varStatus=<span class="string">"status"</span> items=<span class="string">"$&#123;requestScope.stus&#125;"</span> <span class="keyword">var</span>=<span class="string">"stu"</span>&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;$&#123;stu.id&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;$&#123;stu.username&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;$&#123;stu.password&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;$&#123;stu.age&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;$&#123;stu.phone&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;$&#123;status.step&#125;&lt;/td&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>说明：</li>
+</ol>
+<ul>
+<li><strong>items属性</strong>表示遍历的数据源；</li>
+<li><strong>var属性</strong>表示循环的变量；</li>
+<li><strong>begin属性</strong>表示遍历开始的索引值；</li>
+<li><strong>end属性</strong>表示遍历结束的索引值；</li>
+<li><strong>step属性</strong>表示遍历的步长值；</li>
+<li><strong>varStatus属性</strong>表示当前遍历到的数据的状态。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/01/Java-Web%E2%80%94%E2%80%9406-jsp/" rel="next" title="Java Web——06-jsp">
+                <i class="fa fa-chevron-left"></i> Java Web——06-jsp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/159.jpg"
+                alt="Zhanglei" />
+            
+              <p class="site-author-name" itemprop="name">Zhanglei</p>
+              <p class="site-description motion-element" itemprop="description">今天你写代码了吗？</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cherish9927" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:2292306296@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-EL表达式"><span class="nav-number">1.</span> <span class="nav-text">1.EL表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">1.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式"><span class="nav-number">1.3.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL表达式搜索域数据的顺序"><span class="nav-number">1.4.</span> <span class="nav-text">EL表达式搜索域数据的顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL表达式输出Bean的普通、数组、List集合、map集合属性"><span class="nav-number">1.5.</span> <span class="nav-text">EL表达式输出Bean的普通、数组、List集合、map集合属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL表达式的运算"><span class="nav-number">1.6.</span> <span class="nav-text">EL表达式的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-关系运算"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.关系运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-逻辑运算"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-算术运算"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-empty运算"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.empty运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-三元运算"><span class="nav-number">1.6.5.</span> <span class="nav-text">5.三元运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-“-”运算和-中括号运算符"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.“.”运算和[]中括号运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL表达式的11个隐含对象"><span class="nav-number">1.7.</span> <span class="nav-text">EL表达式的11个隐含对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-EL获取四个特定域中的属性"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.EL获取四个特定域中的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pageContext对象的使用"><span class="nav-number">1.7.2.</span> <span class="nav-text">2.pageContext对象的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-EL表达式其他隐含对象的使用"><span class="nav-number">1.7.3.</span> <span class="nav-text">3.EL表达式其他隐含对象的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JSTL标签库"><span class="nav-number">2.</span> <span class="nav-text">2.JSTL标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用-1"><span class="nav-number">2.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组成"><span class="nav-number">2.3.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用步骤"><span class="nav-number">2.4.</span> <span class="nav-text">使用步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#core核心库使用"><span class="nav-number">2.5.</span> <span class="nav-text">core核心库使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-lt-c-set-gt"><span class="nav-number">2.5.1.</span> <span class="nav-text">1.&lt; c:set&#x2F; &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-lt-c-if-gt"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.&lt; c:if &#x2F; &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-lt-c-choose-gt-lt-c-when-gt-lt-c-otherwise-gt-标签"><span class="nav-number">2.5.3.</span> <span class="nav-text">3.&lt; c:choose &gt;&lt; c:when &gt;&lt; c:otherwise &gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-lt-c-forEach-gt"><span class="nav-number">2.5.4.</span> <span class="nav-text">4.&lt; c:forEach &#x2F;&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历1到10并输出"><span class="nav-number">2.5.4.1.</span> <span class="nav-text">遍历1到10并输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历Object数组"><span class="nav-number">2.5.4.2.</span> <span class="nav-text">遍历Object数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历Map集合"><span class="nav-number">2.5.4.3.</span> <span class="nav-text">遍历Map集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历List集合"><span class="nav-number">2.5.4.4.</span> <span class="nav-text">遍历List集合</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhanglei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
