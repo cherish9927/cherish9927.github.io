@@ -4590,4 +4590,146 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Java Web</category>
       </categories>
   </entry>
+  <entry>
+    <title>Java Web——09-Cookie和Session</title>
+    <url>/2020/07/22/Java-Web%E2%80%94%E2%80%9409-Cookie%E5%92%8CSession/</url>
+    <content><![CDATA[<h1 id="1-Cookie"><a href="#1-Cookie" class="headerlink" title="1.Cookie"></a>1.Cookie</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>是服务器通知客户端<strong>保存键值对</strong>的一种技术，客户端有了Cookie之后，每次请求都发送给服务器，每个Cookie的大小不能超过<strong>4kb</strong>。</p>
+<h2 id="创建Cookie"><a href="#创建Cookie" class="headerlink" title="创建Cookie"></a>创建Cookie</h2><img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/截屏2020-07-21 20.46.39.png" style="zoom:75%;" />
+
+<ul>
+<li>Servlet程序中的代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">createCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建cookie1对象</span></span><br><span class="line">        Cookie cookie1 = <span class="keyword">new</span> Cookie(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">        <span class="comment">//2.通知客户端保存cookie1</span></span><br><span class="line">        resp.addCookie(cookie1);</span><br><span class="line">        resp.getWriter().write(<span class="string">"cookie1创建成功"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.创建cookie2对象</span></span><br><span class="line">        Cookie cookie2 = <span class="keyword">new</span> Cookie(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">        <span class="comment">//2.通知客户端保存cookie2</span></span><br><span class="line">        resp.addCookie(cookie2);</span><br><span class="line">        resp.getWriter().write(<span class="string">"cookie2创建成功"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.创建cookie3对象</span></span><br><span class="line">        Cookie cookie3 = <span class="keyword">new</span> Cookie(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line">        <span class="comment">//2.通知客户端保存cookie3</span></span><br><span class="line">        resp.addCookie(cookie3);</span><br><span class="line">        resp.getWriter().write(<span class="string">"cookie3创建成功"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务器获取Cookie"><a href="#服务器获取Cookie" class="headerlink" title="服务器获取Cookie"></a>服务器获取Cookie</h2><p>服务器获取客户端的Cookie只需要一行代码:req.getCookie():Cookie[]</p>
+<img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/截屏2020-07-21 20.51.14.png" style="zoom:75%;" />
+
+<ol>
+<li>Cookie工具类：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookieUtils</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查找指定名称的Cookie对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cookies</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Cookie <span class="title">findCookie</span><span class="params">(String name,Cookie[] cookies)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name == <span class="keyword">null</span> || cookies == <span class="keyword">null</span> || cookies.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span> (name.equals(cookie.getName()))&#123;</span><br><span class="line">                <span class="keyword">return</span> cookie;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Servlet中的代码：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">getCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        Cookie[] cookies = req.getCookies();</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="comment">//getName()返回cookie的key名称 	getValue()返回cookie的value值</span></span><br><span class="line">            resp.getWriter().write(<span class="string">"cookie["</span> + cookie.getName() + <span class="string">"="</span> + cookie.getValue() + <span class="string">"] &lt;br/&gt;"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Cookie iWantcookie = CookieUtils.findCookie(<span class="string">"key1"</span>, cookies);</span><br><span class="line">        <span class="keyword">if</span> (iWantcookie != <span class="keyword">null</span>)&#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"找到了需要的cookie"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie值的修改"><a href="#Cookie值的修改" class="headerlink" title="Cookie值的修改"></a>Cookie值的修改</h2><h3 id="1-方案一"><a href="#1-方案一" class="headerlink" title="1.方案一"></a>1.方案一</h3><ol>
+<li>先创建一个要修改的同名的Cookie对象；</li>
+<li>在创建构造器的同时赋予新的Cookie值；</li>
+<li>调用response.addCookie(Cookie)通知客户端保存修改。</li>
+</ol>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">updateCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//方案一</span></span><br><span class="line">        <span class="comment">//1、先创建一个要修改的同名(指的就是key)的 Cookie 对象</span></span><br><span class="line">        <span class="comment">// 2、在构造器，同时赋于新的 Cookie 值。</span></span><br><span class="line">        Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key1"</span>,<span class="string">"newValue1"</span>);</span><br><span class="line">        <span class="comment">//3、调用 response.addCookie( Cookie );    通知客户端保存修改</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line">        resp.getWriter().write(<span class="string">"key1的Cookie已经修改好了"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-方案二"><a href="#2-方案二" class="headerlink" title="2.方案二"></a>2.方案二</h3><ol>
+<li>先查找到要修改的Cookie对象；</li>
+<li>调用setValue()方法赋予新的Cookie值；</li>
+<li>调用response.addCookie(Cookie)通知客户端保存修改。</li>
+</ol>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">updateCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">       <span class="comment">//方案二</span></span><br><span class="line">       <span class="comment">//1、先查找到需要修改的 Cookie 对象</span></span><br><span class="line">       Cookie cookie = CookieUtils.findCookie(<span class="string">"key1"</span>, req.getCookies());</span><br><span class="line">       <span class="keyword">if</span> (cookie != <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="comment">// 2、调用 setValue()方法赋于新的 Cookie 值。</span></span><br><span class="line">           cookie.setValue(<span class="string">"newValue2"</span>);</span><br><span class="line">           <span class="comment">// 3、调用 response.addCookie()通知客户端保存修改</span></span><br><span class="line">           resp.addCookie(cookie);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie生命控制"><a href="#Cookie生命控制" class="headerlink" title="Cookie生命控制"></a>Cookie生命控制</h2><ol>
+<li>Cookie生命控制指的是如何管理Cookie在什么时候被销毁。</li>
+<li>setMaxAge()：</li>
+</ol>
+<ul>
+<li>正数表示在指定秒数后Cookie被销毁；</li>
+<li>负数表示浏览器一关闭，Cookie就会被销毁；</li>
+<li>零表示马上删除Cookie。</li>
+</ul>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置默认存活时间的Cookie</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">defaultLife</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"defaultLife"</span>,<span class="string">"defaultLife"</span>);</span><br><span class="line">        cookie.setMaxAge(-<span class="number">1</span>);   <span class="comment">//设置存活时间</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置存活时间为1小时的Cookie</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">life3600</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key4"</span>,<span class="string">"value4"</span>);</span><br><span class="line">        cookie.setMaxAge(<span class="number">60</span> * <span class="number">60</span>);   <span class="comment">//设置存活时间为1小时</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置马上被销毁的Cookie</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">deleteNowCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1、先查找到需要删除的 Cookie 对象</span></span><br><span class="line">        Cookie cookie = CookieUtils.findCookie(<span class="string">"key3"</span>, req.getCookies());</span><br><span class="line">        <span class="keyword">if</span> (cookie != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 2、调用 setValue()方法赋于新的 Cookie 值。</span></span><br><span class="line">            cookie.setMaxAge(<span class="number">0</span>);    <span class="comment">//表示马上删除</span></span><br><span class="line">            <span class="comment">// 3、调用 response.addCookie()通知客户端保存修改</span></span><br><span class="line">            resp.addCookie(cookie);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie有效路径Path的设置"><a href="#Cookie有效路径Path的设置" class="headerlink" title="Cookie有效路径Path的设置"></a>Cookie有效路径Path的设置</h2><ol>
+<li><p>Cookie的path属性可以有效的过滤哪些Cookie可以发送发送给服务器，哪些不发送给服务器。</p>
+</li>
+<li><p>path属性是通过请求的地址来进行有效的过滤。</p>
+</li>
+<li><p>例：</p>
+</li>
+</ol>
+<ul>
+<li>Cookie A  path=/工程路径</li>
+<li>Cookie B  path=/工程路径/abc。</li>
+</ul>
+<p>请求地址如下：</p>
+<ol>
+<li><a href="http://ip:port/工程路径/a.html">http://ip:port/工程路径/a.html</a></li>
+</ol>
+<ul>
+<li><p>Cookie A  发送</p>
+</li>
+<li><p>Cookie B  不发送</p>
+</li>
+</ul>
+<p>请求地址如下：</p>
+<ol start="2">
+<li><a href="http://ip:port/工程路径/abc/a.html">http://ip:port/工程路径/abc/a.html</a></li>
+</ol>
+<ul>
+<li><p>Cookie A  发送</p>
+</li>
+<li><p>Cookie B  发送</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">testPath</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key5"</span>, <span class="string">"value5"</span>);</span><br><span class="line">        cookie.setPath(req.getContextPath() + <span class="string">"/abc"</span>);</span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line">        resp.getWriter().write(<span class="string">"创建了一个带有path路径的Cookie"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-Session会话"><a href="#2-Session会话" class="headerlink" title="2.Session会话"></a>2.Session会话</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>Session会话就是一个接口(HttpSession)，是一种用来维护一个客户端和服务器之间关联的技术，每个客户端都有自己的一个Session会话。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>经常使用Session会话保存用户登录之后的信息。</p>
+<h2 id="创建和获取Session"><a href="#创建和获取Session" class="headerlink" title="创建和获取Session"></a>创建和获取Session</h2><ol>
+<li>创建和获取Session的API相同。</li>
+<li><strong>request.getSession()</strong>：</li>
+</ol>
+<ul>
+<li>第一次调用：创建Session会话；</li>
+<li>之后调用：获取前面创建好的Session会话对象。</li>
+</ul>
+<ol start="3">
+<li><strong>isNew()</strong>：判断Session是否为新创建的Session：</li>
+</ol>
+<ul>
+<li>true：新创建的Session；</li>
+<li>false：之前创建的Session。</li>
+</ul>
+<ol start="4">
+<li>每个会话都有唯一的一个ID值：</li>
+</ol>
+<ul>
+<li><strong>getId()</strong>：获取Session会话的ID值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建Session会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">createOrGetSession</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建和获取session会话对象</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">//判断当前session是否是新创建出来的</span></span><br><span class="line">        <span class="keyword">boolean</span> aNew = session.isNew();</span><br><span class="line">        <span class="comment">//获取session的唯一标识id</span></span><br><span class="line">        String id = session.getId();</span><br><span class="line">        resp.getWriter().write(<span class="string">"得到的session,ID是"</span> + id + <span class="string">"&lt;br /&gt;"</span>);</span><br><span class="line">        resp.getWriter().write(<span class="string">"这个session是否是新创建的"</span> + aNew + <span class="string">"&lt;br /&gt;"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Session域中数据的存取"><a href="#Session域中数据的存取" class="headerlink" title="Session域中数据的存取"></a>Session域中数据的存取</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 往session域中保存数据</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">      req.getSession().setAttribute(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">      resp.getWriter().write(<span class="string">"已经向session域中保存了数据"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 获取session域中的数据</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">getAttribute</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">      Object key1 = req.getSession().getAttribute(<span class="string">"key1"</span>);</span><br><span class="line">      resp.getWriter().write(<span class="string">"从session域中获取key1的数据是"</span> + key1);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Session生命控制"><a href="#Session生命控制" class="headerlink" title="Session生命控制"></a>Session生命控制</h2><ol>
+<li>public void setMaxInactiveInterval(int interval)————设置Session的超时时间(以秒为单位)，超过指定的时长，Session就会被销毁。</li>
+</ol>
+<ul>
+<li>值为正数：设定Session的超时时长；</li>
+<li>值为负数：永不超时。</li>
+</ul>
+<ol start="2">
+<li>public int getMaxInactiveInterval()————获取Session的超时时间。</li>
+<li>public void invalidate()————让当前Session会话马上超时失效。</li>
+<li>setMaxInactiveInterval(int interval)————修改单个Session的超时时长。</li>
+<li>Session的默认超时时长为30分钟。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取session默认超时时长</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">defaultLife</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//获取session默认超时时长</span></span><br><span class="line">        <span class="keyword">int</span> maxInactiveInterval = req.getSession().getMaxInactiveInterval();</span><br><span class="line">        resp.getWriter().write(<span class="string">"session默认超时时长为"</span> + maxInactiveInterval + <span class="string">"秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置一个三秒后超时的Session会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">life3</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建session对象</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">//设置当前 Session3 秒后超时</span></span><br><span class="line">        session.setMaxInactiveInterval(<span class="number">3</span>);</span><br><span class="line">        resp.getWriter().write(<span class="string">"当前session三秒后超时"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置一个马上超时的Session会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">deleteNow</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建session对象</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">//设置当前session马上超时</span></span><br><span class="line">        session.invalidate();</span><br><span class="line">        resp.getWriter().write(<span class="string">"session已设置为马上超时"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>修改Web工程中所有Session的默认超时时长————在web.xml中进行配置</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>20<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="超时定义"><a href="#超时定义" class="headerlink" title="超时定义"></a>超时定义</h2><p>Session的超时指的是<strong>客户端两次请求的最大时间间隔</strong>。</p>
+<img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/截屏2020-07-22 21.30.16.png" style="zoom:75%;" />
+
+<h2 id="浏览器和Session之间关联"><a href="#浏览器和Session之间关联" class="headerlink" title="浏览器和Session之间关联"></a>浏览器和Session之间关联</h2><p>Session技术底层是基于Cookie技术来实现的。</p>
+<img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/截屏2020-07-22 21.31.51.png" style="zoom:75%;" />]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+  </entry>
 </search>
