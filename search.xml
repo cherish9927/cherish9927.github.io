@@ -4732,4 +4732,559 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Java Web</category>
       </categories>
   </entry>
+  <entry>
+    <title>Java SE——Day05_面向对象编程上</title>
+    <url>/2020/07/24/Day05_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E4%B8%8A/</url>
+    <content><![CDATA[<h1 id="1-面向对象-OOP-与面向过程-POP"><a href="#1-面向对象-OOP-与面向过程-POP" class="headerlink" title="1.面向对象(OOP)与面向过程(POP)"></a>1.面向对象(OOP)与面向过程(POP)</h1><h2 id="两者定义"><a href="#两者定义" class="headerlink" title="两者定义"></a>两者定义</h2><ol>
+<li><p>二者都是一种思想，面向对象是相对于面向过程而言的。面向过程Procedure Oriented Programming，<strong>强调的是功能行为，以函数为最小单位，考虑怎么做</strong>。面向对象Object Oriented Programming，将功能封装进对象，<strong>强调具备了功能的对象，以类/对象为最小单位，考虑谁来做</strong>。</p>
+</li>
+<li><p>面向对象更加强调运用人类在日常的思维逻辑中采用的思想方法与原则，如<strong>抽象</strong>、<strong>分类</strong>、<strong>继承</strong>、<strong>聚合</strong>、<strong>多态</strong>等。</p>
+</li>
+</ol>
+<h2 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h2><ol>
+<li><p><strong>封装 (Encapsulation)</strong></p>
+</li>
+<li><p><strong>继承 (Inheritance)</strong></p>
+</li>
+<li><p><strong>多态 (Polymorphism)</strong></p>
+</li>
+</ol>
+<h2 id="面向对象思想概述"><a href="#面向对象思想概述" class="headerlink" title="面向对象思想概述"></a>面向对象思想概述</h2><ol>
+<li><p>开发者从面向过程的<strong>执行者</strong>转化成了面向对象的<strong>指挥者</strong>。</p>
+</li>
+<li><p>面向对象分析方法分析问题的思路和步骤：</p>
+</li>
+</ol>
+<ul>
+<li><p>根据问题需要，选择问题所针对的<strong>现实世界中的实体</strong>。</p>
+</li>
+<li><p>从实体中寻找解决问题相关的属性和功能，这些属性和功能就形成了<strong>概念世界中的类</strong>。</p>
+</li>
+<li><p>把抽象的实体用计算机语言进行描述，<strong>形成计算机世界中类的定义</strong>。即借助某种程序语言，把类构造成计算机能够识别和处理的数据结构。</p>
+</li>
+<li><p>将<strong>类实例化成计算机世界中的对</strong>象。对象是计算机世界中解决问题的最终工具。</p>
+</li>
+</ul>
+<h1 id="2-类与对象"><a href="#2-类与对象" class="headerlink" title="2.类与对象"></a>2.类与对象</h1><h2 id="两者定义-1"><a href="#两者定义-1" class="headerlink" title="两者定义"></a>两者定义</h2><ol>
+<li><strong>类(Class)</strong>和<strong>对象(Object)</strong>是面向对象的核心概念。</li>
+</ol>
+<ul>
+<li><p>类是对一类事物的描述，是<strong>抽象</strong>的、概念上的定义。</p>
+</li>
+<li><p>对象是<strong>实际存在</strong>的该类事物的每个个体，因而也称为<strong>实例</strong>(instance)。</p>
+</li>
+</ul>
+<h2 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h2><p>属性:对应类中的<strong>成员变量</strong></p>
+<p>行为:对应类中的<strong>成员方法</strong></p>
+<ul>
+<li><strong>Field = 属性 = 成员变量</strong></li>
+<li><strong>Method = (成员)方法 = 函数</strong></li>
+</ul>
+<h2 id="类的语法格式"><a href="#类的语法格式" class="headerlink" title="类的语法格式"></a>类的语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 <span class="class"><span class="keyword">class</span> 类名 </span>&#123;</span><br><span class="line">  属性声明; </span><br><span class="line">  方法声明;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>说明：</li>
+</ol>
+<ul>
+<li><p>修饰符public：类可以被<strong>任意</strong>访问</p>
+</li>
+<li><p>类的正文要用<strong>{ }</strong>括起来</p>
+</li>
+</ul>
+<ol start="2">
+<li>例：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age;		<span class="comment">//声明私有变量age</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAge</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;		<span class="comment">//声明方法showAge</span></span><br><span class="line">    age = i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-对象的创建和使用"><a href="#3-对象的创建和使用" class="headerlink" title="3.对象的创建和使用"></a>3.对象的创建和使用</h1><h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><ol>
+<li>创建对象，就是实例化创建好的类。</li>
+<li>语法格式：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">类名 对象名 = <span class="keyword">new</span> 类名();</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用”<strong>对象名.对象成员</strong>”的方式访问对象成员(包括属性和方法)。</li>
+<li>例：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//动物类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123; </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span> legs; </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(“Eating.”);</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> viod <span class="title">move</span><span class="params">()</span></span>&#123; </span><br><span class="line">    System.out.println(“Move.”);</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建对象调用动物类中的属性和方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Zoo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">    Animal xb=<span class="keyword">new</span> Animal(); 		<span class="comment">//创建对象 </span></span><br><span class="line">    xb.legs=<span class="number">4</span>;		<span class="comment">//调用属性 </span></span><br><span class="line">    System.out.println(xb.legs); </span><br><span class="line">    xb.eat(); 		<span class="comment">//调用方法</span></span><br><span class="line">    xb.move();		<span class="comment">//调用方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>说明：如果创建了一个类的多个对象，对于类中定义的属性，每个对象都独立的拥有一套类的属性（<strong>非static的</strong>），且互不干扰。</li>
+</ol>
+<h2 id="类的访问机制"><a href="#类的访问机制" class="headerlink" title="类的访问机制"></a>类的访问机制</h2><ol>
+<li>类的访问机制：</li>
+</ol>
+<ul>
+<li><p>在<strong>一个类中</strong>的访问机制:类中的<strong>方法</strong>可以<strong>直接访问</strong>类中的成员<strong>变量</strong>。(例外:static方法访问非static，编译不通过）。</p>
+</li>
+<li><p>在<strong>不同类中</strong>的访问机制:先<strong>创建</strong>要访问<strong>类的对象</strong>，再用<strong>对象</strong>访问类中定义的<strong>成员变量和方法</strong>。</p>
+</li>
+</ul>
+<h2 id="对象内存解析"><a href="#对象内存解析" class="headerlink" title="对象内存解析"></a>对象内存解析</h2><h3 id="1-堆（Heap）"><a href="#1-堆（Heap）" class="headerlink" title="1.堆（Heap）"></a>1.堆（Heap）</h3><p>此内存区域的唯一目的就是<strong>存放对象实例</strong>，几乎所有的对象实例都在这里分配内存。这一点在 Java虚拟机规范中的描述是:<strong>所有的对象实例以及数组都要在堆上分配</strong>。</p>
+<h3 id="2-栈（Stack）"><a href="#2-栈（Stack）" class="headerlink" title="2.栈（Stack）"></a>2.栈（Stack）</h3><p>是指虚拟机栈。<strong>虚拟机栈用于存储局部变量</strong>等。 局部变量表存放了编译期可知长度的各种基本数据类型(boolean、byte、 char 、 short 、int 、float 、long 、 double)、对象引用(reference类型，它不等同于对象本身，是对象在堆内 存的首地址)。方法执行完，自动释放。</p>
+<h3 id="3-方法区"><a href="#3-方法区" class="headerlink" title="3.方法区"></a>3.方法区</h3><p>用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</p>
+<h3 id="4-内存解析图"><a href="#4-内存解析图" class="headerlink" title="4.内存解析图"></a>4.内存解析图</h3><img src="/Users/zhanglei/Desktop/Java/Java SE/Java SE笔记/屏幕快照 2020-07-06 16.43.22.png" style="zoom:40%;" />
+
+<h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><ol>
+<li><p>我们也可以不定义对象的句柄，而直接调用这个对象的方法。这样的对象叫做匿名对象。如:<strong>new Person().shout();</strong></p>
+</li>
+<li><p>使用情况：</p>
+</li>
+</ol>
+<ul>
+<li><p>如果对一个对象只需要进行一次方法调用，那么就可以使用匿名对象。</p>
+</li>
+<li><p>我们经常将匿名对象作为实参传递给一个方法调用。</p>
+</li>
+</ul>
+<h1 id="4-属性-成员变量"><a href="#4-属性-成员变量" class="headerlink" title="4.属性(成员变量)"></a>4.属性(成员变量)</h1><h2 id="声明格式"><a href="#声明格式" class="headerlink" title="声明格式"></a>声明格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 数据类型 属性名 = 初始化值;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>修饰符</strong></li>
+</ol>
+<ul>
+<li><p>常用的权限修饰符有:private、缺省、protected、public</p>
+</li>
+<li><p>其他修饰符:static、final (暂不考虑)</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>数据类型</strong></li>
+</ol>
+<ul>
+<li>任何基本数据类型(如int、Boolean) 或任何引用数据类型。 </li>
+</ul>
+<ol start="3">
+<li><strong>属性名</strong></li>
+</ol>
+<ul>
+<li>属于标识符，符合命名规则和规范即可。</li>
+</ul>
+<ol start="4">
+<li>举例</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> age; <span class="comment">//声明private变量age</span></span><br><span class="line">		<span class="keyword">public</span> String name = “Lila”; <span class="comment">//声明public变量name </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="成员变量与局部变量的区别"><a href="#成员变量与局部变量的区别" class="headerlink" title="成员变量与局部变量的区别"></a>成员变量与局部变量的区别</h2><ol>
+<li>不同点</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">成员变量</th>
+<th align="center">局部变量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">声明的位置</td>
+<td align="center">直接声明在类中</td>
+<td align="center">方法形参、内部代码块、构造器内部等</td>
+</tr>
+<tr>
+<td align="center">修饰符</td>
+<td align="center">private、public、static、final等</td>
+<td align="center">不能用权限修饰符修饰，可以用final修饰</td>
+</tr>
+<tr>
+<td align="center">初始化值</td>
+<td align="center">有默认初始化值</td>
+<td align="center">没有默认初始化值，必须显式赋值，才可使用，特别地，形参在调用时赋值即可。</td>
+</tr>
+<tr>
+<td align="center">内存加载空间</td>
+<td align="center">堆空间或静态域内</td>
+<td align="center">栈空间</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>相同点</li>
+</ol>
+<ul>
+<li>定义变量的格式相同；</li>
+<li>先声明后使用；</li>
+<li>变量都有其对应的作用域。</li>
+</ul>
+<ol start="3">
+<li>内存解析图</li>
+</ol>
+<img src="/Users/zhanglei/Desktop/Java/Java SE/Java SE笔记/屏幕快照 2020-07-06 17.11.33.png" style="zoom:50%;" />
+
+<h1 id="5-方法"><a href="#5-方法" class="headerlink" title="5.方法"></a>5.方法</h1><h2 id="声明格式-1"><a href="#声明格式-1" class="headerlink" title="声明格式"></a>声明格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数类型 形参<span class="number">1</span>, 参数类型 形参<span class="number">2</span>, ....)&#123;</span><br><span class="line">  	方法体程序代码</span><br><span class="line">		<span class="keyword">return</span> 返回值; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>修饰符：public、缺省、private、protected等。</p>
+</li>
+<li><p>返回值类型：</p>
+</li>
+</ol>
+<ul>
+<li>没有返回值：void，若使用return，则表示结束此方法；</li>
+<li>有返回值：必须声明返回值的类型。与方法体中”<strong>return 返回值</strong>“搭配使用。</li>
+</ul>
+<ol start="3">
+<li>方法名：属于标识符，命名时遵循标识符命名规则和规范，”见名知意”。</li>
+<li>形参列表：可以包含零个，一个或多个参数。多个参数时，中间用“,”隔开。</li>
+<li>方法体：方法功能的体现。</li>
+<li>返回值：方法在执行完毕后返还给调用它的程序的数据。</li>
+</ol>
+<h2 id="方法的分类"><a href="#方法的分类" class="headerlink" title="方法的分类"></a>方法的分类</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">无返回值</th>
+<th align="center">有返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">无形参</td>
+<td align="center">void 方法名(){}</td>
+<td align="center">返回值的类型 方法名(){}</td>
+</tr>
+<tr>
+<td align="center">有形参</td>
+<td align="center">void 方法名(形参列表){}</td>
+<td align="center">返回值的类型 方法名(形参列表){}</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">	   System.out.println(<span class="string">"吃饭"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">(<span class="keyword">int</span> hour)</span></span>&#123;</span><br><span class="line">  System.out.println(<span class="string">"休息了"</span> + hour + <span class="string">"个小时"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getNation</span><span class="params">(String nation)</span></span>&#123;</span><br><span class="line">  String info = <span class="string">"国籍是:"</span> + nation;</span><br><span class="line">  <span class="keyword">return</span> info;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p>方法通过方法名被调用，且只有被调用才会执行。</p>
+<h3 id="2-注意事项"><a href="#2-注意事项" class="headerlink" title="2.注意事项"></a>2.注意事项</h3><ol>
+<li><p>方法被调用一次，就会执行一次。</p>
+</li>
+<li><p><strong>没有具体返回值</strong>的情况，返回值类型用关键字<strong>void</strong>表示，那么方法体中可以<strong>不必使用return语句</strong>。如果使用，仅用来<strong>结束方法</strong>。 </p>
+</li>
+<li><p>定义方法时，方法的结果应该返回给<strong>调用者</strong>，交由调用者处理。</p>
+</li>
+<li><p>方法中只能调用方法或属性，<strong>不可以在方法内部定义方法</strong>。</p>
+</li>
+</ol>
+<h2 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h2><h3 id="1-定义-1"><a href="#1-定义-1" class="headerlink" title="1.定义"></a>1.定义</h3><p>在同一个类中，允许存在一个以上的<strong>同名</strong>方法，只要它们的<strong>参数个数</strong>或者<strong>参数类型</strong>不同即可。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//返回两个整数的和</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回三个整数的和</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y+z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回两个小数的和</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">add</span><span class="params">(<span class="keyword">double</span> x,<span class="keyword">double</span> y)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-特点"><a href="#2-特点" class="headerlink" title="2.特点"></a>2.特点</h3><p>与返回值类型无关，只看<strong>参数列表</strong>，且参数列表(参数个数或参数类型)必须不同。调用时，根据方法参数列表的不同来区别。</p>
+<h3 id="3-判断"><a href="#3-判断" class="headerlink" title="3.判断"></a>3.判断</h3><p>跟方法的权限修饰符、返回值类型、形参变量名、方法体都没有关系。</p>
+<h2 id="可变个数的形参"><a href="#可变个数的形参" class="headerlink" title="可变个数的形参"></a>可变个数的形参</h2><h3 id="1-定义-2"><a href="#1-定义-2" class="headerlink" title="1.定义"></a>1.定义</h3><p>JavaSE 5.0 中提供了Varargs(variable number of arguments)机制，允许直接定 义能和多个实参相匹配的形参。从而，可以用一种更简单的方式，来传递个数可变的实参。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//JDK 5.0以前:采用数组形参来定义方法，传入多个同一类型变量 </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a ,String[] books)</span></span>; </span><br><span class="line"><span class="comment">//JDK5.0:采用可变个数形参来定义方法，传入多个同一类型变量 </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a ,String...books)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h3 id="2-说明"><a href="#2-说明" class="headerlink" title="2.说明"></a>2.说明</h3></blockquote>
+<ol>
+<li>可变个数形参的格式：<strong>参数的类型名 …参数名</strong>。</li>
+<li>当调用可变个数形参的方法时，传入参数的个数可以是0个，1个或多个。</li>
+<li><strong>可变个数形参的方法</strong>与<strong>同名的方法</strong>之间，彼此构成<strong>重载</strong>。</li>
+<li>可变个数形参的方法与本类方法名相同，形参类型也相同的数组之间不构成重载，二者不能共存。</li>
+<li>方法的参数部分有可变形参，需要放在形参声明的最后。</li>
+<li>在一个方法的形参位置，最多只能声明一个可变个数形参。</li>
+</ol>
+<h2 id="方法参数的值传递机制"><a href="#方法参数的值传递机制" class="headerlink" title="方法参数的值传递机制"></a>方法参数的值传递机制</h2><ol>
+<li>若方法含有参数：</li>
+</ol>
+<ul>
+<li>形参：<strong>方法声明时的参数</strong>；</li>
+<li>实参：<strong>方法调用时实际传给形参的参数值</strong>。</li>
+</ul>
+<ol start="2">
+<li>Java里方法的参数传递方式只有一种：<strong>值传递</strong>。即将实际参数值的副本 (复制品)传入方法内，而参数本身不受影响。</li>
+</ol>
+<ul>
+<li>形参是<strong>基本数据类型</strong>：将实参基本数据类型变量的“<strong>数据值</strong>”传递给形参；</li>
+<li>形参是<strong>引用数据类型</strong>：将实参引用数据类型变量的“<strong>地址值</strong>”传递给形参。</li>
+</ul>
+<h2 id="递归方法"><a href="#递归方法" class="headerlink" title="递归方法"></a>递归方法</h2><ol>
+<li><p>递归方法：一个方法体内<strong>调用它自身</strong>。</p>
+</li>
+<li><p>方法递归包含了一种隐式的循环，它会重复执行某段代码，但这种重复执行无须循环控制。</p>
+</li>
+<li><p>递归一定要向已知方向递归，否则这种递归就变成了无穷递归，类似于死循环。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//计算1-100之间所有自然数的和 </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(num == <span class="number">1</span>)&#123; </span><br><span class="line">          			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">							  <span class="keyword">return</span> num + sum(num - <span class="number">1</span>);</span><br><span class="line">				&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-封装与隐藏"><a href="#6-封装与隐藏" class="headerlink" title="6.封装与隐藏"></a>6.封装与隐藏</h1><h2 id="作用和含义"><a href="#作用和含义" class="headerlink" title="作用和含义"></a>作用和含义</h2><ol>
+<li>我们程序设计追求“<strong>高内聚，低耦合</strong>”。</li>
+</ol>
+<ul>
+<li><p>高内聚 :类的内部数据操作细节自己完成，不允许外部干涉；</p>
+</li>
+<li><p>低耦合 :仅对外暴露少量的方法用于使用。</p>
+</li>
+</ul>
+<ol start="2">
+<li>隐藏对象内部的复杂性，只对外公开简单的接口。便于外界调用，从而提高系统的可扩展性、可维护性。通俗的说，把该隐藏的隐藏起来，该暴露的暴露出来。这就是封装性的设计思想。</li>
+</ol>
+<h2 id="封装性的体现"><a href="#封装性的体现" class="headerlink" title="封装性的体现"></a>封装性的体现</h2><ol>
+<li><p>封装性的体现，需要<strong>权限修饰符</strong>来配合。</p>
+</li>
+<li><p>Java中通过将数据声明为<strong>私有的(private)</strong>，再提供<strong>公共的(public)</strong> 方法：<strong>getXxx()</strong>和<strong>setXxx()</strong>实现对该属性的操作，以实现下述目的:</p>
+</li>
+</ol>
+<ul>
+<li><strong>隐藏</strong>一个类中不需要对外提供的实现细节；</li>
+<li>使用者只能通过事先定制好的<strong>方法来访问数据</strong>，可以方便地加入控制逻辑，限制对属性的不合理操作；</li>
+<li>便于修改，增强代码的可维护性。</li>
+</ul>
+<ol start="3">
+<li><p>不对外暴露的私有的方法。</p>
+</li>
+<li><p>单例模式（将构造器私有化）。</p>
+</li>
+</ol>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnimalTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal animal = <span class="keyword">new</span> Animal();</span><br><span class="line">        animal.setLegs(<span class="number">4</span>);</span><br><span class="line">        System.out.println(animal.getLegs());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> legs;       <span class="comment">// 将属性legs定义为private，只能被Animal类内部访问</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLegs</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; i % <span class="number">2</span> ==<span class="number">0</span>)&#123;</span><br><span class="line">            legs = i;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            legs = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLegs</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> legs;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四种访问权限修饰符"><a href="#四种访问权限修饰符" class="headerlink" title="四种访问权限修饰符"></a>四种访问权限修饰符</h2><ol>
+<li>Java权限修饰符public、protected、(缺省)、private置于类的成员定义前，用来限定对象对该类成员的访问权限。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">类内部</th>
+<th align="center">同一个包</th>
+<th align="center">不同包的子类</th>
+<th align="center">同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">private</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(缺省)</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">public</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>4种权限可以用来修饰类及类的内部结构：属性、方法、构造器、内部类。</li>
+<li>对于<strong>class</strong>的权限修饰只可以用public和default(缺省)。</li>
+</ol>
+<ul>
+<li><p>public类可以在<strong>任意地方</strong>被访问；</p>
+</li>
+<li><p>default类只可以被<strong>同一个包内部的类</strong>访问。</p>
+</li>
+</ul>
+<h1 id="7-构造器Constructor-构造方法"><a href="#7-构造器Constructor-构造方法" class="headerlink" title="7.构造器Constructor(构造方法)"></a>7.构造器Constructor(构造方法)</h1><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ol>
+<li><p>具有与类相同的名称。</p>
+</li>
+<li><p>不声明返回值类型。(与声明为void不同) 。</p>
+</li>
+<li><p>不能被static、final、synchronized、abstract、native修饰，不能有return语句返回值。</p>
+</li>
+</ol>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
+<li><strong>创建对象。</strong></li>
+<li><strong>初始化对象。</strong></li>
+</ol>
+<h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 类名 (参数列表) &#123;</span><br><span class="line">		初始化语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 构造器</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		legs = <span class="number">4</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
+<li>根据参数不同，构造器可以分为如下两类: </li>
+</ol>
+<ul>
+<li><p>隐式无参构造器(系统<strong>默认</strong>提供) ；</p>
+</li>
+<li><p><strong>显式</strong>定义一个或多个构造器(无参、有参)。</p>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li><p>Java语言中，每个类都至少有一个构造器。</p>
+</li>
+<li><p><strong>默认构造器</strong>的修饰符与<strong>所属类</strong>的修饰符一致。</p>
+</li>
+<li><p>一旦<strong>显式</strong>定义了构造器，则系统<strong>不再提供</strong>默认空参构造器。</p>
+</li>
+<li><p>一个类可以创建多个<strong>重载</strong>的构造器。</p>
+</li>
+<li><p><strong>父类</strong>的构造器不可被<strong>子类继承</strong>。</p>
+</li>
+</ol>
+<h2 id="构造器重载"><a href="#构造器重载" class="headerlink" title="构造器重载"></a>构造器重载</h2><ol>
+<li>构造器重载使得对象的创建更加灵活，方便创建各种不同的对象。</li>
+</ol>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age, Date d)</span> </span>&#123;<span class="keyword">this</span>(name,age);...&#125; </span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;...&#125;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Date d)</span> </span>&#123;...&#125;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>构造器重载，<strong>参数列表</strong>必须不同。</li>
+</ol>
+<h2 id="属性赋值过程"><a href="#属性赋值过程" class="headerlink" title="属性赋值过程"></a>属性赋值过程</h2><ol>
+<li>赋值的位置及先后顺序：</li>
+</ol>
+<ul>
+<li>默认初始化；</li>
+<li>显式初始化；</li>
+<li>构造器中初始化；</li>
+<li>通过”对象.属性”或”对象.方法”的方式赋值。</li>
+</ul>
+<h1 id="8-JavaBean"><a href="#8-JavaBean" class="headerlink" title="8.JavaBean"></a>8.JavaBean</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol>
+<li><p>JavaBean是一种Java语言写成的可重用组件。</p>
+</li>
+<li><p>所谓javaBean，是指符合如下标准的Java类：</p>
+</li>
+</ol>
+<ul>
+<li><p>类是公共的；</p>
+</li>
+<li><p>有一个无参的公共的构造器；</p>
+</li>
+<li><p>有属性，且有对应的get、set方法。</p>
+</li>
+</ul>
+<h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><p>用户可以使用JavaBean将功能、处理、值、数据库访问和其他任何可以用Java代码创造的对象进行打包，并且其他的开发者可以通过内部的JSP页面、Servlet、其他JavaBean、applet程序或者应用来使用这些对象。用户可以认为JavaBean提供了一种随时随地的复制和粘贴的功能，而不用关心任何改变。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name; <span class="comment">// 属性一般定义为private</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        age = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String n)</span> </span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="9-UML类图"><a href="#9-UML类图" class="headerlink" title="9.UML类图"></a>9.UML类图</h1><img src="/Users/zhanglei/Desktop/Java/Java SE/Java SE笔记/截屏2020-07-22 10.50.02.png" style="zoom:50%;" />
+
+<ol>
+<li>+ 表示 <strong>public</strong> 类型， - 表示 <strong>private</strong> 类型，#表示<strong>protected</strong>类型。</li>
+<li>方法的写法：</li>
+</ol>
+<ul>
+<li>方法的类型(+、-) 方法名(参数名:参数类型):返回值类型。</li>
+</ul>
+<h1 id="10-this关键字"><a href="#10-this关键字" class="headerlink" title="10.this关键字"></a>10.this关键字</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><ol>
+<li>在Java中，this关键字比较难理解，它的作用和其词义很接近。</li>
+</ol>
+<ul>
+<li><p>它在方法内部使用，即这个方法所属对象的引用；</p>
+</li>
+<li><p>它在构造器内部使用，表示该构造器正在初始化的对象。</p>
+</li>
+</ul>
+<h2 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h2><h3 id="1-this调用类的属性、方法"><a href="#1-this调用类的属性、方法" class="headerlink" title="1.this调用类的属性、方法"></a>1.this调用类的属性、方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name ;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"姓名:"</span> + name);</span><br><span class="line">        <span class="keyword">this</span>.speak();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"年龄:"</span> + <span class="keyword">this</span>.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在任意方法或构造器内，如果使用当前类的成员变量或成员方法可以在其前面添加this，增强程序的阅读性。不过，通常我们都习惯省略this。</li>
+<li>当<strong>形参</strong>与<strong>成员</strong>变量同名时，如果<strong>在方法内或构造器内需要使用成员变量</strong>，<strong>必须添加this</strong>来表明该变量是类的<strong>成员变量</strong>。</li>
+<li>使用this访问属性和方法时，如果在<strong>本类</strong>中未找到，会从<strong>父类</strong>中查找。</li>
+</ol>
+<h3 id="2-this调用构造器"><a href="#2-this调用构造器" class="headerlink" title="2.this调用构造器"></a>2.this调用构造器</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123; <span class="comment">//定义Person类</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123; <span class="comment">//无参构造器</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(); <span class="comment">//调用本类中的无参构造器</span></span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name,<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(name); <span class="comment">//调用有一个参数的构造器</span></span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"姓名:"</span> + name + <span class="string">"，年龄:"</span> + age;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>可以在类的构造器中，显式的使用”this(形参列表)”方式，调用本类中指定的其他构造器。</p>
+</li>
+<li><p>构造器中不能通过”this(形参列表)”的方式调用自身构造器。</p>
+</li>
+<li><p>如果一个类中声明了n个构造器，则最多有n - 1个构造器中使用了”this(形参列表)”。</p>
+</li>
+<li><p>“this(形参列表)”必须声明在类的构造器的首行。</p>
+</li>
+<li><p>在类的一个构造器中，最多只能声明一个”this(形参列表)”。</p>
+</li>
+</ol>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>当在方法内需要用到调用该方法的对象时，就用this。具体的：我们可以用this来区分<strong>属性</strong>和<strong>局部</strong>变量。比如:<strong>this.name=name</strong>;</li>
+</ul>
+<h1 id="11-package的使用"><a href="#11-package的使用" class="headerlink" title="11.package的使用"></a>11.package的使用</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
+<li>package语句作为Java源文件的第一条语句，指明该文件中定义的类所在的包。(若缺省该语句，则指定为无名包)。</li>
+</ol>
+<ul>
+<li><p>包对应于文件系统的目录，package语句中，用 “.” 来指明包(目录)的层次；</p>
+</li>
+<li><p>包通常用小写单词标识，通常使用<strong>所在公司域名的倒置</strong>:com.cherish.xxx。</p>
+</li>
+</ul>
+<h2 id="语法格式-1"><a href="#语法格式-1" class="headerlink" title="语法格式"></a>语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 顶层包名.子包名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h2><ol>
+<li><p>包帮助管理大型软件系统:将功能相近的类划分到同一个包中，比如:MVC的设计模式。</p>
+</li>
+<li><p>包可以包含类和子包，划分项目层次，便于管理。</p>
+</li>
+<li><p>解决类命名冲突的问题。</p>
+</li>
+<li><p>控制访问权限。</p>
+</li>
+</ol>
+<h2 id="MVC设计模式"><a href="#MVC设计模式" class="headerlink" title="MVC设计模式"></a>MVC设计模式</h2><p>MVC是常用的设计模式之一，将整个程序分为三个层次：<strong>视图模型层</strong>，<strong>控制器层</strong>，与<strong>数据模型层</strong>。这种将程序输入输出、数据处理，以及数据的展示分离开来的设计模式使程序结构变的灵活而且清晰，同时也描述了程序各个对象间的通信方式，降低了程序的耦合性。</p>
+<ol>
+<li><strong>模型层————model 主要处理数据</strong></li>
+</ol>
+<ul>
+<li><p>数据对象封装 model.bean/domain</p>
+</li>
+<li><p>数据库操作类 model.dao</p>
+</li>
+<li><p>数据库 model.db</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>控制层————controller 处理业务逻辑</strong></li>
+</ol>
+<ul>
+<li><p>应用界面相关 controller.activity</p>
+</li>
+<li><p>存放fragment controller.fragment</p>
+</li>
+<li><p>显示列表的适配器 controller.adapter</p>
+</li>
+<li><p>服务相关的 controller.service</p>
+</li>
+<li><p>抽取的基类 controller.base</p>
+</li>
+</ul>
+<ol start="3">
+<li><strong>视图层————view 显示数据</strong></li>
+</ol>
+<ul>
+<li><p>相关工具类 view.utils</p>
+</li>
+<li><p>自定义view view.ui</p>
+</li>
+</ul>
+<h1 id="12-import的使用"><a href="#12-import的使用" class="headerlink" title="12.import的使用"></a>12.import的使用</h1><h2 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h2><p>为使用定义在不同包中的Java类，需用import语句来引入指定包层次下所需要的类或全部类(.<em>)。*</em>import语句告诉编译器到哪里去寻找类**。</p>
+<h2 id="语法格式-2"><a href="#语法格式-2" class="headerlink" title="语法格式"></a>语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> 包名.类名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li><p>在源文件中使用import显式的导入指定包下的类或接口。</p>
+</li>
+<li><p>声明在包的声明和类的声明之间。</p>
+</li>
+<li><p>如果需要导入多个类或接口，那么就并列显式多个import语句即可。</p>
+</li>
+<li><p>可以使用<strong>java.util.*</strong>的方式，一次性导入util包下所有的类或接口。</p>
+</li>
+<li><p>如果导入的类或接口是java.lang包下的，或者是当前包下的，则可以省略此import语句。</p>
+</li>
+<li><p>如果在代码中使用<strong>不同包</strong>下的<strong>同名</strong>的类。那么就需要使用<strong>类的全类名</strong>的方式指明调用的是哪个类。</p>
+</li>
+<li><p>如果已经导入java.a包下的类。那么如果需要使用a包的子包下的类的话，仍然需要导入子包。</p>
+</li>
+<li><p><strong>import static组合</strong>的使用：调用指定类或接口下的静态的属性或方法。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java SE</category>
+      </categories>
+  </entry>
 </search>
