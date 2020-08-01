@@ -5287,4 +5287,246 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Java SE</category>
       </categories>
   </entry>
+  <entry>
+    <title>Java Web——10-Filter过滤器</title>
+    <url>/2020/07/31/Java-Web%E2%80%94%E2%80%9410-Filter%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h1><ol>
+<li>Filter过滤器是JavaWeb的三大组件之一。</li>
+<li>是JavaEE的规范，即接口。</li>
+</ol>
+<h1 id="2-作用"><a href="#2-作用" class="headerlink" title="2.作用"></a>2.作用</h1><ol>
+<li><p><strong>拦截请求，过滤响应。</strong></p>
+</li>
+<li><p>拦截请求的常用应用场景有：</p>
+</li>
+</ol>
+<ul>
+<li><p>权限检查</p>
+</li>
+<li><p>日记操作</p>
+</li>
+<li><p>事务管理</p>
+</li>
+</ul>
+<h1 id="3-Filter的工作流程图"><a href="#3-Filter的工作流程图" class="headerlink" title="3.Filter的工作流程图"></a>3.Filter的工作流程图</h1><img src="/Users/zhanglei/Desktop/Java/JavaWeb/Java Web笔记/截屏2020-07-30 22.15.25.png" style="zoom:75%;" />
+
+<h1 id="4-使用步骤"><a href="#4-使用步骤" class="headerlink" title="4.使用步骤"></a>4.使用步骤</h1><p>要求：在Web工程下需要一个admin目录，这个目录下的所有资源都必须是用户登录之后才可以访问。</p>
+<ol>
+<li>编写一个类去实现Filter接口</li>
+<li>实现过滤方法doFilter()方法</li>
+<li>到web.xml中去配置Filter的拦截路径</li>
+</ol>
+<ul>
+<li>Filter的代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdminFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 专门用于拦截请求，可以做权限检查</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> servletRequest</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> servletResponse</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> filterChain</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;</span><br><span class="line">        HttpSession session = httpServletRequest.getSession();</span><br><span class="line">        Object user = session.getAttribute(<span class="string">"user"</span>);</span><br><span class="line">        <span class="comment">//为空表示未登录</span></span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>)&#123;</span><br><span class="line">            servletRequest.getRequestDispatcher(<span class="string">"/login.jsp"</span>).forward(servletRequest, servletResponse);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//让程序继续执行</span></span><br><span class="line">            filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Web.xml中的配置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/adminFilter<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LoginServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.zl.servlet.LoginServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LoginServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/loginServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5-Filter的生命周期"><a href="#5-Filter的生命周期" class="headerlink" title="5.Filter的生命周期"></a>5.Filter的生命周期</h1><ol>
+<li>构造器方法</li>
+<li>init初始化方法</li>
+<li>doFilter过滤方法</li>
+<li>destroy销毁方法</li>
+</ol>
+<h1 id="6-FilterConfig方法"><a href="#6-FilterConfig方法" class="headerlink" title="6.FilterConfig方法"></a>6.FilterConfig方法</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>是Filter过滤器的配置文件类，Tomcat每次创建Filter时，也会同时创建FilterConfig类，这里包含了Filter配置文件的详细信息。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>获取Filter过滤器的配置内容：</p>
+<ul>
+<li>获取Filter的名称filter-name的内容</li>
+<li>获取在Filter中配置的init-param初始化参数</li>
+<li>获取ServletContext对象</li>
+</ul>
+<ol>
+<li>Java代码：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//1、获取 Filter 的名称 filter-name 的内容</span></span><br><span class="line">        System.out.println(<span class="string">"filter-name的值是:"</span> + filterConfig.getFilterName());</span><br><span class="line">        <span class="comment">//2、获取在 web.xml 中配置的 init-param 初始化参数</span></span><br><span class="line">        System.out.println(<span class="string">"初始化参数username的值是:"</span>+filterConfig.getInitParameter(<span class="string">"username"</span>));</span><br><span class="line">        System.out.println(<span class="string">"初始化参数url的值是:"</span> + filterConfig.getInitParameter(<span class="string">"url"</span>));</span><br><span class="line">        <span class="comment">//3、获取 ServletContext 对象 </span></span><br><span class="line">        System.out.println(filterConfig.getServletContext());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Web.xml配置：</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.zl.filter.AdminFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>username<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/test<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="7-FilterChain过滤器链"><a href="#7-FilterChain过滤器链" class="headerlink" title="7.FilterChain过滤器链"></a>7.FilterChain过滤器链</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>多个Filter过滤器执行时，所有filter和目标资源默认都执行在同一个线程中。</li>
+<li>多个filter共同执行的对象，都使用同一个Request对象。</li>
+<li>在多个Filter过滤器执行时，执行的优先顺序是根据它们在web.xml中配置的先后顺序决定。</li>
+</ol>
+<h2 id="doFilter方法"><a href="#doFilter方法" class="headerlink" title="doFilter方法"></a>doFilter方法</h2><p>FilterChain.doFilter()方法的作用：</p>
+<ul>
+<li>如果有Filter，则执行下一个Filter过滤器。</li>
+<li>如果没有Filter，则执行目标资源。</li>
+</ul>
+<h1 id="8-Filter的拦截路径"><a href="#8-Filter的拦截路径" class="headerlink" title="8.Filter的拦截路径"></a>8.Filter的拦截路径</h1><h2 id="精确匹配"><a href="#精确匹配" class="headerlink" title="精确匹配"></a>精确匹配</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/target.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上配置的路径，表示请求地址必须为：<strong><a href="http://ip:port/工程路径/target.jsp">http://ip:port/工程路径/target.jsp</a></strong></p>
+<h2 id="目录匹配"><a href="#目录匹配" class="headerlink" title="目录匹配"></a>目录匹配</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上配置的路径，表示请求地址必须为：<a href="http://ip:port/工程路径/admin/">http://ip:port/工程路径/admin/</a>* </p>
+<h2 id="后缀名匹配"><a href="#后缀名匹配" class="headerlink" title="后缀名匹配"></a>后缀名匹配</h2><ol>
+<li><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.html<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>以上配置的路径，表示请求地址必须以<strong>.html结尾</strong>才能拦截到</p>
+<ol start="2">
+<li><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>以上配置的路径，表示请求地址必须以<strong>.do结尾</strong>才能拦截到</p>
+<ol start="3">
+<li><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>以上配置的路径，表示请求地址必须以<strong>.action结尾</strong>才能拦截到</p>
+<h1 id="9-ThreadLocal"><a href="#9-ThreadLocal" class="headerlink" title="9.ThreadLocal"></a>9.ThreadLocal</h1><h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><p>可以解决<strong>多线程</strong>的<strong>数据安全</strong>问题，可以给当前线程关联一个数据（变量、对象、数组、集合）。</p>
+<h2 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>ThreadLocal可以为当前线程关联一个数据（可以像Map一样存取数据，key为当前线程）。</li>
+<li>每一个ThreadLocal对象，只能为当前线程关联一个数据，如果要为当前线程关联多个数据，则需要使用多个ThreadLocal对象。</li>
+<li>每一个ThreadLocal对象实例化时，一般都是static类型。</li>
+<li>ThreadLocal中保存数据，在线程销毁后，会由JVM虚拟机自动释放。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java Web——11-Json_Ajax</title>
+    <url>/2020/07/31/Java-Web%E2%80%94%E2%80%9411-Json_Ajax/</url>
+    <content><![CDATA[<h1 id="1-Json"><a href="#1-Json" class="headerlink" title="1.Json"></a>1.Json</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ol>
+<li>JSON是一种轻量级的数据交换格式，不仅易于阅读和编写，而且易于机器解析和生成。</li>
+</ol>
+<ul>
+<li>轻量级：跟xml相比较</li>
+<li>数据交换：客户端和服务器之间业务数据的传递格式</li>
+</ul>
+<h2 id="2-JSON在JavaScript中的使用"><a href="#2-JSON在JavaScript中的使用" class="headerlink" title="2.JSON在JavaScript中的使用"></a>2.JSON在JavaScript中的使用</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Json是由键值对组成，并且由大括号包围。每个键由引号引起来，键和值之间使用冒号进行分隔，多个键值对之间用逗号进行分隔。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">			// json的定义</span><br><span class="line">			var jsonObj = &#123;</span><br><span class="line">				"key1":1,</span><br><span class="line">				"key2":"abc",</span><br><span class="line">				"key3":true,</span><br><span class="line">				"key4":[1,"abc",true],</span><br><span class="line">				"key5":&#123;</span><br><span class="line">					"key5_1":1,</span><br><span class="line">					"key5_2":"abc",</span><br><span class="line">				&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><p>json本身是一个对象，其中的key就是对象中的一个属性。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// json的访问</span><br><span class="line">alert(jsonObj.key1);</span><br><span class="line">alert(jsonObj.key2);</span><br><span class="line">alert(jsonObj.key3);</span><br><span class="line">alert(jsonObj.key4);</span><br><span class="line">alert(jsonObj.key5.key5_1);</span><br><span class="line">alert(jsonObj.key5.key5_2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>json的存在形式：</li>
+</ol>
+<ul>
+<li>对象形式————<strong>json对象</strong>————操作json中的数据时使用</li>
+<li>字符串形式————<strong>json字符串</strong>————客户端和服务器进行数据交换时使用</li>
+</ul>
+<ol start="2">
+<li><strong>JSON.stringify()</strong>————把json对象转换成json字符串</li>
+<li><strong>JSON.parse()</strong>————把json字符串转换成json对象</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// json对象转字符串</span><br><span class="line">var jsonObjString = JSON.stringify(jsonObj);</span><br><span class="line">alert(jsonObjString);</span><br><span class="line"></span><br><span class="line">// json字符串转json对象</span><br><span class="line">var jsonObj2 = JSON.parse(jsonObjString);</span><br><span class="line">alert(jsonObj2);</span><br><span class="line">alert(jsonObj2.key1);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-JSON在java中的使用"><a href="#3-JSON在java中的使用" class="headerlink" title="3.JSON在java中的使用"></a>3.JSON在java中的使用</h2><h3 id="JavaBean和json的相互转换"><a href="#JavaBean和json的相互转换" class="headerlink" title="JavaBean和json的相互转换"></a>JavaBean和json的相互转换</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//javaBean和json的转换</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Person(<span class="number">1</span>, <span class="string">"张三"</span>);</span><br><span class="line">        <span class="comment">//创建Gson对象</span></span><br><span class="line">        Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line">        <span class="comment">//toJson方法可以把java对象转换成为json字符串</span></span><br><span class="line">        String personJsonString = gson.toJson(person);</span><br><span class="line">        System.out.println(personJsonString);</span><br><span class="line">        <span class="comment">//fromJson把json字符串转换回Java对象</span></span><br><span class="line">        <span class="comment">//第一个参数是json字符串</span></span><br><span class="line">        <span class="comment">//第二个参数是转换回去的Java对象类型</span></span><br><span class="line">        Person person1 = gson.fromJson(personJsonString, Person<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(person1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="List和json的相互转换"><a href="#List和json的相互转换" class="headerlink" title="List和json的相互转换"></a>List和json的相互转换</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//list和json的转换</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Person&gt; personList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        personList.add(<span class="keyword">new</span> Person(<span class="number">2</span>, <span class="string">"李四"</span>));</span><br><span class="line">        personList.add(<span class="keyword">new</span> Person(<span class="number">3</span>, <span class="string">"王五"</span>));</span><br><span class="line">        Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line">        <span class="comment">//把List转换为json字符串</span></span><br><span class="line">        String personListString = gson.toJson(personList);</span><br><span class="line">        System.out.println(personListString);</span><br><span class="line">        List&lt;Person&gt; list = gson.fromJson(personListString,<span class="keyword">new</span> PersonListType().getType());</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        Person person = list.get(<span class="number">0</span>);</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="map和json的相互转换"><a href="#map和json的相互转换" class="headerlink" title="map和json的相互转换"></a>map和json的相互转换</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//map和json的转换</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;Integer,Person&gt; personMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        personMap.put(<span class="number">1</span>, <span class="keyword">new</span> Person(<span class="number">1</span>,<span class="string">"张三"</span>));</span><br><span class="line">        personMap.put(<span class="number">2</span>, <span class="keyword">new</span> Person(<span class="number">2</span>,<span class="string">"李四"</span>));</span><br><span class="line">        Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line">        String personMapString = gson.toJson(personMap);</span><br><span class="line">        System.out.println(personMapString);</span><br><span class="line">        Map&lt;Integer,Person&gt; personMap1 = gson.fromJson(personMapString, <span class="keyword">new</span> TypeToken&lt;HashMap&lt;Integer,Person&gt;&gt;()&#123;&#125;.getType());</span><br><span class="line">        System.out.println(personMap1);</span><br><span class="line">        Person person = personMap1.get(<span class="number">1</span>);</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-Ajax请求"><a href="#2-Ajax请求" class="headerlink" title="2.Ajax请求"></a>2.Ajax请求</h1><h2 id="1-定义-1"><a href="#1-定义-1" class="headerlink" title="1.定义"></a>1.定义</h2><ol>
+<li>Ajax是一种创建交互式网页应用的网页开发技术，一种浏览器通过<strong>js异步发起请求</strong>，<strong>局部更新页面</strong>的技术。</li>
+</ol>
+<ul>
+<li>局部更新，浏览器地址栏不会发生变化；</li>
+<li>局部更新，不会舍弃原来页面的内容。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="meta-string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"pragma"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"cache-control"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Expires"</span> <span class="attr">content</span>=<span class="string">"0"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">			<span class="function"><span class="keyword">function</span> <span class="title">ajaxRequest</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">				<span class="comment">//创建XMLHttpRequest</span></span></span><br><span class="line"><span class="actionscript">				<span class="keyword">var</span> xmlHttpRequest = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="actionscript">				<span class="comment">//调用open方法设置请求参数</span></span></span><br><span class="line"><span class="actionscript">				xmlHttpRequest.open(<span class="string">"GET"</span>,<span class="string">"http://localhost:8080/12_json_ajax_i18n/ajaxServlet?action=javaScriptAjax"</span>,<span class="literal">true</span>);</span></span><br><span class="line"><span class="actionscript">				<span class="comment">//在send方法前绑定onreadystatechange事件，处理请求完成后的操作。</span></span></span><br><span class="line"><span class="actionscript">				xmlHttpRequest.onreadystatechange = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line">					if (xmlHttpRequest.readyState == 4 &amp;&amp; xmlHttpRequest.status == 200)&#123;</span><br><span class="line"><span class="javascript">						<span class="keyword">var</span> jsonObj = <span class="built_in">JSON</span>.parse(xmlHttpRequest.responseText);</span></span><br><span class="line"><span class="javascript">						<span class="built_in">document</span>.getElementById(<span class="string">"div01"</span>).innerHTML = <span class="string">"编号:"</span> + jsonObj.id + <span class="string">" 姓名:"</span> + jsonObj.name;</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"><span class="actionscript">				<span class="comment">//调用send方法发送请求</span></span></span><br><span class="line">				xmlHttpRequest.send();</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>	</span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"ajaxRequest()"</span>&gt;</span>ajax request<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div01"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-jQuery中的Ajax请求"><a href="#2-jQuery中的Ajax请求" class="headerlink" title="2.jQuery中的Ajax请求"></a>2.jQuery中的Ajax请求</h2><h3 id="ajax方法"><a href="#ajax方法" class="headerlink" title="$.ajax方法"></a>$.ajax方法</h3><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td align="center">表示请求的地址</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">表示请求的类型（GET或POST）</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">表示发送给服务器的数据，格式1:name=value&amp;name=value；格式2:{key:value}</td>
+</tr>
+<tr>
+<td align="center">success</td>
+<td align="center">请求成功响应的回调函数</td>
+</tr>
+<tr>
+<td align="center">dataType</td>
+<td align="center">响应的数据类型，text-纯文本、xml-xml数据、json-json对象</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">				&#x2F;&#x2F; ajax请求</span><br><span class="line">				$(&quot;#ajaxBtn&quot;).click(function()&#123;</span><br><span class="line">					$.ajax(&#123;</span><br><span class="line">						url:&quot;http:&#x2F;&#x2F;localhost:8080&#x2F;12_json_ajax_i18n&#x2F;ajaxServlet&quot;,</span><br><span class="line">						data:&#123;action:&quot;jQueryAjax&quot;&#125;,</span><br><span class="line">						type:&quot;GET&quot;,</span><br><span class="line">						success:function (data) &#123;</span><br><span class="line">							$(&quot;#msg&quot;).html(&quot;编号:&quot; + data.id + &quot; 姓名:&quot; + data.name);</span><br><span class="line">						&#125;,</span><br><span class="line">						dataType:&quot;json&quot;</span><br><span class="line">					&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="get和-post方法"><a href="#get和-post方法" class="headerlink" title="$get和$post方法"></a>$get和$post方法</h3><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td align="center">请求的url地址</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">发送的数据</td>
+</tr>
+<tr>
+<td align="center">callback</td>
+<td align="center">成功的回调函数</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">返回的数据类型</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// ajax--get请求</span><br><span class="line">$("#getBtn").click(function()&#123;</span><br><span class="line">	$.get("http://localhost:8080/12_json_ajax_i18n/ajaxServlet","action=jQueryGet",function (data) &#123;</span><br><span class="line">		$("#msg").html("编号:" + data.id + " 姓名:" + data.name);</span><br><span class="line">	&#125;,"json");</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// ajax--post请求</span><br><span class="line">$("#postBtn").click(function()&#123;</span><br><span class="line">	// post请求</span><br><span class="line">	$("#postBtn").click(function()&#123;</span><br><span class="line">		$.post("http://localhost:8080/12_json_ajax_i18n/ajaxServlet","action=jQueryGet",function (data) &#123;</span><br><span class="line">			$("#msg").html("编号:" + data.id + " 姓名:" + data.name);</span><br><span class="line">		&#125;,"json");</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="getJSON方法"><a href="#getJSON方法" class="headerlink" title="$getJSON方法"></a>$getJSON方法</h3><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td align="center">请求的url地址</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">发送给服务器的数据</td>
+</tr>
+<tr>
+<td align="center">callback</td>
+<td align="center">成功的回调函数</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// ajax--getJson请求</span><br><span class="line">$("#getJSONBtn").click(function()&#123;</span><br><span class="line">	// 调用</span><br><span class="line">	$.getJSON("http://localhost:8080/12_json_ajax_i18n/ajaxServlet","action=jQueryGetJSON",function (data) &#123;</span><br><span class="line">		$("#msg").html("编号:" + data.id + " 姓名:" + data.name);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="serialize-方法"><a href="#serialize-方法" class="headerlink" title="serialize()方法"></a>serialize()方法</h3><ol>
+<li>serialize()方法可以将表单中所有表单项的内容都获取到并拼接成name=value&amp;name=value形式。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// ajax请求</span><br><span class="line">$("#submit").click(function()&#123;</span><br><span class="line">	// 把参数序列化</span><br><span class="line">	$.getJSON("http://localhost:8080/12_json_ajax_i18n/ajaxServlet","action=jQuerySericalize&amp;" + $("form01").serialize(),function (data) &#123;</span><br><span class="line">		$("#msg").html("编号:" + data.id + " 姓名:" + data.name);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java Web</category>
+      </categories>
+  </entry>
 </search>
