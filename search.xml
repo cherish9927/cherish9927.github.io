@@ -5568,4 +5568,98 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Linux</category>
       </categories>
   </entry>
+  <entry>
+    <title>Linux笔记——03-开机、重启、登录和注销命令</title>
+    <url>/2020/09/10/Linux%E2%80%94%E2%80%9403-%E5%BC%80%E6%9C%BA%E3%80%81%E9%87%8D%E5%90%AF%E3%80%81%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="1-关机-amp-amp-重启命令"><a href="#1-关机-amp-amp-重启命令" class="headerlink" title="1.关机&amp;&amp;重启命令"></a>1.关机&amp;&amp;重启命令</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p><strong>shutdown命令</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>shutdown -h now</td>
+<td>立即关机</td>
+</tr>
+<tr>
+<td>shutdown -h 1</td>
+<td>1分钟之后关机</td>
+</tr>
+<tr>
+<td>shutdown -r now</td>
+<td>立即重启</td>
+</tr>
+</tbody></table>
+<p><strong>halt命令</strong>：直接使用，效果等价于关机</p>
+<p><strong>reboot命令</strong>：重启系统</p>
+<p><strong>sync命令</strong>：将内存中的数据同步到磁盘</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p><strong>关机和重启之前应该先执行sync指令，将内存中的数据写入磁盘，防止数据丢失</strong></p>
+<h2 id="2-登录-amp-amp-注销命令"><a href="#2-登录-amp-amp-注销命令" class="headerlink" title="2.登录&amp;&amp;注销命令"></a>2.登录&amp;&amp;注销命令</h2><h3 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h3><ol>
+<li>登录尽量少使用root账号登录，因为root是系统管理员账号，具有最大的权限，为避免操作失误，可以使用普通用户登录，登录后再使用”<strong>su - 用户名</strong>“命令切换成系统管理员账号。</li>
+<li>在提示符下输入<strong>logout</strong>即可注销用户。</li>
+</ol>
+<h3 id="使用细节"><a href="#使用细节" class="headerlink" title="使用细节"></a>使用细节</h3><ol>
+<li>logout注销指令在图形运行级别无效，在命令行级别运行级别有效。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux笔记——04-用户管理</title>
+    <url>/2020/09/10/Linux%E2%80%94%E2%80%9404-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h2><ol>
+<li>Linux系统是多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后使用申请到的账号登录Linux系统。</li>
+<li>Linux用户至少要属于一个组。</li>
+</ol>
+<h2 id="2-添加用户"><a href="#2-添加用户" class="headerlink" title="2.添加用户"></a>2.添加用户</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">useradd [选项] 用户名		//直接创建用户</span><br><span class="line"></span><br><span class="line">useradd -d 指定目录 新的用户名			//创建用户的同时指定用户的家目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节说明"><a href="#细节说明" class="headerlink" title="细节说明"></a>细节说明</h3><ol>
+<li>当用户创建成功后，会自动的创建和用户同名的家目录。</li>
+</ol>
+<h2 id="3-修改密码"><a href="#3-修改密码" class="headerlink" title="3.修改密码"></a>3.修改密码</h2><h3 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-删除用户"><a href="#4-删除用户" class="headerlink" title="4.删除用户"></a>4.删除用户</h2><h3 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">userdel 用户名		//保存家目录</span><br><span class="line"></span><br><span class="line">userdel -r 用户名		//删除家目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-查询用户"><a href="#5-查询用户" class="headerlink" title="5.查询用户"></a>5.查询用户</h2><h3 id="基本语法-3"><a href="#基本语法-3" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">id 用户名</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-切换用户"><a href="#6-切换用户" class="headerlink" title="6.切换用户"></a>6.切换用户</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>在Linux操作系统中，如果当前用户的权限不够，可以通过<strong>su - 指令</strong>，切换到高权限用户。</p>
+<h3 id="基本语法-4"><a href="#基本语法-4" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - 要切换到的用户名</span><br><span class="line"></span><br><span class="line">exit		//返回原来用户</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节说明-1"><a href="#细节说明-1" class="headerlink" title="细节说明"></a>细节说明</h3><ol>
+<li>从权限高的用户切换到权限低的用户不需要输入密码，反之需要。</li>
+</ol>
+<h2 id="7-用户组"><a href="#7-用户组" class="headerlink" title="7.用户组"></a>7.用户组</h2><h3 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>类似于角色，操作系统可以对有共性的多个用户进行统一管理。</p>
+<h3 id="增加组"><a href="#增加组" class="headerlink" title="增加组"></a>增加组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupadd 组名</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加用户时添加组"><a href="#增加用户时添加组" class="headerlink" title="增加用户时添加组"></a>增加用户时添加组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">useradd -g 用户组 用户名</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改用户的组"><a href="#修改用户的组" class="headerlink" title="修改用户的组"></a>修改用户的组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -g 用户组 用户名		//将用户修改到指定组</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-用户文件"><a href="#8-用户文件" class="headerlink" title="8.用户文件"></a>8.用户文件</h2><h3 id="etc-passwd文件"><a href="#etc-passwd文件" class="headerlink" title="/etc/passwd文件"></a>/etc/passwd文件</h3><ol>
+<li><p>用户的配置文件，记录用户的各种信息。</p>
+</li>
+<li><p>每行的含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</p>
+</li>
+</ol>
+<h3 id="etc-shadow文件"><a href="#etc-shadow文件" class="headerlink" title="/etc/shadow文件"></a>/etc/shadow文件</h3><ol>
+<li><p>口令的配置文件</p>
+</li>
+<li><p>每行的含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</p>
+</li>
+</ol>
+<h3 id="etc-group文件"><a href="#etc-group文件" class="headerlink" title="/etc/group文件"></a>/etc/group文件</h3><ol>
+<li>组的配置文件，记录Linux包含的组的信息</li>
+<li>每行的含义：组名:口令:组标识号:组内用户列表</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>

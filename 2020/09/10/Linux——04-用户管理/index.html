@@ -77,14 +77,14 @@
 
 
 
-<meta name="description" content="今天你写代码了吗？">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="1.基本介绍 Linux系统是多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后使用申请到的账号登录Linux系统。 Linux用户至少要属于一个组。  2.添加用户基本语法123useradd [选项] 用户名		&#x2F;&#x2F;直接创建用户useradd -d 指定目录 新的用户名			&#x2F;&#x2F;创建用户的同时指定用户的家目录  细节说明 当用户创建成功后，会自动的创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux笔记——04-用户管理">
+<meta property="og:url" content="http://yoursite.com/2020/09/10/Linux%E2%80%94%E2%80%9404-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Zhanglei&#39;s blog">
-<meta property="og:description" content="今天你写代码了吗？">
-<meta property="article:published_time" content="2020-05-19T13:17:52.000Z">
-<meta property="article:modified_time" content="2020-05-19T13:28:01.802Z">
+<meta property="og:description" content="1.基本介绍 Linux系统是多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后使用申请到的账号登录Linux系统。 Linux用户至少要属于一个组。  2.添加用户基本语法123useradd [选项] 用户名		&#x2F;&#x2F;直接创建用户useradd -d 指定目录 新的用户名			&#x2F;&#x2F;创建用户的同时指定用户的家目录  细节说明 当用户创建成功后，会自动的创">
+<meta property="article:published_time" content="2020-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-10T14:31:09.294Z">
 <meta property="article:author" content="Zhanglei">
 <meta name="twitter:card" content="summary">
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/09/10/Linux——04-用户管理/"/>
 
 
 
 
 
-  <title>tags | Zhanglei's blog</title>
+  <title>Linux笔记——04-用户管理 | Zhanglei's blog</title>
   
 
 
@@ -271,40 +271,209 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/Linux%E2%80%94%E2%80%9404-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhanglei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/159.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhanglei's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                No tags
-            </div>
-            <div class="tag-cloud-tags">
+          <h1 class="post-title" itemprop="name headline">Linux笔记——04-用户管理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-            </div>
-          </div>
-        
-      </div>
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-10T00:00:00+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h2><ol>
+<li>Linux系统是多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后使用申请到的账号登录Linux系统。</li>
+<li>Linux用户至少要属于一个组。</li>
+</ol>
+<h2 id="2-添加用户"><a href="#2-添加用户" class="headerlink" title="2.添加用户"></a>2.添加用户</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd [选项] 用户名		//直接创建用户</span><br><span class="line"></span><br><span class="line">useradd -d 指定目录 新的用户名			//创建用户的同时指定用户的家目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节说明"><a href="#细节说明" class="headerlink" title="细节说明"></a>细节说明</h3><ol>
+<li>当用户创建成功后，会自动的创建和用户同名的家目录。</li>
+</ol>
+<h2 id="3-修改密码"><a href="#3-修改密码" class="headerlink" title="3.修改密码"></a>3.修改密码</h2><h3 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-删除用户"><a href="#4-删除用户" class="headerlink" title="4.删除用户"></a>4.删除用户</h2><h3 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">userdel 用户名		//保存家目录</span><br><span class="line"></span><br><span class="line">userdel -r 用户名		//删除家目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-查询用户"><a href="#5-查询用户" class="headerlink" title="5.查询用户"></a>5.查询用户</h2><h3 id="基本语法-3"><a href="#基本语法-3" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id 用户名</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-切换用户"><a href="#6-切换用户" class="headerlink" title="6.切换用户"></a>6.切换用户</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>在Linux操作系统中，如果当前用户的权限不够，可以通过<strong>su - 指令</strong>，切换到高权限用户。</p>
+<h3 id="基本语法-4"><a href="#基本语法-4" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su - 要切换到的用户名</span><br><span class="line"></span><br><span class="line">exit		//返回原来用户</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节说明-1"><a href="#细节说明-1" class="headerlink" title="细节说明"></a>细节说明</h3><ol>
+<li>从权限高的用户切换到权限低的用户不需要输入密码，反之需要。</li>
+</ol>
+<h2 id="7-用户组"><a href="#7-用户组" class="headerlink" title="7.用户组"></a>7.用户组</h2><h3 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>类似于角色，操作系统可以对有共性的多个用户进行统一管理。</p>
+<h3 id="增加组"><a href="#增加组" class="headerlink" title="增加组"></a>增加组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 组名</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加用户时添加组"><a href="#增加用户时添加组" class="headerlink" title="增加用户时添加组"></a>增加用户时添加组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g 用户组 用户名</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改用户的组"><a href="#修改用户的组" class="headerlink" title="修改用户的组"></a>修改用户的组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -g 用户组 用户名		//将用户修改到指定组</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-用户文件"><a href="#8-用户文件" class="headerlink" title="8.用户文件"></a>8.用户文件</h2><h3 id="etc-passwd文件"><a href="#etc-passwd文件" class="headerlink" title="/etc/passwd文件"></a>/etc/passwd文件</h3><ol>
+<li><p>用户的配置文件，记录用户的各种信息。</p>
+</li>
+<li><p>每行的含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</p>
+</li>
+</ol>
+<h3 id="etc-shadow文件"><a href="#etc-shadow文件" class="headerlink" title="/etc/shadow文件"></a>/etc/shadow文件</h3><ol>
+<li><p>口令的配置文件</p>
+</li>
+<li><p>每行的含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</p>
+</li>
+</ol>
+<h3 id="etc-group文件"><a href="#etc-group文件" class="headerlink" title="/etc/group文件"></a>/etc/group文件</h3><ol>
+<li>组的配置文件，记录Linux包含的组的信息</li>
+<li>每行的含义：组名:口令:组标识号:组内用户列表</li>
+</ol>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/09/Linux%E2%80%94%E2%80%9401-Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" rel="next" title="Linux笔记——01-目录结构">
+                <i class="fa fa-chevron-left"></i> Linux笔记——01-目录结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/10/Linux%E2%80%94%E2%80%9403-%E5%BC%80%E6%9C%BA%E3%80%81%E9%87%8D%E5%90%AF%E3%80%81%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux笔记——03-开机、重启、登录和注销命令">
+                Linux笔记——03-开机、重启、登录和注销命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -337,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -407,6 +585,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本介绍"><span class="nav-number">1.</span> <span class="nav-text">1.基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-添加用户"><span class="nav-number">2.</span> <span class="nav-text">2.添加用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-number">2.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细节说明"><span class="nav-number">2.2.</span> <span class="nav-text">细节说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-修改密码"><span class="nav-number">3.</span> <span class="nav-text">3.修改密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法-1"><span class="nav-number">3.1.</span> <span class="nav-text">基本语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-删除用户"><span class="nav-number">4.</span> <span class="nav-text">4.删除用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法-2"><span class="nav-number">4.1.</span> <span class="nav-text">基本语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-查询用户"><span class="nav-number">5.</span> <span class="nav-text">5.查询用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法-3"><span class="nav-number">5.1.</span> <span class="nav-text">基本语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-切换用户"><span class="nav-number">6.</span> <span class="nav-text">6.切换用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本介绍"><span class="nav-number">6.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法-4"><span class="nav-number">6.2.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细节说明-1"><span class="nav-number">6.3.</span> <span class="nav-text">细节说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-用户组"><span class="nav-number">7.</span> <span class="nav-text">7.用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本介绍-1"><span class="nav-number">7.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加组"><span class="nav-number">7.2.</span> <span class="nav-text">增加组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除组"><span class="nav-number">7.3.</span> <span class="nav-text">删除组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加用户时添加组"><span class="nav-number">7.4.</span> <span class="nav-text">增加用户时添加组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改用户的组"><span class="nav-number">7.5.</span> <span class="nav-text">修改用户的组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-用户文件"><span class="nav-number">8.</span> <span class="nav-text">8.用户文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-passwd文件"><span class="nav-number">8.1.</span> <span class="nav-text">&#x2F;etc&#x2F;passwd文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-shadow文件"><span class="nav-number">8.2.</span> <span class="nav-text">&#x2F;etc&#x2F;shadow文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-group文件"><span class="nav-number">8.3.</span> <span class="nav-text">&#x2F;etc&#x2F;group文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
