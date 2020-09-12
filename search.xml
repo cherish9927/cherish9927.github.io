@@ -5662,4 +5662,259 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Linux</category>
       </categories>
   </entry>
+  <entry>
+    <title>Linux笔记——05-实用指令</title>
+    <url>/2020/09/12/Linux%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%9405-%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="1-指定运行级别"><a href="#1-指定运行级别" class="headerlink" title="1.指定运行级别"></a>1.指定运行级别</h2><h3 id="运行级别说明"><a href="#运行级别说明" class="headerlink" title="运行级别说明"></a>运行级别说明</h3><table>
+<thead>
+<tr>
+<th align="center">级别</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">关机</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">单用户（用来找回丢失密码）</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">多用户状态无网络服务</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">多用户状态有网络服务</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">保留</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">图形界面</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">系统重启</td>
+</tr>
+</tbody></table>
+<ol>
+<li>常用的运行级别是3和5。</li>
+</ol>
+<h2 id="2-切换运行级别"><a href="#2-切换运行级别" class="headerlink" title="2.切换运行级别"></a>2.切换运行级别</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">init [012356]		//切换到指定运行级别</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-帮助指令"><a href="#3-帮助指令" class="headerlink" title="3.帮助指令"></a>3.帮助指令</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">man [命令] 		//获取指令帮助信息</span><br><span class="line"></span><br><span class="line">help [命令]		//获取shell内置命令的帮助信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-文件目录类"><a href="#4-文件目录类" class="headerlink" title="4.文件目录类"></a>4.文件目录类</h2><h3 id="pwd指令"><a href="#pwd指令" class="headerlink" title="pwd指令"></a>pwd指令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pwd 		&#x2F;&#x2F;显示当前工作目录的绝对路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls [选项] [目录或文件]</span><br><span class="line">-a : 显示当前目录的所有文件和目录，包括隐藏文件</span><br><span class="line">-l : 以列表形式显示信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="cd指令"><a href="#cd指令" class="headerlink" title="cd指令"></a>cd指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd [参数] 		//切换到指定目录</span><br><span class="line">cd : 回到家目录</span><br><span class="line">cd.. : 回到当前目录的上一级目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="mkdir指令"><a href="#mkdir指令" class="headerlink" title="mkdir指令"></a>mkdir指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//mkdir指令用于创建目录。</span><br><span class="line">mkdir [选项] 要创建的目录</span><br><span class="line">-p ： 创建多级目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="rmdir指令"><a href="#rmdir指令" class="headerlink" title="rmdir指令"></a>rmdir指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//rmdir指令删除空目录，不能删除存在文件的目录。</span><br><span class="line">rmdir [选项] 要删除的空目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="touch指令"><a href="#touch指令" class="headerlink" title="touch指令"></a>touch指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//touch指令用于创建空文件。</span><br><span class="line">touch 文件名称</span><br></pre></td></tr></table></figure>
+
+<h3 id="cp指令"><a href="#cp指令" class="headerlink" title="cp指令"></a>cp指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//cp指令拷贝文件到指令目录。</span><br><span class="line">cp [选项] source dest</span><br><span class="line">-r : 递归复制整个文件夹</span><br></pre></td></tr></table></figure>
+
+<h3 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//rm指令删除文件或目录</span><br><span class="line">rm [选项] 要删除的文件或目录</span><br><span class="line">-r : 递归删除整个文件夹</span><br><span class="line">-f : 强制删除不提示</span><br></pre></td></tr></table></figure>
+
+<h3 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//mv指令移动或重命名文件和目录</span><br><span class="line">mv oldNameFile newNameFile 		//重命名</span><br><span class="line">mv /temp/moveFile/targetFolder		//移动文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//cat指令查看文件内容，采用只读方式打开</span><br><span class="line">cat [选项] 要查看的文件</span><br><span class="line">-n : 显示行号</span><br><span class="line">//为了浏览方便，一般会带上管道命令 |more</span><br><span class="line">cat 文件名 |more[分页浏览]</span><br></pre></td></tr></table></figure>
+
+<h3 id="more指令"><a href="#more指令" class="headerlink" title="more指令"></a>more指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//more指令是一个基于VI编辑器的文本过滤器，以全屏幕方式按页显示文本文件的内容</span><br><span class="line">more 要查看的文件</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格键</td>
+<td align="center">向下翻一页</td>
+</tr>
+<tr>
+<td align="center">回车键</td>
+<td align="center">代表向下翻一行</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td align="center">代表立即离开more，不再显示该文件内容</td>
+</tr>
+<tr>
+<td align="center">Ctrl+F</td>
+<td align="center">向下滚动一屏</td>
+</tr>
+<tr>
+<td align="center">Ctrl+B</td>
+<td align="center">返回上一屏</td>
+</tr>
+<tr>
+<td align="center">=</td>
+<td align="center">输出当前行的行号</td>
+</tr>
+<tr>
+<td align="center">:f</td>
+<td align="center">输出文件名和当前行的行号</td>
+</tr>
+</tbody></table>
+<h3 id="less指令"><a href="#less指令" class="headerlink" title="less指令"></a>less指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//用来分屏查看文件内容，在显示文件内容时，根据显示需要加载内容，更适合显示大型文件</span><br><span class="line">less 要查看的文件</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格键</td>
+<td align="center">向下翻动一页</td>
+</tr>
+<tr>
+<td align="center">[pagedown]</td>
+<td align="center">向下翻动一页</td>
+</tr>
+<tr>
+<td align="center">[pageup]</td>
+<td align="center">向上翻动一页</td>
+</tr>
+<tr>
+<td align="center">/字串</td>
+<td align="center">向下查找字串：n向下查找；N向上查找</td>
+</tr>
+<tr>
+<td align="center">?字串</td>
+<td align="center">向上查找字串：n向上查找；N向下查找</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td align="center">离开less</td>
+</tr>
+</tbody></table>
+<h3 id="gt-指令和-gt-gt-指令"><a href="#gt-指令和-gt-gt-指令" class="headerlink" title="&gt;指令和&gt;&gt;指令"></a>&gt;指令和&gt;&gt;指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// &gt; 输出重定向：会将原来文件的内容覆盖</span><br><span class="line">// &gt;&gt; 追加：不会覆盖原来文件的内容，而是追加到文件的尾部</span><br><span class="line">ls -l &gt; 文件		//将列表的内容写到指定文件中(覆盖)</span><br><span class="line">ls -l &gt;&gt; 文件   //将列表的内容追加到指定文件的尾部</span><br></pre></td></tr></table></figure>
+
+<h3 id="echo指令"><a href="#echo指令" class="headerlink" title="echo指令"></a>echo指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//echo输出内容到控制台</span><br><span class="line">echo [选项] [输出内容]</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-head指令"><a href="#15-head指令" class="headerlink" title="15.head指令"></a>15.head指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//用于显示文件开头部分的内容，默认显示前10行内容</span><br><span class="line">head 文件		//查看文件开头前10行内容</span><br><span class="line">head -n 5  //查看文件开头前5行内容</span><br></pre></td></tr></table></figure>
+
+<h3 id="tail指令"><a href="#tail指令" class="headerlink" title="tail指令"></a>tail指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//用于输出文件末尾部分的内容，默认显示后10行内容</span><br><span class="line">tail 文件	    	//查看文件末尾后10行内容</span><br><span class="line">tail -n 5      //查看文件末尾后5行内容</span><br><span class="line">tail -f 文件   //实时追踪该文件的所有更新</span><br></pre></td></tr></table></figure>
+
+<h3 id="ln指令"><a href="#ln指令" class="headerlink" title="ln指令"></a>ln指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//软链接也称符号链接，类似于快捷方式，主要存放了连接其他文件的路径</span><br><span class="line">ln -s[原文件或目录] [软链接名]    //给原文件创建一个软链接</span><br><span class="line">rm -rf link										//删除软链接</span><br><span class="line">//当使用pwd指令查看目录时，看到的仍然是软链接所在的目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="history指令"><a href="#history指令" class="headerlink" title="history指令"></a>history指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//查看已经执行过的历史命令，也可以执行历史指令</span><br><span class="line">history				//查看已经执行过的历史命令</span><br><span class="line">history n			//查看最近使用过的n条指令</span><br><span class="line">！n					 //执行编号为n的指令</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-时间日期类"><a href="#5-时间日期类" class="headerlink" title="5.时间日期类"></a>5.时间日期类</h2><h3 id="date指令"><a href="#date指令" class="headerlink" title="date指令"></a>date指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//显示当前时间</span><br><span class="line">date												//显示当前时间</span><br><span class="line">date "+%Y"									//显示当前年份</span><br><span class="line">date "+%m"									//显示当前月份</span><br><span class="line">date "+%d"									//显示当前是哪一天</span><br><span class="line">date "+%Y-%m-%d %H:%M:%S"		//显示年月日时分秒</span><br><span class="line">date -s 字符串时间						//设置系统当前时间</span><br></pre></td></tr></table></figure>
+
+<h3 id="cal指令"><a href="#cal指令" class="headerlink" title="cal指令"></a>cal指令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;查看日历</span><br><span class="line">cal[选项] 		&#x2F;&#x2F;显示本月日历</span><br><span class="line">cal 指定年份			&#x2F;&#x2F;显示指定年份日历</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-搜索查找类"><a href="#6-搜索查找类" class="headerlink" title="6.搜索查找类"></a>6.搜索查找类</h2><h3 id="find指令"><a href="#find指令" class="headerlink" title="find指令"></a>find指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//将从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端</span><br><span class="line">find [搜索范围] [选项]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-name&lt;查询方式&gt;</td>
+<td align="center">按照指定的文件名查找文件</td>
+</tr>
+<tr>
+<td align="center">-user&lt;用户名&gt;</td>
+<td align="center">查找属于指定用户名所有文件</td>
+</tr>
+<tr>
+<td align="center">-size&lt;文件大小&gt;</td>
+<td align="center">按照指定的文件大小查找文件</td>
+</tr>
+<tr>
+<td align="center">-size +/-n</td>
+<td align="center">查找大于或小于n的文件</td>
+</tr>
+</tbody></table>
+<h3 id="locate指令"><a href="#locate指令" class="headerlink" title="locate指令"></a>locate指令</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//可以快速定位文件路径，利用事先建立的系统中所有文件名称及路径的locate数据库实现快速定位给定的文件</span><br><span class="line">//locate指令无需遍历整个文件系统，查询速度较快，为了保证查询结果的准确度，管理员必须定期更新locate时刻</span><br><span class="line">locate 搜索文件</span><br><span class="line">//由于locate指令基于数据库进行查询，所以第一次运行前必须使用updatedb指令创建locate数据库</span><br></pre></td></tr></table></figure>
+
+<h3 id="grep指令和管道符号"><a href="#grep指令和管道符号" class="headerlink" title="grep指令和管道符号 |"></a>grep指令和管道符号 |</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//grep过滤查找，管道符号 | 表示将前一个命令的处理结果传递给后面的指令处理</span><br><span class="line">grep[选项] 查找内容 源文件</span><br><span class="line">cat hello.txt | grep -ni yes		//不区分大小写</span><br><span class="line">cat hello.txt | grep -n yes		//区分大小写</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-n</td>
+<td align="center">显示匹配行和行号</td>
+</tr>
+<tr>
+<td align="center">-i</td>
+<td align="center">忽略字母大小写</td>
+</tr>
+</tbody></table>
+<h2 id="7-压缩和解压类"><a href="#7-压缩和解压类" class="headerlink" title="7.压缩和解压类"></a>7.压缩和解压类</h2><h3 id="gzip-gunzip指令"><a href="#gzip-gunzip指令" class="headerlink" title="gzip/gunzip指令"></a>gzip/gunzip指令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//gzip用于压缩文件	gunzip用于解压文件</span><br><span class="line">gzip 文件		//压缩文件，只能将文件压缩为.gz文件</span><br><span class="line">gunzip 文件.gz		//解压缩文件</span><br><span class="line">//当使用gzip压缩文件文件后，不会保留原文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="zip-unzip指令"><a href="#zip-unzip指令" class="headerlink" title="zip/unzip指令"></a>zip/unzip指令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//zip用于压缩文件		unzip用于解压文件，在项目打包发布中使用</span><br><span class="line">zip [选项] XXX.zip		//压缩文件和目录</span><br><span class="line">unzip [选项] XXX.zip		//解压缩文件</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-r</td>
+<td align="center">递归压缩</td>
+</tr>
+<tr>
+<td align="center">-d&lt;目录&gt;</td>
+<td align="center">指定解压后文件的存放目录</td>
+</tr>
+</tbody></table>
+<h3 id="tar指令"><a href="#tar指令" class="headerlink" title="tar指令"></a>tar指令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//将文件打包成.tar.gz文件</span><br><span class="line">tar [选项] XXX.tar.gz 打包的内容		//打包目录</span><br><span class="line">tar -zcvf a.tar.gz a1.txt a2.txt		//将文档打包</span><br><span class="line">tar -zxvf a.tar.gz		//解压a.tar.gz到当前目录</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-c</td>
+<td align="center">产生.tar打包文件</td>
+</tr>
+<tr>
+<td align="center">-v</td>
+<td align="center">显示详细信息</td>
+</tr>
+<tr>
+<td align="center">-f</td>
+<td align="center">指定压缩后的文件名</td>
+</tr>
+<tr>
+<td align="center">-z</td>
+<td align="center">打包同时压缩</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="center">解压.tar打包文件</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>
