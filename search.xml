@@ -5917,4 +5917,209 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Linux</category>
       </categories>
   </entry>
+  <entry>
+    <title>Linux笔记——08-crontab任务调度</title>
+    <url>/2020/09/13/Linux%E2%80%94%E2%80%9408-crontab%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</url>
+    <content><![CDATA[<h1 id="1-crond任务调度"><a href="#1-crond任务调度" class="headerlink" title="1.crond任务调度"></a>1.crond任务调度</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>任务调度：是指系统在某个时间执行的特定的命令或程序。</p>
+<p>任务调度的分类：</p>
+<ol>
+<li>系统工作：有些重要的工作必须周而复始地执行，例如病毒扫描。</li>
+<li>个别用户工作：个别用户可能希望执行某些程序，例如对数据库的备份。</li>
+</ol>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">crontab [选项]</span><br><span class="line">service crontab restart		//重启任务调度</span><br></pre></td></tr></table></figure>
+
+<p>常用选项</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-e</td>
+<td align="center">编辑crontab定时任务</td>
+</tr>
+<tr>
+<td align="center">-l</td>
+<td align="center">查询crontab任务</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="center">删除当前用户所有的trontab任务</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux笔记——06-组管理</title>
+    <url>/2020/09/13/Linux%E2%80%94%E2%80%9406-%E7%BB%84%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="1-Linux组基本介绍"><a href="#1-Linux组基本介绍" class="headerlink" title="1.Linux组基本介绍"></a>1.Linux组基本介绍</h1><p>在Linux中每个用户必须属于一个组，不能独立于组外。在Linux中每个文件都有所有者、所在组、其他组的概念。</p>
+<h1 id="2-文件-目录创建者"><a href="#2-文件-目录创建者" class="headerlink" title="2.文件/目录创建者"></a>2.文件/目录创建者</h1><p>一般为文件的创建者，谁创建了该文件，就自然成为该文件的所有者。</p>
+<h2 id="查看文件所有者"><a href="#查看文件所有者" class="headerlink" title="查看文件所有者"></a>查看文件所有者</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chown 用户名 文件名</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-组的创建"><a href="#3-组的创建" class="headerlink" title="3.组的创建"></a>3.组的创建</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">groupadd 组名</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-文件目录所在组"><a href="#4-文件目录所在组" class="headerlink" title="4.文件目录所在组"></a>4.文件目录所在组</h1><h2 id="查看文件目录所在组"><a href="#查看文件目录所在组" class="headerlink" title="查看文件目录所在组"></a>查看文件目录所在组</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改文件所在组"><a href="#修改文件所在组" class="headerlink" title="修改文件所在组"></a>修改文件所在组</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chgrp 组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-其他组"><a href="#5-其他组" class="headerlink" title="5.其他组"></a>5.其他组</h1><p>除文件的所有者和所有组的用户外，系统的其他用户都是文件的其他组。</p>
+<h1 id="6-改变用户所在组"><a href="#6-改变用户所在组" class="headerlink" title="6.改变用户所在组"></a>6.改变用户所在组</h1><p>在添加用户时，可以指定将该用户添加到哪个组中，同样用root管理权限可以改变某个用户所在的组。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -g 组名 用户名</span><br><span class="line">usermod -d 目录名 用户名		//改变该用户登录的初始目录</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux笔记——07-权限管理</title>
+    <url>/2020/09/13/Linux%E2%80%94%E2%80%9407-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="1-权限基本介绍"><a href="#1-权限基本介绍" class="headerlink" title="1.权限基本介绍"></a>1.权限基本介绍</h2><p>ls -l中显示的内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-rwxrw-r-- 1 root root 1213 Feb 2 09:39 abc</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ol>
+<li>第0位确定文件类型(d—目录,-—普通文件,l—软链接,c—字符设备,b—块文件或硬盘)</li>
+<li>第1-3位确定文件所有者拥有该文件的权限</li>
+<li>第4-6位确定所属组拥有该文件的权限</li>
+<li>第7-9位确定其他用户拥有该文件的权限</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">显示</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">文件的硬链接数或目录的子目录数</td>
+</tr>
+<tr>
+<td align="center">root</td>
+<td align="center">用户</td>
+</tr>
+<tr>
+<td align="center">root</td>
+<td align="center">组</td>
+</tr>
+<tr>
+<td align="center">1213</td>
+<td align="center">文件大小，若为文件夹则显示4096字节</td>
+</tr>
+<tr>
+<td align="center">Feb 2 09:39</td>
+<td align="center">最后修改日期</td>
+</tr>
+<tr>
+<td align="center">abc</td>
+<td align="center">文件名</td>
+</tr>
+</tbody></table>
+<h2 id="2-rwx权限详解"><a href="#2-rwx权限详解" class="headerlink" title="2.rwx权限详解"></a>2.rwx权限详解</h2><h3 id="rwx作用到文件"><a href="#rwx作用到文件" class="headerlink" title="rwx作用到文件"></a>rwx作用到文件</h3><ol>
+<li>r：可以读取查看</li>
+<li>w：可以修改，但是不代表可以删除该文件，删除一个文件的前提条件是对该文件所在的目录有写权限，才可以删除该文件</li>
+<li>x：代表可以执行</li>
+</ol>
+<h3 id="rwx作用到目录"><a href="#rwx作用到目录" class="headerlink" title="rwx作用到目录"></a>rwx作用到目录</h3><ol>
+<li>r：可以读取，ls查看目录内容</li>
+<li>w：可以修改，目录里创建、删除、重命名目录</li>
+<li>x：可以进入该目录</li>
+</ol>
+<h3 id="rwx的数字表示形式"><a href="#rwx的数字表示形式" class="headerlink" title="rwx的数字表示形式"></a>rwx的数字表示形式</h3><ol>
+<li>r=4</li>
+<li>w=2</li>
+<li>x=1</li>
+<li>rwx=7</li>
+</ol>
+<h2 id="3-修改权限chmod"><a href="#3-修改权限chmod" class="headerlink" title="3.修改权限chmod"></a>3.修改权限chmod</h2><h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><p>通过chmod指令可以修改文件或目录的权限</p>
+<h3 id="第一种修改方式"><a href="#第一种修改方式" class="headerlink" title="第一种修改方式"></a>第一种修改方式</h3><ol>
+<li>u：所有者</li>
+<li>g：所有组</li>
+<li>o：其他人</li>
+<li>a：所有人</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod u=rwx,g=rx,o=x 文件目录名</span><br><span class="line">chmod o+w 文件目录名</span><br><span class="line">chmod a-x 文件目录名</span><br><span class="line">//+：代表增加权限</span><br><span class="line">//-：代表减小权限</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种修改方式"><a href="#第二种修改方式" class="headerlink" title="第二种修改方式"></a>第二种修改方式</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod u=rwx,g=rx,o=x 文件目录名</span><br><span class="line">chmod 751 文件目录名		//同上</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-修改文件所有者chown"><a href="#4-修改文件所有者chown" class="headerlink" title="4.修改文件所有者chown"></a>4.修改文件所有者chown</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chown newowner file		//改变文件的所有者</span><br><span class="line">chown newowner:newgroup file		//改变用户的所有者和所有组</span><br><span class="line">-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-修改文件所在组chgrp"><a href="#5-修改文件所在组chgrp" class="headerlink" title="5.修改文件所在组chgrp"></a>5.修改文件所在组chgrp</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chgrp newgroup file		//改变文件的所在组</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux笔记——09-磁盘分区及挂载</title>
+    <url>/2020/09/13/Linux%E2%80%94%E2%80%9409-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E5%8F%8A%E6%8C%82%E8%BD%BD/</url>
+    <content><![CDATA[<h2 id="1-分区方式"><a href="#1-分区方式" class="headerlink" title="1.分区方式"></a>1.分区方式</h2><h3 id="mbr分区"><a href="#mbr分区" class="headerlink" title="mbr分区"></a>mbr分区</h3><ol>
+<li>最多支持四个主分区</li>
+<li>系统只能安装到主分区</li>
+<li>拓展分区要占一个主分区</li>
+<li>MBR最大只支持2TB，但拥有最好的兼容性</li>
+</ol>
+<h3 id="gtp分区"><a href="#gtp分区" class="headerlink" title="gtp分区"></a>gtp分区</h3><ol>
+<li>支持无限多个主分区，但操作系统可能限制</li>
+<li>最大支持18EB的大容量</li>
+</ol>
+<h2 id="2-Linux分区"><a href="#2-Linux分区" class="headerlink" title="2.Linux分区"></a>2.Linux分区</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ol>
+<li>Linux系统来说无论有几个分区，分给哪一目录使用，归根结底就只有一个根目录，一个独立且唯一的文件结构，Linux系统中每个分区都是用来组成整个文件系统的一部分。</li>
+<li>Linux系统采用了一种叫做“载入”的处理方法，它的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来。这时要载入的一个分区将使它的存储空间在一个目录下获得。</li>
+</ol>
+<h3 id="硬盘说明"><a href="#硬盘说明" class="headerlink" title="硬盘说明"></a>硬盘说明</h3><ol>
+<li>Linux硬盘分为IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。</li>
+<li>对于IDE硬盘，驱动器标志符为“hdx~”，其中”hd”表明分区所在设备的类型；“x”为盘号，a为基本盘、b为基本从属盘、c为辅助主盘、d为辅助从属盘；“～”代表分区，前四个分区用数字1到4表示，它们是主分区或拓展分区，从5开始就是逻辑分区。</li>
+<li>对于SCSI硬盘则标识为“sdx~”，SCSI硬盘是用“sd”表明分区所在设备的类型，其余部分则和IDE硬盘的表示方法一样。</li>
+</ol>
+<h3 id="lsblk指令"><a href="#lsblk指令" class="headerlink" title="lsblk指令"></a>lsblk指令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//使用lsblk指令查看当前系统的分区情况</span><br><span class="line">lsblk -f</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-磁盘情况查询"><a href="#3-磁盘情况查询" class="headerlink" title="3.磁盘情况查询"></a>3.磁盘情况查询</h2><h3 id="查询系统整体磁盘使用情况"><a href="#查询系统整体磁盘使用情况" class="headerlink" title="查询系统整体磁盘使用情况"></a>查询系统整体磁盘使用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询指定目录的磁盘占用情况"><a href="#查询指定目录的磁盘占用情况" class="headerlink" title="查询指定目录的磁盘占用情况"></a>查询指定目录的磁盘占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">du -h /目录</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-s</td>
+<td align="center">指定目录占用大小汇总</td>
+</tr>
+<tr>
+<td align="center">-h</td>
+<td align="center">带计量单位</td>
+</tr>
+<tr>
+<td align="center">-a</td>
+<td align="center">含文件</td>
+</tr>
+<tr>
+<td align="center">–max-depth=1</td>
+<td align="center">子目录深度</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="center">列出明细的同时，增加汇总值</td>
+</tr>
+</tbody></table>
+<h2 id="4-磁盘情况-工作实用指令"><a href="#4-磁盘情况-工作实用指令" class="headerlink" title="4.磁盘情况-工作实用指令"></a>4.磁盘情况-工作实用指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//统计/home文件夹下文件的个数</span><br><span class="line">ls -l /home | grep <span class="string">"^-"</span> | wc -l</span><br><span class="line"></span><br><span class="line">//统计/home文件夹下文件的个数，包括子文件夹</span><br><span class="line">ls -lR /home | grep <span class="string">"^-"</span> | wc -l</span><br><span class="line"></span><br><span class="line">//统计/home文件夹下目录的个数</span><br><span class="line">ls -l /home | grep <span class="string">"^d"</span> | wc -l</span><br><span class="line"></span><br><span class="line">//统计/home文件夹下目录的个数,包括子文件夹</span><br><span class="line">ls -lR /home | grep <span class="string">"^d"</span> | wc -l</span><br><span class="line"></span><br><span class="line">//以树状显示目录结构</span><br><span class="line">tree</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>
