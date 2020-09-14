@@ -6122,4 +6122,269 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Linux</category>
       </categories>
   </entry>
+  <entry>
+    <title>Linux笔记——10-进程管理</title>
+    <url>/2020/09/14/Linux%E2%80%94%E2%80%9410-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h1><ol>
+<li>在Linux系统中，每一个执行的程序都称为一个进程，每一个进程都分配一个ID号。</li>
+<li>每一个进程都有对应的一个父进程，而这个父进程可以复制多个子进程。</li>
+<li>每一个进程都有可能以两种方式存在，前台和后台，所谓的前台进程就是用户目前屏幕上过可以进行操作的。后台进程则是实际在操作，屏幕无法看到的进程。</li>
+<li>一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中，直到关机才结束。</li>
+</ol>
+<h1 id="2-显示系统执行的进程"><a href="#2-显示系统执行的进程" class="headerlink" title="2.显示系统执行的进程"></a>2.显示系统执行的进程</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -aux</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>常用选项：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-a</td>
+<td align="center">显示当前终端的所有进程信息</td>
+</tr>
+<tr>
+<td align="center">-u</td>
+<td align="center">以用户的格式显示进程信息</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="center">显示后台进程运行的参数</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>ps显示的信息选项：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PID</td>
+<td align="center">进程识别号</td>
+</tr>
+<tr>
+<td align="center">TTY</td>
+<td align="center">终端机号</td>
+</tr>
+<tr>
+<td align="center">TIME</td>
+<td align="center">此进程所消耗的CPU时间</td>
+</tr>
+<tr>
+<td align="center">CMD</td>
+<td align="center">正在执行的命令或进程名</td>
+</tr>
+</tbody></table>
+<h2 id="ps指令详解"><a href="#ps指令详解" class="headerlink" title="ps指令详解"></a>ps指令详解</h2><ol>
+<li>指令格式：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -aux | grep xxx</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>指令查询结果说明：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">USER</td>
+<td align="center">用户名称</td>
+</tr>
+<tr>
+<td align="center">PID</td>
+<td align="center">进程号</td>
+</tr>
+<tr>
+<td align="center">%CPU</td>
+<td align="center">进程占用CPU的百分比</td>
+</tr>
+<tr>
+<td align="center">%MEM</td>
+<td align="center">进程占用物理内存的百分比</td>
+</tr>
+<tr>
+<td align="center">VSZ</td>
+<td align="center">进程占用的虚拟内存大小(单位:KB)</td>
+</tr>
+<tr>
+<td align="center">RSS</td>
+<td align="center">进程占用的物理内存大小(单位:KB)</td>
+</tr>
+<tr>
+<td align="center">TT</td>
+<td align="center">终端名称，缩写</td>
+</tr>
+<tr>
+<td align="center">STAT</td>
+<td align="center">进程状态，S-睡眠;s-该进程是会话的先导进程;N-进程拥有比普通优先级更低的优先级;R-正在运行;D-短期等待;Z-僵死进程;T-被跟踪或者被停止</td>
+</tr>
+<tr>
+<td align="center">STARTED</td>
+<td align="center">进程的启动时间</td>
+</tr>
+<tr>
+<td align="center">TIME</td>
+<td align="center">进程使用CPU的总时间</td>
+</tr>
+<tr>
+<td align="center">COMMAND</td>
+<td align="center">启动进程所用的命令和参数</td>
+</tr>
+</tbody></table>
+<h2 id="ps-ef指令"><a href="#ps-ef指令" class="headerlink" title="ps -ef指令"></a>ps -ef指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep xxx		//以全格式显示当前所有的进程</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-终止进程指令"><a href="#3-终止进程指令" class="headerlink" title="3.终止进程指令"></a>3.终止进程指令</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>若是某个进程执行到一半需要停止时或消耗了很大的系统资源，则可以考虑停止该进程，使用kill命令来完成此项任务。</p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">kill</span> [选项] 进程号		//通过进程号杀死进程</span><br><span class="line">killall 进程名称		//通过进程名称杀死进程，支持通配符，常用于系统因负荷过大变的很慢时使用</span><br><span class="line">-9		//表示强迫进程立即停止</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-查看进程树"><a href="#4-查看进程树" class="headerlink" title="4.查看进程树"></a>4.查看进程树</h1><h2 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pstree [选项]		//更加直观的查看进程信息</span><br></pre></td></tr></table></figure>
+
+<p>常用选项：</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-p</td>
+<td align="center">显示进程的PID</td>
+</tr>
+<tr>
+<td align="center">-u</td>
+<td align="center">显示进程的所属用户</td>
+</tr>
+</tbody></table>
+<h1 id="5-服务Service管理"><a href="#5-服务Service管理" class="headerlink" title="5.服务Service管理"></a>5.服务Service管理</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>服务Service本质就是进程，但是在后台运行，通常会监听某个端口，等待其他程序的请求，因此又被称为守护进程。</p>
+<h2 id="Service管理指令"><a href="#Service管理指令" class="headerlink" title="Service管理指令"></a>Service管理指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service 服务名 [start | stop | restart | reload | status]</span><br><span class="line">//在Centos7之后使用systemctl指令</span><br><span class="line">这种方式只是会暂时生效，当重启系统之后，系统会恢复到修改前的状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务的运行级别"><a href="#服务的运行级别" class="headerlink" title="服务的运行级别"></a>服务的运行级别</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi/etc/inittab		//查看或修改默认级别</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">级别</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">系统停机状态，系统默认运行级别不能设置为0，否则系统不能正常启动</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">单用户工作状态，root权限，用于系统维护，禁止远程登陆</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">多用户状态（无NFS），不支持网络</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">多用户状态（有NFS），登陆后进入控制台命令行模式</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">系统未使用，保留</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">X11控制台，登陆后进入图形GUI模式</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">系统正常关闭并重启系统，默认运行级别不能设置为6，否则系统不能正常启动</td>
+</tr>
+</tbody></table>
+<h2 id="chkconfig指令"><a href="#chkconfig指令" class="headerlink" title="chkconfig指令"></a>chkconfig指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//可以给每个服务的各个运行级别设置自启动/关闭</span><br><span class="line">chkconfig --list | grep xxx		//查看服务</span><br><span class="line">chkconfig --level n 服务名 on/off		//给指定服务的某个运行级别设置自启动/关闭</span><br><span class="line">//chkconfig重新设置服务自启动/关闭后，需要重启机器才能生效</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-动态监控进程"><a href="#6-动态监控进程" class="headerlink" title="6.动态监控进程"></a>6.动态监控进程</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>top与ps命令都用来显示正在执行的进程，但是top指令在执行一段时间可以更新正在运行的进程。</p>
+<h2 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">top[选项]</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>常用选项：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-d 秒数</td>
+<td align="center">指定top命令每隔几秒更新，默认是3秒</td>
+</tr>
+<tr>
+<td align="center">-i</td>
+<td align="center">使top不显示任何闲置或僵死的进程</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td align="center">通过指定监控进程ID仅仅监控某个进程的状态</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>交互操作说明</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">P</td>
+<td align="center">以CPU使用率排序，默认情况</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">以内存的使用率排序</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">以PID排序</td>
+</tr>
+<tr>
+<td align="center">Q</td>
+<td align="center">退出top</td>
+</tr>
+</tbody></table>
+<h2 id="查看系统网络情况"><a href="#查看系统网络情况" class="headerlink" title="查看系统网络情况"></a>查看系统网络情况</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat[选项]</span><br><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
+
+<p>常用选项：</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-an</td>
+<td align="center">按一定顺序排序输出</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td align="center">显示哪个进程正在调用</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>
