@@ -6387,4 +6387,52 @@ i位置的元素的值+以i-1结尾的所有子数组中子数组和最大的值
         <category>Linux</category>
       </categories>
   </entry>
+  <entry>
+    <title>Linux笔记——11-RPM和YUM包的管理</title>
+    <url>/2020/09/15/Linux%E2%80%94%E2%80%9411-RPM%E5%92%8CYUM%E5%8C%85%E7%9A%84%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="1-RPM包的管理"><a href="#1-RPM包的管理" class="headerlink" title="1.RPM包的管理"></a>1.RPM包的管理</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>一种用于互联网下载包的打包及安装工具，包含在某些Linux分发版中，生成具有RPM拓展名的文件，RPM是RedHat Package Manager(RedHat软件包管理工具)的缩写。</p>
+<h2 id="RPM查询命令"><a href="#RPM查询命令" class="headerlink" title="RPM查询命令"></a>RPM查询命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa		//查询所安装的所有rpm软件包</span><br><span class="line">rpm -qa | more		//分页显示</span><br><span class="line">rpm -qa | grep xxx		//查询指定的rpm软件包</span><br><span class="line">rpm -q 软件包名		//查询软件包是否安装</span><br><span class="line">rpm -qi 软件包名		//查询软件包信息</span><br><span class="line">rpm -ql 软件包名		//查询软件包中的文件</span><br><span class="line">rpm -qf 文件全路径名		//查询文件所属的软件包</span><br></pre></td></tr></table></figure>
+
+<h2 id="RPM包的基本格式"><a href="#RPM包的基本格式" class="headerlink" title="RPM包的基本格式"></a>RPM包的基本格式</h2><ol>
+<li>一个RPM包名：firefox-45.0.1-1.el6.centos.x86_64.rpm</li>
+<li>名称：firefox</li>
+<li>版本号：45.0.1-1</li>
+<li>适用操作系统：el6.centos.x86_64——表示centos6.x的64位系统，若是i686、i386表示32位系统，noarch表示通用。</li>
+</ol>
+<h2 id="卸载RPM包"><a href="#卸载RPM包" class="headerlink" title="卸载RPM包"></a>卸载RPM包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -e RPM包的名称</span><br><span class="line">rpm -e --nodeps RPM包的名称		//强制卸载RPM包</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>若其他软件依赖要卸载的软件包，卸载时则会产生错误信息。如果要强制卸载，可以增加-nodeps参数</li>
+</ol>
+<h2 id="安装PRM包"><a href="#安装PRM包" class="headerlink" title="安装PRM包"></a>安装PRM包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -ivh 	RPM包全路径名称</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i=install</td>
+<td align="center">安装</td>
+</tr>
+<tr>
+<td align="center">v=verbose</td>
+<td align="center">提示</td>
+</tr>
+<tr>
+<td align="center">h=hash</td>
+<td align="center">进度条</td>
+</tr>
+</tbody></table>
+<h1 id="2-YUM包的管理"><a href="#2-YUM包的管理" class="headerlink" title="2.YUM包的管理"></a>2.YUM包的管理</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>YUM是一个Shell前端软件管理包，基于RPM包管理，能够从指定的服务器自动下载RPM包并安装，可以自动处理依赖关系，并且一次安装所有依赖的软件包。</p>
+<h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list | grep xxx		//查询yum服务器是否有需要安装的软件</span><br><span class="line">yum install xxx		//下载安装指定yum包</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>
